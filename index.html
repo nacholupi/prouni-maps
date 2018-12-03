@@ -31,8 +31,10 @@
             });
 
             var locations = [
-                ['Casa', -34.5694648, -58.4825995],
+                ['Casa', -34.5729377, -58.4795286],
                 ['Trabajo', -34.5471139, -58.4869242],
+                ['Bibi y Oreste', -34.573464, -58.478085],
+                ['Interelec', -34.597969, -58.459113],
             ];
 
             var infowindow = new google.maps.InfoWindow();
@@ -46,6 +48,7 @@
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
+                        map.panTo(marker.getPosition());
                         infowindow.setContent(locations[i][0]);
                         infowindow.open(map, marker);
                     }
