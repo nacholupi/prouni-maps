@@ -5,17 +5,21 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var app = express();
+var restData = require('./routes/data');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/scripts/handlebars', express.static(__dirname + '/node_modules/handlebars/dist/'));
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/public/index.html');
+  res.sendfile(__dirname + '/public/map.html');
 });
+
+app.use('/data', restData);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
