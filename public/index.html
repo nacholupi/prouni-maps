@@ -29,11 +29,14 @@
             });
 
             var locations = [
-                ['Casa', -34.5729377, -58.4795286],
-                ['Trabajo', -34.5471139, -58.4869242],
-                ['Bibi y Oreste', -34.573464, -58.478085],
-                ['Interelec', -34.597969, -58.459113],
+                { title: 'Casa', lat: -34.5729377, long: -58.4795286 },
+                { title: 'Trabajo', lat: -34.5471139, long: -58.4869242 },
+                { title: 'Bibi y Oreste', lat: -34.573464, long: -58.478085 },
+                { title: 'Interelec', lat: -34.597969, long: -58.459113 },
             ];
+
+            var source = document.getElementById("entry-template").innerHTML;
+            var template = Handlebars.compile(source);
 
             var infowindow = new google.maps.InfoWindow();
             var bounds = new google.maps.LatLngBounds();
@@ -41,7 +44,7 @@
 
             for (i = 0; i < locations.length; i++) {
                 marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    position: new google.maps.LatLng(locations[i].lat, locations[i].long),
                     map: map
                 });
 
@@ -49,21 +52,32 @@
                 bounds.extend(marker.getPosition());
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    var content = template(locations[i]);
                     return function () {
-                        map.panTo(marker.getPosition());
-                        infowindow.setContent(locations[i][0]);
+                        map.panTo(marker.getPosition());    
+                        infowindow.setContent(content);
                         infowindow.open(map, marker);
                     }
                 })(marker, i));
             }
 
-            //now fit the map to the newly inclusive bounds
+            //now fit the map to the inclusive bounds
             map.fitBounds(bounds);
 
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA&callback=initMap">
-    </script>
+    <script src="/scripts/handlebars/handlebars.min.js"></script>
+
+    <script id="entry-template" type="text/x-handlebars-template">
+        <div class="entry">
+          <h1>{{title}}</h1>
+          <div class="body">
+            {{lat}}
+          </div>
+        </div>
+      </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA&callback=initMap"></script>
 </body>
 
 </html>
