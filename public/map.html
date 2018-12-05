@@ -36,7 +36,7 @@
         function addMarkers(map) {
             var request = new XMLHttpRequest();
 
-            request.open('GET', '/data', true);
+            request.open('GET', '/project', true);
             request.onload = function () {
                 var data = JSON.parse(this.response);
                 if (request.status == 200) {
@@ -48,7 +48,7 @@
             request.send();
         }
 
-        function pinMarkers(map, locations) {
+        function pinMarkers(map, data) {
             var source = document.getElementById("entry-template").innerHTML;
             var template = Handlebars.compile(source);
 
@@ -56,9 +56,10 @@
             var bounds = new google.maps.LatLngBounds();
             var marker, i;
 
-            for (i = 0; i < locations.length; i++) {
+            for (i = 0; i < data.length; i++) {
+                coord = data[i].location.coordinates;
                 marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[i].lat, locations[i].long),
+                    position: new google.maps.LatLng(coord[0], coord[1]),
                     map: map
                 });
 
@@ -66,7 +67,7 @@
                 bounds.extend(marker.getPosition());
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                    var content = template(locations[i]);
+                    var content = template(data[i]);
                     return function () {
                         map.panTo(marker.getPosition());
                         infowindow.setContent(content);
@@ -85,7 +86,7 @@
         <div class="entry">
           <h1>{{title}}</h1>
           <div class="other">
-            {{lat}}
+            {{location.coordinates}}
           </div>
         </div>
     </script>
