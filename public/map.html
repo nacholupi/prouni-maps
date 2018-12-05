@@ -54,10 +54,9 @@
 
             var infowindow = new google.maps.InfoWindow();
             var bounds = new google.maps.LatLngBounds();
-            var marker, i;
 
-            for (i = 0; i < data.length; i++) {
-                coord = data[i].location.coordinates;
+            var markers = data.map(function(locData, i) {
+                coord = locData.location.coordinates;
                 marker = new google.maps.Marker({
                     position: new google.maps.LatLng(coord[0], coord[1]),
                     map: map
@@ -67,21 +66,26 @@
                 bounds.extend(marker.getPosition());
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                    var content = template(data[i]);
+                    var content = template(locData);
                     return function () {
                         map.panTo(marker.getPosition());
                         infowindow.setContent(content);
                         infowindow.open(map, marker);
                     }
                 })(marker, i));
-            }
+                
+                return marker
+            });
 
             //now fit the map to the inclusive bounds
             map.fitBounds(bounds);
+
+            // Add a marker clusterer to manage the markers.
+            new MarkerClusterer(map, markers, { imagePath: '/images/m' });
         }
     </script>
-    <script src="/scripts/handlebars/handlebars.min.js"></script>
 
+    <script src="/scripts/handlebars/handlebars.min.js"></script>
     <script id="entry-template" type="text/x-handlebars-template">
         <div class="entry">
           <h1>{{title}}</h1>
@@ -91,6 +95,7 @@
         </div>
     </script>
 
+    <script src="/scripts/google/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA&callback=initMap"></script>
     <link rel="stylesheet" type="text/css" href="/stylesheets/infowindow_map.css">
 </body>
