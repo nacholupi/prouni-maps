@@ -18,12 +18,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/scripts/handlebars', express.static(__dirname + '/node_modules/handlebars/dist/'));
 app.use('/scripts/google', express.static(__dirname + '/node_modules/@google/markerclusterer/src/'));
 
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/public/map.html');
-});
 
 app.use('/project', projectRoute);
 
