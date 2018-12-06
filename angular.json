@@ -3,9 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "prouni-maps": {
+    "crud": {
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "frontend/crud",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
@@ -14,16 +14,16 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "index": "frontend/crud/index.html",
+            "main": "frontend/crud/main.ts",
+            "polyfills": "frontend/crud/polyfills.ts",
+            "tsConfig": "frontend/crud/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "frontend/crud/favicon.ico",
+              "frontend/crud/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "frontend/crud/styles.css"
             ],
             "scripts": []
           },
@@ -31,8 +31,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "frontend/crud/environments/environment.ts",
+                  "with": "frontend/crud/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -74,17 +74,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "main": "frontend/crud/test.ts",
+            "polyfills": "frontend/crud/polyfills.ts",
+            "tsConfig": "frontend/crud/tsconfig.spec.json",
+            "karmaConfig": "frontend/crud/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "frontend/crud/styles.css"
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "frontend/crud/favicon.ico",
+              "frontend/crud/assets"
             ]
           }
         },
@@ -92,8 +92,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "frontend/crud/tsconfig.app.json",
+              "frontend/crud/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

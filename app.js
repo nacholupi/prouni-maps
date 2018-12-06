@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'frontend/map')));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/scripts/handlebars', express.static(__dirname + '/node_modules/handlebars/dist/'));
 app.use('/scripts/google', express.static(__dirname + '/node_modules/@google/markerclusterer/src/'));
