@@ -1,0 +1,25 @@
+<div class="container">
+  <div>
+    <h1>Lista de proyectos</h1>
+    <a [routerLink]="['/project-create']" class="btn btn-default btn-lg">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Titulo</th>
+        <th>Latitud</th>
+        <th>Longitud</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let proj of projects">
+        <td>{{ proj.title }}</td>
+        <td>{{ proj.location.coordinates[0] }}</td>
+        <td>{{ proj.location.coordinates[1] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
