@@ -7,6 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectCreateComponent } from './project-create/project-create.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { ProjectEditComponent } from './project-edit/project-edit.component';
 
 const appRoutes: Routes = [
   {
@@ -19,6 +21,16 @@ const appRoutes: Routes = [
     component: ProjectCreateComponent,
     data: { title: 'Crear proyecto nuevo' }
   },
+  {
+    path: 'project-details/:id',
+    component: ProjectDetailsComponent,
+    data: { title: 'Detalles del proyecto' }
+  },
+  {
+    path: 'project-edit/:id',
+    component: ProjectEditComponent,
+    data: { title: 'Editar Proyecto' }
+  },
   { path: '',
     redirectTo: '/projects',
     pathMatch: 'full'
@@ -29,7 +41,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ProjectComponent,
-    ProjectCreateComponent
+    ProjectCreateComponent,
+    ProjectDetailsComponent,
+    ProjectEditComponent
   ],
   imports: [
     BrowserModule,

@@ -21,7 +21,6 @@ projectController.save = function (req, res) {
     }
 };
 
-
 projectController.find = function (req, res) {
     Project.find({}, function (err, projects) {
         if (err) {
@@ -29,6 +28,41 @@ projectController.find = function (req, res) {
             res.status(500).send(err)
         } else {
             res.json(projects)
+        }
+    })
+}
+
+projectController.findById = function (req, res) {
+    Project.findById(req.params.id, function (err, project) {
+        if (err) {
+            console.log(err);
+            res.status(500).send(err)
+        } else {
+            res.json(project)
+        }
+    })
+}
+
+projectController.delete = function (req, res) {
+    Project.findByIdAndRemove(req.params.id, function (err, project) {
+        if (err) {
+            console.log(err);
+            res.status(500).send(err)
+        } else {
+            res.json(project)
+        }
+    })
+}
+
+projectController.update = function (req, res) {
+    console.log(req.params.id)
+    console.log("testing!")
+    Project.findByIdAndUpdate(req.params.id, req.body, function (err, project) {
+        if (err) {
+            console.log(err);
+            res.status(500).send(err)
+        } else {
+            res.json(project)
         }
     })
 }

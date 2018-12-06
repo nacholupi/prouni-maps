@@ -1,24 +1,22 @@
 <div class="container">
   <div>
     <h1>Lista de proyectos</h1>
-    <a [routerLink]="['/project-create']" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    <a [routerLink]="['/project-create']" class="btn btn-outline-primary">
+      ADD
     </a>
   </div>
 
   <table class="table">
     <thead>
       <tr>
-        <th>Titulo</th>
-        <th>Latitud</th>
-        <th>Longitud</th>
+        <th>Título</th>
+        <th>Detalles</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let proj of projects">
         <td>{{ proj.title }}</td>
-        <td>{{ proj.location.coordinates[0] }}</td>
-        <td>{{ proj.location.coordinates[1] }}</td>
+        <td><a [routerLink]="['/project-details', proj._id]">Show Detail</a></td>
       </tr>
     </tbody>
   </table>

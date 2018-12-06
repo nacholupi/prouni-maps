@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>{{ proj.title }}</h1>
+  <div class="row">
+
+    <dl class="list">
+      <dt>Latitud</dt>
+      <dd>{{ proj.location.coordinates[0] }}</dd>
+      <dt>Longitud</dt>
+      <dd>{{ proj.location.coordinates[1] }}</dd>
+    </dl>
+
+    <div class="col-md-12">
+      <a [routerLink]="['/project-edit', proj._id]" class="btn btn-success">EDIT</a>
+      <button class="btn btn-danger" type="button" (click)="deleteProject(proj._id)">DELETE</button>
+    </div>
+
+  </div>
+</div>
