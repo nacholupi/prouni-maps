@@ -10,6 +10,8 @@ import { ProjectCreateComponent } from './project-create/project-create.componen
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 
+import { ProjectService } from './project.service';
+
 const appRoutes: Routes = [
   {
     path: 'projects',
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     component: ProjectEditComponent,
     data: { title: 'Editar Proyecto' }
   },
-  { path: '',
+  {
+    path: '',
     redirectTo: '/projects',
     pathMatch: 'full'
   }
@@ -54,7 +57,7 @@ const appRoutes: Routes = [
       { enableTracing: true }
     )
   ],
-  providers: [],
+  providers: [ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

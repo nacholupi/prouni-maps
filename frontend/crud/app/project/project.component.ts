@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-project',
@@ -9,11 +9,11 @@ export class ProjectComponent implements OnInit {
 
   projects: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private service: ProjectService) { }
 
   ngOnInit() {
-    this.http.get('/project').subscribe(data => {
-      this.projects = data;
+    this.service.getAll().subscribe(res => {
+      this.projects = res;
     });
   }
 }

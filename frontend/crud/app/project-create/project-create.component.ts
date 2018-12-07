@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-project-create',
@@ -10,19 +10,13 @@ export class ProjectCreateComponent implements OnInit {
 
   theProject = { location: { type: "Point", coordinates: [] } };
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private service: ProjectService, private router: Router) { }
 
   ngOnInit() {
   }
 
   saveProject() {
-    console.log(this.theProject)
-    this.http.post('/project', this.theProject)
-      .subscribe(res => {
-        this.router.navigate(['/projects']);
-      }, (err) => {
-        console.log(err);
-      }
-      );
+    this.service.save(this.theProject);
+    this.router.navigate(['/projects']);
   }
 }
