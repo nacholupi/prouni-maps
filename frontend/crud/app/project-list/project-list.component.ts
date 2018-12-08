@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../project.service';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html'
+  selector: 'app-project-list',
+  templateUrl: './project-list.component.html'
 })
-export class ProjectComponent implements OnInit {
+export class ProjectListComponent implements OnInit {
 
   projects: any;
 
