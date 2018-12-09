@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/project-create',
+    redirectTo: '/project-list',
     pathMatch: 'full'
   }
 ];
