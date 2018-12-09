@@ -24,11 +24,14 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   deleteProject(id) {
-    this.service.delete(id)
-      .subscribe(() => {
+    const response = confirm('¿Seguro que desea borrar el proyecto?');
+    if (response ) {
+      this.service.delete(id).subscribe(() => {
         this.router.navigate(['/projects']);
       }, (err) => {
         console.log(err);
       });
+    }
+    return;
   }
 }
