@@ -55,8 +55,6 @@ projectController.delete = function (req, res) {
 }
 
 projectController.update = function (req, res) {
-    console.log(req.params.id)
-    console.log("testing!")
     Project.findByIdAndUpdate(req.params.id, req.body, function (err, project) {
         if (err) {
             console.log(err);

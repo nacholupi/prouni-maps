@@ -6,30 +6,30 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
 
 const routes: Routes = [
   {
-    path: 'project-list',
+    path: 'crud/project-list',
     component: ProjectListComponent,
     data: { title: 'Lista de proyectos' }
   },
   {
-    path: 'project-create',
+    path: 'crud/project-create',
     component: ProjectCreateComponent,
     data: { title: 'Crear proyecto nuevo' }
   },
   {
-    path: 'project-details/:id',
+    path: 'crud/project-details/:id',
     component: ProjectDetailsComponent,
     data: { title: 'Detalles del proyecto' }
   },
   {
-    path: 'project-edit/:id',
+    path: 'crud/project-edit/:id',
     component: ProjectEditComponent,
     data: { title: 'Editar Proyecto' }
   },
   {
     path: '',
-    redirectTo: '/project-list',
+    redirectTo: 'crud/project-list',
     pathMatch: 'full'
   }
 ];
 
-export const routing = RouterModule.forRoot(routes);
+export const routing = RouterModule.forRoot(routes, { enableTracing: true });

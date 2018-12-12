@@ -27,7 +27,7 @@ export class ProjectEditComponent implements OnInit {
     this.http.put('/project/' + id, this.theProject)
       .subscribe(res => {
         let id = res['_id'];
-        this.router.navigate(['/project-details', id]);
+        this.router.navigate(['/crud/project-details', id]);
       }, (err) => {
         console.log(err);
       }

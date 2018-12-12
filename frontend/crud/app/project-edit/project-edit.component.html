@@ -18,6 +18,10 @@
             required>
         </div>
         <div class="form-group">
+          <label for="name">Referente: E-Mail</label>
+          <input type="text" class="form-control" [(ngModel)]="theProject.ref_mail" name="ref_mail" required>
+        </div>
+        <div class="form-group">
           <button type="submit" class="btn btn-success" [disabled]="!projForm.form.valid">Update</button>
         </div>
       </form>
