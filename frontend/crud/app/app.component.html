@@ -1,1 +1,57 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/project-list">
+                <mat-icon class="icon">list</mat-icon>
+                <span class="label">Listar</span>
+            </a>
+            <a mat-list-item routerLink="/project-create">
+                <mat-icon class="icon">add_location</mat-icon>
+                <span class="label">Agregar</span>
+            </a>
+            <a mat-list-item routerLink="/project-map">
+                <mat-icon class="icon">map</mat-icon>
+                <span class="label">Mapa</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <div fxHide.gt-xs>
+                <button mat-icon-button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div>
+                <a routerLink="/">
+                    Proyectos Sociales
+                </a>
+            </div>
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+                <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+                    <li>
+                        <a routerLink="/project-list">
+                            <mat-icon class="icon">list</mat-icon>
+                            <span class="label">Listar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/project-create">
+                            <mat-icon class="icon">add_location</mat-icon>
+                            <span class="label">Agregar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/project-map">
+                            <mat-icon class="icon">map</mat-icon>
+                            <span class="label">Mapa</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </mat-toolbar>
+        <main height="100%">
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

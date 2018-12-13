@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,6 +13,7 @@ import { ProjectCreateComponent } from './project-create/project-create.componen
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectService } from './project.service';
+import { ProjectMapComponent } from './project-map/project-map.component';
 
 
 @NgModule({
@@ -21,14 +23,17 @@ import { ProjectService } from './project.service';
     ProjectCreateComponent,
     ProjectDetailsComponent,
     ProjectEditComponent,
+    ProjectMapComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    // delete 
     FormsModule,
     HttpClientModule,
     MaterialModule,
+    FlexLayoutModule,
     routing
   ],
   providers: [ProjectService],

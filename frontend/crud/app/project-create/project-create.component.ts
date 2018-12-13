@@ -27,6 +27,6 @@ export class ProjectCreateComponent implements OnInit {
   saveProject() {
     console.log(this.form.value)
     this.service.save(this.form.value);
-    this.router.navigate(['/crud/project-list']);
+    this.router.navigate(['/project-list']);
   }
 }

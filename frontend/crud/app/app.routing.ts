@@ -3,31 +3,37 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectCreateComponent } from './project-create/project-create.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
+import { ProjectMapComponent } from './project-map/project-map.component';
 
 const routes: Routes = [
   {
-    path: 'crud/project-list',
+    path: 'project-map',
+    component: ProjectMapComponent,
+    data: { title: 'Mapa' }
+  },
+  {
+    path: 'project-list',
     component: ProjectListComponent,
     data: { title: 'Lista de proyectos' }
   },
   {
-    path: 'crud/project-create',
+    path: 'project-create',
     component: ProjectCreateComponent,
     data: { title: 'Crear proyecto nuevo' }
   },
   {
-    path: 'crud/project-details/:id',
+    path: 'project-details/:id',
     component: ProjectDetailsComponent,
     data: { title: 'Detalles del proyecto' }
   },
   {
-    path: 'crud/project-edit/:id',
+    path: 'project-edit/:id',
     component: ProjectEditComponent,
     data: { title: 'Editar Proyecto' }
   },
   {
     path: '',
-    redirectTo: 'crud/project-list',
+    redirectTo: 'project-list',
     pathMatch: 'full'
   }
 ];

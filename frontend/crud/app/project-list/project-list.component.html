@@ -1,7 +1,7 @@
 <div class="container">
   <div>
     <h1>Lista de proyectos</h1>
-    <a [routerLink]="['/crud/project-create']" class="btn btn-outline-primary">
+    <a [routerLink]="['/project-create']" class="btn btn-outline-primary">
       ADD
     </a>
   </div>
@@ -16,7 +16,7 @@
     <tbody>
       <tr *ngFor="let proj of projects">
         <td>{{ proj.title }}</td>
-        <td><a [routerLink]="['/crud/project-details', proj._id]">Show Detail</a></td>
+        <td><a [routerLink]="['/project-details', proj._id]">Show Detail</a></td>
       </tr>
     </tbody>
   </table>
