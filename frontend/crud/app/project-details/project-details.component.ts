@@ -27,7 +27,7 @@ export class ProjectDetailsComponent implements OnInit {
     const response = confirm('¿Seguro que desea borrar el proyecto?');
     if (response ) {
       this.service.delete(id).subscribe(() => {
-        this.router.navigate(['/projects']);
+        this.router.navigate(['/crud/project-list']);
       }, (err) => {
         console.log(err);
       });

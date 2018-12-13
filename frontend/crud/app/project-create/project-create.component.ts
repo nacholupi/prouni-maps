@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProjectService } from '../project.service';
 
@@ -8,15 +9,24 @@ import { ProjectService } from '../project.service';
 })
 export class ProjectCreateComponent implements OnInit {
 
-  theProject = { location: { type: "Point", coordinates: [] } };
+  form = this.fb.group({
+    "title": this.fb.control('', [Validators.required]),
+    "ref_mail": this.fb.control('', [Validators.email]),
+    "location": this.fb.group({
+      "type": this.fb.control('Point'),
+      "coordinates": this.fb.array([null, null], Validators.required)
+    })
+  });
 
-  constructor(private service: ProjectService, private router: Router) { }
+  constructor(private fb: FormBuilder, private service: ProjectService, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
   saveProject() {
-    this.service.save(this.theProject);
-    this.router.navigate(['/projects']);
+    console.log(this.form.value)
+    this.service.save(this.form.value);
+    this.router.navigate(['/crud/project-list']);
   }
 }

@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { routing } from "./app.routing";
 
@@ -18,12 +20,15 @@ import { ProjectService } from './project.service';
     ProjectListComponent,
     ProjectCreateComponent,
     ProjectDetailsComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    MaterialModule,
     routing
   ],
   providers: [ProjectService],
