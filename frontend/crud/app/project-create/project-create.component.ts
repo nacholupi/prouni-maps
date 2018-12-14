@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-project-create',
-  templateUrl: './project-create.component.html'
+  templateUrl: './project-create.component.html',
+  styleUrls: ['./project-create.component.css']
 })
 export class ProjectCreateComponent implements OnInit {
 

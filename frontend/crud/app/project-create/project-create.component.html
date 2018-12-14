@@ -1,45 +1,47 @@
-<div class="container">
-  <h1>Agregar Nuevo Proyecto</h1>
-  <div class="row">
-    <div class="col-md-6">
-      <form [formGroup]="form" (ngSubmit)="saveProject()">
+<mat-card class="create-card">
+  <mat-card-header>
+    <mat-card-title>Agregar Nuevo Proyecto</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="saveProject()">
 
-        <mat-form-field>
-          <input matInput type="text" placeholder="Titulo" formControlName="title" required>
-          <mat-error *ngIf="form.get('title').hasError('required')">
-            Campo requerido
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Titulo" formControlName="title" required>
+        <mat-error *ngIf="form.get('title').hasError('required')">
+          Campo requerido
+        </mat-error>
+      </mat-form-field>
 
-        <div formGroupName="location">
-          <div formArrayName="coordinates">
-            <mat-form-field>
-              <input matInput type="number" placeholder="Latitud" formControlName="0" required>
-              <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
-                Campo requerido
-              </mat-error>
-            </mat-form-field>
+      <mat-divider></mat-divider>
 
-            <mat-form-field>
-              <input matInput type="number" placeholder="Longitud" formControlName="1" required>
-              <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
-                Campo requerido
-              </mat-error>
-            </mat-form-field>
-          </div>
+      <div formGroupName="location">
+        <div formArrayName="coordinates">
+          <mat-form-field>
+            <input matInput type="number" placeholder="Latitud" formControlName="0" required>
+            <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
+              Campo requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="number" placeholder="Longitud" formControlName="1" required>
+            <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
+              Campo requerido
+            </mat-error>
+          </mat-form-field>
         </div>
+      </div>
 
-        <mat-form-field>
-          <input matInput placeholder="Email" formControlName="ref_mail">
-          <mat-error *ngIf="form.get('ref_mail').hasError('email')">
-            Ingrese un email válido
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="ref_mail">
+        <mat-error *ngIf="form.get('ref_mail').hasError('email')">
+          Ingrese un email válido
+        </mat-error>
+      </mat-form-field>
 
-        <div class="form-group">
-          <button mat-raised-button color="primary">Save</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+      <div class="form-group">
+        <button mat-raised-button color="primary">Save</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
