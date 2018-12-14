@@ -1,9 +1,12 @@
 <mat-card class="create-card">
+
   <mat-card-header>
     <mat-card-title>Agregar Nuevo Proyecto</mat-card-title>
   </mat-card-header>
+
   <mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="saveProject()">
+    <mat-divider></mat-divider>
+    <form [formGroup]="form" (ngSubmit)="saveProject()" fxLayout="column">
 
       <mat-form-field>
         <input matInput type="text" placeholder="Titulo" formControlName="title" required>
@@ -12,10 +15,8 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-divider></mat-divider>
-
       <div formGroupName="location">
-        <div formArrayName="coordinates">
+        <div formArrayName="coordinates" fxLayout="column">
           <mat-form-field>
             <input matInput type="number" placeholder="Latitud" formControlName="0" required>
             <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
