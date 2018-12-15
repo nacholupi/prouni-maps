@@ -1,10 +1,13 @@
-<div class="container">
+<mat-card class="create-card">
 
-  <app-project-create [editMode]="editMode" [initData]="proj"></app-project-create>
+  <mat-card-header>
+    <mat-card-title>Detalles Proyecto</mat-card-title>
+  </mat-card-header>
 
-  <div class="col-md-12">
-    <button class="btn btn-success" type="button" (click)="editProject()">EDIT</button>
-    <button class="btn btn-danger" type="button" (click)="deleteProject(proj._id)">DELETE</button>
+  <app-project-form [editMode]="editMode" [initData]="proj"></app-project-form>
+
+  <div class="form-group">
+    <button mat-raised-button color="primary" (click)="editProject()">Edit</button>
+    <button mat-raised-button color="primary" (click)="deleteProject(proj._id)">Delete</button>
   </div>
-
-</div>
+</mat-card>

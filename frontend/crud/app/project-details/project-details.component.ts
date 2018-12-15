@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../project.service';
+import { ProjectFormComponent } from '../project-form/project-form.component';
 
 @Component({
   selector: 'app-project-details',
@@ -10,6 +11,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   proj: any;
   editMode: boolean;
+  @ViewChild(ProjectFormComponent) projectForm: ProjectFormComponent;
 
   constructor(private service: ProjectService, private router: Router, private route: ActivatedRoute) { }
 
@@ -19,7 +21,7 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   editProject() {
-    console.log('lsdjfkldsfj');
+    console.log(this.projectForm.getFormData());
     this.editMode = true;
   }
 

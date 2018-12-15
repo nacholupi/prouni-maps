@@ -14,6 +14,7 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { ProjectService } from './project.service';
 import { ProjectMapComponent } from './project-map/project-map.component';
 import { ProjectDetailsResolver } from './project-details/project-details.resolver';
+import { ProjectFormComponent } from './project-form/project-form.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ProjectDetailsResolver } from './project-details/project-details.resolv
     ProjectCreateComponent,
     ProjectDetailsComponent,
     ProjectMapComponent,
+    ProjectFormComponent,
   ],
   imports: [
     BrowserModule,
