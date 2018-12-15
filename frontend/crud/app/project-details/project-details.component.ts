@@ -8,24 +8,25 @@ import { ProjectService } from '../project.service';
 })
 export class ProjectDetailsComponent implements OnInit {
 
-  proj: any = { location: { type: "Point", coordinates: [] } };
+  proj: any;
+  editMode: boolean;
 
-  constructor(private router: Router, private route: ActivatedRoute, private service: ProjectService) { }
+  constructor(private service: ProjectService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getProjectDetail(this.route.snapshot.params['id']);
+    this.proj = this.route.snapshot.data.projectData;
+    this.editMode = false;
   }
 
-  getProjectDetail(id) {
-    this.service.getDetailsById(id)
-      .subscribe(data => {
-        this.proj = data;
-      });
+  editProject() {
+    console.log('lsdjfkldsfj');
+    this.editMode = true;
   }
 
-  deleteProject(id) {
+  deleteProject(id: string) {
     const response = confirm('¿Seguro que desea borrar el proyecto?');
-    if (response ) {
+
+    if (response) {
       this.service.delete(id).subscribe(() => {
         this.router.navigate(['/project-list']);
       }, (err) => {

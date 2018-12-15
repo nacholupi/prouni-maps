@@ -33,6 +33,16 @@
         </div>
       </div>
 
+      <label>Referente</label>
+
+      <mat-form-field>
+        <input matInput placeholder="Nombre y Apellido" formControlName="ref_name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Teléfono" formControlName="ref_phone">
+      </mat-form-field>
+
       <mat-form-field>
         <input matInput placeholder="Email" formControlName="ref_mail">
         <mat-error *ngIf="form.get('ref_mail').hasError('email')">

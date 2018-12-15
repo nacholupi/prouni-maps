@@ -2,34 +2,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectCreateComponent } from './project-create/project-create.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
-import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectMapComponent } from './project-map/project-map.component';
+import { ProjectDetailsResolver } from './project-details/project-details.resolver';
 
 const routes: Routes = [
   {
     path: 'project-map',
-    component: ProjectMapComponent,
-    data: { title: 'Mapa' }
+    component: ProjectMapComponent
   },
   {
     path: 'project-list',
-    component: ProjectListComponent,
-    data: { title: 'Lista de proyectos' }
+    component: ProjectListComponent
   },
   {
     path: 'project-create',
-    component: ProjectCreateComponent,
-    data: { title: 'Crear proyecto nuevo' }
+    component: ProjectCreateComponent
   },
   {
     path: 'project-details/:id',
     component: ProjectDetailsComponent,
-    data: { title: 'Detalles del proyecto' }
-  },
-  {
-    path: 'project-edit/:id',
-    component: ProjectEditComponent,
-    data: { title: 'Editar Proyecto' }
+    resolve: { projectData: ProjectDetailsResolver }
   },
   {
     path: '',

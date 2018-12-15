@@ -9,19 +9,23 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  getAll() : Observable<Object> {
+  getAll(): Observable<Object> {
     return this.http.get('/project');
   }
 
-  getDetailsById(id): Observable<Object> {
+  getById(id: string): Observable<Object> {
     return this.http.get('/project/' + id);
   }
 
-  delete(id): Observable<Object> {
+  getDetailsById(id: string): Observable<Object> {
+    return this.http.get('/project/' + id);
+  }
+
+  delete(id: string): Observable<Object> {
     return this.http.delete('/project/' + id);
   }
 
-  save(project) {
+  save(project: Object) {
     this.http.post('/project', project)
       .subscribe(res => {
         return;
