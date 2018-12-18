@@ -1,10 +1,18 @@
 <mat-card-content>
   <mat-divider></mat-divider>
+
   <form [formGroup]="form" (ngSubmit)="saveProject()" fxLayout="column">
 
     <mat-form-field>
       <input matInput type="text" placeholder="Titulo" formControlName="title" required>
       <mat-error *ngIf="form.get('title').hasError('required')">
+        Campo requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput rows=3 placeholder="Objetivo" formControlName="subject" required></textarea>
+      <mat-error *ngIf="form.get('subject').hasError('required')">
         Campo requerido
       </mat-error>
     </mat-form-field>
@@ -20,7 +28,7 @@
 
         <mat-form-field>
           <input matInput type="number" placeholder="Longitud" formControlName="1" required>
-          <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
+          <mat-error *ngIf="form.get('location').get('coordinates').get('1').hasError('required')">
             Campo requerido
           </mat-error>
         </mat-form-field>
