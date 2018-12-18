@@ -7,8 +7,8 @@
   <app-project-form [editMode]="editMode" [initData]="proj"></app-project-form>
 
   <div class="form-group">
-    <button mat-raised-button color="primary" (click)="edit()">Edit</button>
-    <button mat-raised-button color="primary" (click)="delete(proj._id)">Delete</button>
-    <button mat-raised-button color="primary" (click)="update(proj._id)">Save</button>
+    <button mat-raised-button color="primary" *ngIf="!editMode" (click)="edit()">Edit</button>
+    <button mat-raised-button color="primary" *ngIf="!editMode" (click)="delete(proj._id)">Delete</button>
+    <button mat-raised-button color="primary" *ngIf="editMode" (click)="update(proj._id)">Save</button>
   </div>
 </mat-card>
