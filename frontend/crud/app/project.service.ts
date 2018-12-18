@@ -17,8 +17,8 @@ export class ProjectService {
     return this.http.get('/project/' + id);
   }
 
-  getDetailsById(id: string): Observable<Object> {
-    return this.http.get('/project/' + id);
+  update(id: string, project: Object): Observable<Object> {
+    return this.http.put('/project/' + id, project);
   }
 
   delete(id: string): Observable<Object> {

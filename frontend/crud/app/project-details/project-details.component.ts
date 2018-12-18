@@ -20,12 +20,20 @@ export class ProjectDetailsComponent implements OnInit {
     this.editMode = false;
   }
 
-  editProject() {
-    console.log(this.projectForm.getFormData());
+  edit() {
     this.editMode = true;
   }
 
-  deleteProject(id: string) {
+  update(id: string) {
+    this.service.update(id, this.projectForm.getFormData()).subscribe(() => {
+      this.router.navigate(['/project-list']);
+    }, (err) => {
+      console.log(err);
+    });
+    return;
+  }
+
+  delete(id: string) {
     const response = confirm('¿Seguro que desea borrar el proyecto?');
 
     if (response) {
@@ -35,6 +43,5 @@ export class ProjectDetailsComponent implements OnInit {
         console.log(err);
       });
     }
-    return;
   }
 }
