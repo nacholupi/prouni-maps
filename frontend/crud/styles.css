@@ -4,9 +4,13 @@ body {
     margin: 0;
   }
 
-.create-card {
+.card {
   margin: 20px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.content-card {
+  padding: 20px;
 }

@@ -1,6 +1,6 @@
 
 import { Component, OnInit, Input } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-project-form',
@@ -33,7 +33,7 @@ export class ProjectFormComponent implements OnInit {
 
   @Input()
   set editMode(edit: boolean) {
-    console.log(edit);
+
     this._editMode = edit;
     if (this._editMode) {
       this.form.enable();
@@ -51,6 +51,23 @@ export class ProjectFormComponent implements OnInit {
 
   getFormData() {
     return this.form.value;
+  }
+
+  isValid(): boolean {
+    this.markFormGroupTouched(this.form);
+    return this.form.valid;
+  }
+
+  public markFormGroupTouched(group: FormGroup | FormArray): void {
+    Object.keys(group.controls).forEach((key: string) => {
+      const abstractControl = group.controls[key];
+
+      if (abstractControl instanceof FormGroup || abstractControl instanceof FormArray) {
+        this.markFormGroupTouched(abstractControl);
+      } else {
+        abstractControl.markAsTouched();
+      }
+    });
   }
 }
 

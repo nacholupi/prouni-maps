@@ -25,12 +25,13 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   update(id: string) {
-    this.service.update(id, this.projectForm.getFormData()).subscribe(() => {
-      this.router.navigate(['/project-list']);
-    }, (err) => {
-      console.log(err);
-    });
-    return;
+    if (this.projectForm.isValid()) {
+      this.service.update(id, this.projectForm.getFormData()).subscribe(() => {
+        this.router.navigate(['/project-list']);
+      }, (err) => {
+        console.log(err);
+      });
+    }
   }
 
   delete(id: string) {

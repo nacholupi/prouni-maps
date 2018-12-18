@@ -16,9 +16,10 @@ export class ProjectCreateComponent implements OnInit {
   ngOnInit() { }
 
   saveProject() {
-    const formData = this.projectForm.getFormData();
-    console.log(formData);
-    this.service.save(formData);
-    this.router.navigate(['/project-list']);
+    if (this.projectForm.isValid()) {
+      const formData = this.projectForm.getFormData();
+      this.service.save(formData);
+      this.router.navigate(['/project-list']);
+    }
   }
 }

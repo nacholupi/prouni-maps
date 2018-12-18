@@ -1,9 +1,12 @@
-<mat-card class="create-card">
+<mat-card class="card">
 
   <mat-card-header>
     <mat-card-title>Agregar Nuevo Proyecto</mat-card-title>
   </mat-card-header>
+  <mat-divider></mat-divider>
+  
   <app-project-form [editMode]="true"></app-project-form>
+
   <div class="form-group">
     <button mat-raised-button color="primary" (click)="saveProject()">Save</button>
   </div>
