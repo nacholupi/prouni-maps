@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
 import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { ProjectService } from './project.service';
 import { ProjectMapComponent } from './project-map/project-map.component';
 import { ProjectDetailsResolver } from './project-details/project-details.resolver';
 import { ProjectFormComponent } from './project-form/project-form.component';
+
 
 
 @NgModule({
@@ -33,6 +35,9 @@ import { ProjectFormComponent } from './project-form/project-form.component';
     HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA'
+    }),
     routing
   ],
   providers: [
