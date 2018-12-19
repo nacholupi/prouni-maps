@@ -1,11 +1,11 @@
-<agm-map [fitBounds]="true" [streetViewControl]="false" class="map">
+<agm-map [fitBounds]="true" [streetViewControl]="false">
     <agm-marker-cluster imagePath="/assets/cluster-images/m">
         <agm-marker *ngFor="let marker of markers" [agmFitBounds]="true" [latitude]="marker.location.coordinates[0]"
             [longitude]="marker.location.coordinates[1]">
             <agm-info-window>
 
                 <h1>{{marker.title}}</h1>
-                <div class="other">
+                <div>
                     {{marker.location.coordinates[0]}}
                     {{marker.location.coordinates[1]}}
                 </div>
