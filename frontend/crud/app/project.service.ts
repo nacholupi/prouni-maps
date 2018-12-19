@@ -11,7 +11,7 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Object> {
+  getAll(): Observable<any> {
     return this.http.get(this.nodeURL + '/project');
   }
 

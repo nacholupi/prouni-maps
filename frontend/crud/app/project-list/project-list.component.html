@@ -1,16 +1,17 @@
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Título</th>
-        <th>Detalles</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let proj of projects">
-        <td>{{ proj.title }}</td>
-        <td><a [routerLink]="['/project-details', proj._id]">Mostrar Detalles</a></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<table mat-table [dataSource]="projects" class="mat-elevation-z8 table-list">
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Título </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef> Detalles </th>
+    <td mat-cell *matCellDef="let element">
+      <a [routerLink]="['/project-details', element._id]">Mostrar Detalles</a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['title', 'details']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['title', 'details'];"></tr>
+</table>
