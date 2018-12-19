@@ -5,7 +5,8 @@ import { ProjectFormComponent } from '../project-form/project-form.component';
 
 @Component({
   selector: 'app-project-details',
-  templateUrl: './project-details.component.html'
+  templateUrl: './project-details.component.html',
+  styleUrls: ['./project-details.component.css']
 })
 export class ProjectDetailsComponent implements OnInit {
 
