@@ -7,26 +7,28 @@ import { Observable } from 'rxjs';
 })
 export class ProjectService {
 
+  nodeURL = 'http://localhost:3000';
+
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Object> {
-    return this.http.get('/project');
+    return this.http.get(this.nodeURL + '/project');
   }
 
   getById(id: string): Observable<Object> {
-    return this.http.get('/project/' + id);
+    return this.http.get(this.nodeURL + '/project/' + id);
   }
 
   update(id: string, project: Object): Observable<Object> {
-    return this.http.put('/project/' + id, project);
+    return this.http.put(this.nodeURL + '/project/' + id, project);
   }
 
   delete(id: string): Observable<Object> {
-    return this.http.delete('/project/' + id);
+    return this.http.delete(this.nodeURL + '/project/' + id);
   }
 
   save(project: Object) {
-    this.http.post('/project', project)
+    this.http.post(this.nodeURL + '/project', project)
       .subscribe(res => {
         return;
       }, (err) => {

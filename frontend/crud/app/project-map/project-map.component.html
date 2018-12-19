@@ -1,3 +1,16 @@
-<iframe width="100%" height="500px" src="/map.html"></iframe>
-<agm-map [latitude]="51.678418" [longitude]="7.809007">
+<agm-map [fitBounds]="true" [streetViewControl]="false" class="map">
+    <agm-marker-cluster imagePath="/assets/cluster-images/m">
+        <agm-marker *ngFor="let marker of markers" [agmFitBounds]="true" [latitude]="marker.location.coordinates[0]"
+            [longitude]="marker.location.coordinates[1]">
+            <agm-info-window>
+
+                <h1>{{marker.title}}</h1>
+                <div class="other">
+                    {{marker.location.coordinates[0]}}
+                    {{marker.location.coordinates[1]}}
+                </div>
+
+            </agm-info-window>
+        </agm-marker>
+    </agm-marker-cluster>
 </agm-map>

@@ -4,11 +4,13 @@ import { ProjectCreateComponent } from './project-create/project-create.componen
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectMapComponent } from './project-map/project-map.component';
 import { ProjectDetailsResolver } from './project-details/project-details.resolver';
+import { ProjectMapResolver } from './project-map/project-map.resolver';
 
 const routes: Routes = [
   {
     path: 'project-map',
-    component: ProjectMapComponent
+    component: ProjectMapComponent,
+    resolve: { markers: ProjectMapResolver }
   },
   {
     path: 'project-list',
