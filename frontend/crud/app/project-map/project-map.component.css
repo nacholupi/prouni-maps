@@ -1,4 +1,4 @@
-agm-map {
+.map {
   height: calc(100vh - 64px);
   width: 100%;
 }
@@ -7,4 +7,33 @@ agm-map {
   display: flex;
   height: 100%;
   width: 300px;
+}
+
+.content-card {
+  padding: 20px;
+}
+
+.card {
+  margin: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.icon {
+  font-size: 15px;
+}
+
+.row {
+  display: inline-block;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.separator{
+  display: block;
+  margin: 10px 0 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, .12);
+  width: 100%
 }

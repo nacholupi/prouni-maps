@@ -1,11 +1,39 @@
 <mat-drawer-container autosize>
     <mat-drawer *ngIf="opened" [opened]="opened" mode="side" class="sidenav-content">
-        <h1>{{selectedMarker.title}}</h1>
-        {{selectedMarker.location.coordinates[0]}}
-        {{selectedMarker.location.coordinates[1]}}
+
+        <mat-card class="card">
+            <mat-card-content class="content-card">
+                <h2>{{selectedMarker.title}}</h2>
+
+                <hr class="separator">
+
+                <h3>Información del proyecto</h3>
+                <div class="row">
+                    {{selectedMarker.subject}}
+                </div>
+
+                <hr class="separator">
+
+                <h3>Referente</h3>
+                <div class="row">
+                    <mat-icon class="icon">person_outline</mat-icon>
+                    {{selectedMarker.ref_name}}
+                </div>
+                <div class="row">
+                    <mat-icon class="icon">phone</mat-icon>
+                    {{selectedMarker.ref_phone}}
+                </div>
+                <div class="row">
+                    <mat-icon class="icon">email</mat-icon>
+                    {{selectedMarker.ref_mail}}
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+
     </mat-drawer>
 
-    <agm-map [fitBounds]="true" [streetViewControl]="false">
+    <agm-map [fitBounds]="true" [streetViewControl]="false" class="map">
         <agm-marker-cluster imagePath="/assets/cluster-images/m">
             <agm-marker *ngFor="let marker of markers" [agmFitBounds]="true" [latitude]="marker.location.coordinates[0]"
                 [longitude]="marker.location.coordinates[1]" (markerClick)="clickedMarker(marker)">
