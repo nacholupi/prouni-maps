@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatDrawer } from '@angular/material';
+import { Project } from '../project.service';
 
 @Component({
   selector: 'app-project-map',
@@ -8,11 +10,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProjectMapComponent implements OnInit {
 
-  markers: Object;
+  markers: Project[];
+  opened = false;
+  selectedMarker: Project;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.markers = this.route.snapshot.data.markers;
+    console.log(this.markers);
+  }
+
+  clickedMarker(marker: Project): void {
+    this.selectedMarker = marker;
+    this.opened = true;
   }
 }

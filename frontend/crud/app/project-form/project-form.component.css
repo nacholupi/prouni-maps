@@ -1,3 +1,16 @@
 .content-card {
     padding: 20px;
 }
+
+.loc {
+	height: 100%;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.locImg {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}

@@ -1,16 +1,15 @@
-<agm-map [fitBounds]="true" [streetViewControl]="false">
-    <agm-marker-cluster imagePath="/assets/cluster-images/m">
-        <agm-marker *ngFor="let marker of markers" [agmFitBounds]="true" [latitude]="marker.location.coordinates[0]"
-            [longitude]="marker.location.coordinates[1]">
-            <agm-info-window>
+<mat-drawer-container autosize>
+    <mat-drawer *ngIf="opened" [opened]="opened" mode="side" class="sidenav-content">
+        <h1>{{selectedMarker.title}}</h1>
+        {{selectedMarker.location.coordinates[0]}}
+        {{selectedMarker.location.coordinates[1]}}
+    </mat-drawer>
 
-                <h1>{{marker.title}}</h1>
-                <div>
-                    {{marker.location.coordinates[0]}}
-                    {{marker.location.coordinates[1]}}
-                </div>
-
-            </agm-info-window>
-        </agm-marker>
-    </agm-marker-cluster>
-</agm-map>
+    <agm-map [fitBounds]="true" [streetViewControl]="false">
+        <agm-marker-cluster imagePath="/assets/cluster-images/m">
+            <agm-marker *ngFor="let marker of markers" [agmFitBounds]="true" [latitude]="marker.location.coordinates[0]"
+                [longitude]="marker.location.coordinates[1]" (markerClick)="clickedMarker(marker)">
+            </agm-marker>
+        </agm-marker-cluster>
+    </agm-map>
+</mat-drawer-container>

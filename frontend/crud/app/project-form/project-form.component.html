@@ -16,8 +16,13 @@
       </mat-error>
     </mat-form-field>
 
-    <div formGroupName="location">
+    <div *ngIf="!_editMode" class="loc">
+      <img class="locImg" src="https://maps.googleapis.com/maps/api/staticmap?center={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&&markers={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&zoom=14&size=500x300&key=AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA">
+    </div>
+
+    <div formGroupName="location" *ngIf="_editMode">
       <div formArrayName="coordinates" fxLayout="column">
+
         <mat-form-field>
           <input matInput type="number" placeholder="Latitud" formControlName="0" required>
           <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
@@ -34,7 +39,7 @@
       </div>
     </div>
 
-    <label>Referente</label>
+    <h3>Referente</h3>
 
     <mat-form-field>
       <input matInput placeholder="Nombre y Apellido" formControlName="ref_name">
