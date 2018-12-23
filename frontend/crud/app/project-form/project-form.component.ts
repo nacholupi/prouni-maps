@@ -1,6 +1,7 @@
-
-import { Component, OnInit, Input } from '@angular/core';
+/// <reference types="@types/googlemaps" />
+import { Component, OnInit, Input, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-project-form',
@@ -9,12 +10,13 @@ import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 })
 export class ProjectFormComponent implements OnInit {
 
+  @ViewChild('search') searchElement: ElementRef;
   @Input() initData: any;
   _editMode: boolean;
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder) {
     this.form = this.fb.group({
       'title': this.fb.control('', [Validators.required]),
       'subject': this.fb.control('', [Validators.required]),
@@ -37,6 +39,7 @@ export class ProjectFormComponent implements OnInit {
     this._editMode = edit;
     if (this._editMode) {
       this.form.enable();
+      this.initSearcher();
     } else {
       this.form.disable();
     }
@@ -47,6 +50,25 @@ export class ProjectFormComponent implements OnInit {
       this.initData = {};
     }
     this.form.patchValue(this.initData);
+  }
+
+  initSearcher() {
+    this.mapsAPILoader.load().then(
+      () => {
+        const autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ['address'] });
+
+        autocomplete.addListener('place_changed', () => {
+          this.ngZone.run(() => {
+            const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+            if (place.geometry === undefined || place.geometry === null) {
+              return;
+            }
+            this.form.get('location').get('coordinates').get('0').setValue(place.geometry.location.lat());
+            this.form.get('location').get('coordinates').get('1').setValue(place.geometry.location.lng());
+          });
+        });
+      }
+    );
   }
 
   getFormData() {

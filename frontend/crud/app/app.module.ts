@@ -38,7 +38,8 @@ import { ProjectMapResolver } from './project-map/project-map.resolver';
     MaterialModule,
     FlexLayoutModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA'
+      apiKey: 'AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA',
+      libraries: ['places']
     }),
     AgmJsMarkerClustererModule,
     routing

@@ -16,20 +16,28 @@
       </mat-error>
     </mat-form-field>
 
-    <div class="loc">
-
-      <img *ngIf="!_editMode" class="loc-int" src="https://maps.googleapis.com/maps/api/staticmap?center={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&&markers={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&zoom=14&size=500x300&key=AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA">
-
-      <agm-map *ngIf="_editMode" class="loc-int edit-map" [latitude]="-39" [longitude]="-64.63" [zoom]="3.5"
-        [streetViewControl]="false" (mapClick)="placeMarker($event)">
-        <agm-marker [latitude]="form.get('location').get('coordinates').get('0').value" [longitude]="form.get('location').get('coordinates').get('1').value">
-        </agm-marker>
-      </agm-map>
-
+    <div class="loc" *ngIf="!_editMode">
+      <img class="loc-int" src="https://maps.googleapis.com/maps/api/staticmap?center={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&&markers={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&zoom=14&size=500x300&key=AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA">
     </div>
 
     <div formGroupName="location">
       <div formArrayName="coordinates" fxLayout="column">
+
+        <div class="loc" *ngIf="_editMode" fxLayout="column">
+
+          <agm-map class="loc-int edit-map" [latitude]="-39" [longitude]="-64.63" [zoom]="3.5" [streetViewControl]="false"
+            (mapClick)="placeMarker($event)" [fitBounds]="true">
+            <agm-marker [latitude]="form.get('location').get('coordinates').get('0').value" [longitude]="form.get('location').get('coordinates').get('1').value"
+              [agmFitBounds]="true">
+            </agm-marker>
+          </agm-map>
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="Buscar" autocorrect="off" autocapitalize="off" spellcheck="off"
+              #search>
+          </mat-form-field>
+        </div>
+
         <mat-form-field>
           <input matInput type="number" placeholder="Latitud" formControlName="0" [readonly]="true" required>
           <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
