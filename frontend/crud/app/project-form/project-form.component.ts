@@ -34,7 +34,6 @@ export class ProjectFormComponent implements OnInit {
 
   @Input()
   set editMode(edit: boolean) {
-
     this._editMode = edit;
     if (this._editMode) {
       this.form.enable();
@@ -57,6 +56,11 @@ export class ProjectFormComponent implements OnInit {
   isValid(): boolean {
     this.markFormGroupTouched(this.form);
     return this.form.valid;
+  }
+
+  placeMarker(eventData) {
+    this.form.get('location').get('coordinates').get('0').setValue(eventData.coords.lat);
+    this.form.get('location').get('coordinates').get('1').setValue(eventData.coords.lng);
   }
 
   public markFormGroupTouched(group: FormGroup | FormArray): void {

@@ -16,22 +16,29 @@
       </mat-error>
     </mat-form-field>
 
-    <div *ngIf="!_editMode" class="loc">
-      <img class="locImg" src="https://maps.googleapis.com/maps/api/staticmap?center={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&&markers={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&zoom=14&size=500x300&key=AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA">
+    <div class="loc">
+
+      <img *ngIf="!_editMode" class="loc-int" src="https://maps.googleapis.com/maps/api/staticmap?center={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&&markers={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&zoom=14&size=500x300&key=AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA">
+
+      <agm-map *ngIf="_editMode" class="loc-int edit-map" [latitude]="-39" [longitude]="-64.63" [zoom]="3.5"
+        [streetViewControl]="false" (mapClick)="placeMarker($event)">
+        <agm-marker [latitude]="form.get('location').get('coordinates').get('0').value" [longitude]="form.get('location').get('coordinates').get('1').value">
+        </agm-marker>
+      </agm-map>
+
     </div>
 
-    <div formGroupName="location" *ngIf="_editMode">
+    <div formGroupName="location">
       <div formArrayName="coordinates" fxLayout="column">
-
         <mat-form-field>
-          <input matInput type="number" placeholder="Latitud" formControlName="0" required>
+          <input matInput type="number" placeholder="Latitud" formControlName="0" [readonly]="true" required>
           <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
             Campo requerido
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput type="number" placeholder="Longitud" formControlName="1" required>
+          <input matInput type="number" placeholder="Longitud" formControlName="1" [readonly]="true" required>
           <mat-error *ngIf="form.get('location').get('coordinates').get('1').hasError('required')">
             Campo requerido
           </mat-error>
