@@ -25,10 +25,9 @@
 
         <div class="loc" *ngIf="_editMode" fxLayout="column">
 
-          <agm-map class="loc-int edit-map" [latitude]="-39" [longitude]="-64.63" [zoom]="3.5" [streetViewControl]="false"
-            (mapClick)="placeMarker($event)" [fitBounds]="true">
-            <agm-marker [latitude]="form.get('location').get('coordinates').get('0').value" [longitude]="form.get('location').get('coordinates').get('1').value"
-              [agmFitBounds]="true">
+          <agm-map class="loc-int edit-map" [latitude]="latMap" [longitude]="lngMap" [zoom]="zoomMap"
+            [streetViewControl]="false" (mapDblClick)="mapClicked($event)">
+            <agm-marker [latitude]="form.get('location').get('coordinates').get('0').value" [longitude]="form.get('location').get('coordinates').get('1').value">
             </agm-marker>
           </agm-map>
 

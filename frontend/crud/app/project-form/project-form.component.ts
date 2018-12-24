@@ -2,6 +2,8 @@
 import { Component, OnInit, Input, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
+import { Project } from '../project.service';
+import { ZoomControlOptions, ControlPosition, ZoomControlStyle } from '@agm/core/services/google-maps-types';
 
 @Component({
   selector: 'app-project-form',
@@ -11,10 +13,15 @@ import { MapsAPILoader } from '@agm/core';
 export class ProjectFormComponent implements OnInit {
 
   @ViewChild('search') searchElement: ElementRef;
-  @Input() initData: any;
+  @Input() initData: Project;
   _editMode: boolean;
 
   form: FormGroup;
+
+  latMap = -39;
+  lngMap = -64.63;
+  zoomMap = 3;
+
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -39,7 +46,7 @@ export class ProjectFormComponent implements OnInit {
     this._editMode = edit;
     if (this._editMode) {
       this.form.enable();
-      this.initSearcher();
+      this.initPlaceSearcher();
     } else {
       this.form.disable();
     }
@@ -47,12 +54,14 @@ export class ProjectFormComponent implements OnInit {
 
   ngOnInit() {
     if (!this.initData) {
-      this.initData = {};
+      this.initData = {} as Project;
     }
-    this.form.patchValue(this.initData);
+    this.updateFormData(this.initData);
+    this.centerMap(this.initData.location.coordinates[0], this.initData.location.coordinates[1]);
   }
 
-  initSearcher() {
+  initPlaceSearcher(): void {
+
     this.mapsAPILoader.load().then(
       () => {
         const autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ['address'] });
@@ -63,29 +72,49 @@ export class ProjectFormComponent implements OnInit {
             if (place.geometry === undefined || place.geometry === null) {
               return;
             }
-            this.form.get('location').get('coordinates').get('0').setValue(place.geometry.location.lat());
-            this.form.get('location').get('coordinates').get('1').setValue(place.geometry.location.lng());
+            this.markPlace(place);
+            this.centerMap(place.geometry.location.lat(), place.geometry.location.lng());
           });
         });
       }
     );
   }
 
-  getFormData() {
-    return this.form.value;
+  public getFormData(): Project {
+    return this.form.value as Project;
   }
 
-  isValid(): boolean {
+  public isValid(): boolean {
     this.markFormGroupTouched(this.form);
     return this.form.valid;
   }
 
-  placeMarker(eventData) {
-    this.form.get('location').get('coordinates').get('0').setValue(eventData.coords.lat);
-    this.form.get('location').get('coordinates').get('1').setValue(eventData.coords.lng);
+  private markPlace(place: google.maps.places.PlaceResult): void {
+    this.updateMarker(place.geometry.location.lat(), place.geometry.location.lng());
   }
 
-  public markFormGroupTouched(group: FormGroup | FormArray): void {
+  private centerMap(lat: number, lng: number): void {
+    this.latMap = lat;
+    this.lngMap = lng;
+    this.zoomMap = 14;
+  }
+
+  private updateFormData(updatedProject: Project): void {
+    this.form.patchValue(updatedProject);
+  }
+
+  mapClicked(eventData: any): void {
+    this.updateMarker(eventData.coords.lat, eventData.coords.lng);
+  }
+
+  private updateMarker(lat: number, lng: number): void {
+    const proj = this.getFormData();
+    proj.location.coordinates[0] = lat;
+    proj.location.coordinates[1] = lng;
+    this.updateFormData(proj);
+  }
+
+  private markFormGroupTouched(group: FormGroup | FormArray): void {
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.controls[key];
 
