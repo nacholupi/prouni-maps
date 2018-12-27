@@ -5,7 +5,7 @@
   "projects": {
     "crud": {
       "root": "",
-      "sourceRoot": "frontend/crud",
+      "sourceRoot": "frontend",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
@@ -14,15 +14,15 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist",
-            "index": "frontend/crud/index.html",
-            "main": "frontend/crud/main.ts",
-            "polyfills": "frontend/crud/polyfills.ts",
-            "tsConfig": "frontend/crud/tsconfig.app.json",
+            "index": "frontend/index.html",
+            "main": "frontend/main.ts",
+            "polyfills": "frontend/polyfills.ts",
+            "tsConfig": "frontend/tsconfig.app.json",
             "assets": [
-              "frontend/crud/assets"
+              "frontend/assets"
             ],
             "styles": [
-              "frontend/crud/styles.css"
+              "frontend/styles.css"
             ],
             "scripts": []
           },
@@ -30,8 +30,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "frontend/crud/environments/environment.ts",
-                  "with": "frontend/crud/environments/environment.prod.ts"
+                  "replace": "frontend/environments/environment.ts",
+                  "with": "frontend/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
