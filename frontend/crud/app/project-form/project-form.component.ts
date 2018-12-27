@@ -55,9 +55,10 @@ export class ProjectFormComponent implements OnInit {
   ngOnInit() {
     if (!this.initData) {
       this.initData = {} as Project;
+    } else {
+      this.updateFormData(this.initData);
+      this.centerMap(this.initData.location.coordinates[0], this.initData.location.coordinates[1]);
     }
-    this.updateFormData(this.initData);
-    this.centerMap(this.initData.location.coordinates[0], this.initData.location.coordinates[1]);
   }
 
   initPlaceSearcher(): void {
