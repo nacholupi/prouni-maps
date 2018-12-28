@@ -6,11 +6,20 @@
 .sidenav-content {
   display: flex;
   height: 100%;
-  width: 300px;
+  width: 400px;
 }
 
 .content-card {
   padding: 20px;
+}
+
+.floating-card {
+  right: 1em;
+  margin-top: 0 !important;
+  position: absolute;
+  top: 1em;
+  min-width: 300px;
+  z-index: 100;
 }
 
 .card {
