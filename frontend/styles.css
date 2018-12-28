@@ -5,3 +5,7 @@ html, body, app-root {
   margin: 0;
   border: 0;
 }
+
+.custom-mat-form-field .mat-form-field-outline {
+  background-color: #fafafa;
+}
