@@ -13,9 +13,11 @@ export class ProjectMapComponent implements OnInit {
 
   allMarkers: Project[];
   markers: Project[];
-  opened = false;
+  fitBounds = true;
   selectedMarker: Project;
   form: FormGroup;
+  mapLat: number;
+  mapLng: number;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -29,16 +31,25 @@ export class ProjectMapComponent implements OnInit {
   }
 
   clickedMarker(marker: Project): void {
+    this.fitBounds = false;
     this.selectedMarker = marker;
-    this.opened = true;
+    this.mapLat = marker.location.coordinates[0];
+    this.mapLng = marker.location.coordinates[1];
   }
 
   filter(): void {
+    this.fitBounds = true;
+    this.selectedMarker = null;
     const fInput = this.form.get('filterInput').value;
-    this.opened = false;
     this.markers = this.allMarkers.filter(d =>
       d.title && d.title.includes(fInput) ||
       d.subject && d.subject.includes(fInput) ||
       d.ref_name && d.ref_name.includes(fInput));
+
+    if (this.markers.length === 1) {
+      this.selectedMarker = this.markers[0];
+    } else {
+      this.selectedMarker = null;
+    }
   }
 }

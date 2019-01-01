@@ -1,5 +1,5 @@
 <mat-drawer-container autosize>
-    <mat-drawer *ngIf="opened" [opened]="opened" mode="side" class="sidenav-content">
+    <mat-drawer *ngIf="selectedMarker" [opened]="true" mode="side" class="sidenav-content">
 
         <mat-card class="card">
             <mat-card-content class="content-card">
@@ -33,11 +33,22 @@
 
     </mat-drawer>
 
-    <agm-map [fitBounds]="true" [streetViewControl]="false" class="map">
-        <agm-marker-cluster imagePath="/assets/cluster-images/m">
-            <agm-marker *ngFor="let marker of markers" [agmFitBounds]="true" [latitude]="marker.location.coordinates[0]"
-                [longitude]="marker.location.coordinates[1]" (markerClick)="clickedMarker(marker)">
-            </agm-marker>
+    <agm-map [fitBounds]="fitBounds" [streetViewControl]="false" class="map" [latitude]="mapLat" [longitude]="mapLng">
+        <agm-marker-cluster imagePath="/assets/images/cluster/m">
+            <div *ngFor="let marker of markers">
+                <div *ngIf="marker != selectedMarker">
+                    <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/marker_blue.png" [latitude]="marker.location.coordinates[0]"
+                        [longitude]="marker.location.coordinates[1]" (markerClick)="clickedMarker(marker)">
+                    </agm-marker>
+
+                </div>
+                <div *ngIf="marker == selectedMarker">
+                    <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/marker_orange.png"
+                        [latitude]="marker.location.coordinates[0]" [longitude]="marker.location.coordinates[1]"
+                        (markerClick)="clickedMarker(marker)">
+                    </agm-marker>
+                </div>
+            </div>
         </agm-marker-cluster>
     </agm-map>
 
