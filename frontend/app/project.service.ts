@@ -11,6 +11,7 @@ export interface Project {
   target_population: string;
 
   ref_name: string;
+  ref_title: string;
   ref_phone: string;
   ref_mail: string;
 

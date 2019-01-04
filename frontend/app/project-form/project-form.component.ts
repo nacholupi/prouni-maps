@@ -27,7 +27,10 @@ export class ProjectFormComponent implements OnInit {
     this.form = this.fb.group({
       'title': this.fb.control('', [Validators.required]),
       'subject': this.fb.control('', [Validators.required]),
+      'purpose': this.fb.control('', [Validators.required]),
+      'target_population': this.fb.control(''),
       'ref_name': this.fb.control(''),
+      'ref_title': this.fb.control(''),
       'ref_phone': this.fb.control(''),
       'ref_mail': this.fb.control('', [Validators.email]),
       'location': this.fb.group({

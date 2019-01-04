@@ -10,10 +10,21 @@
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput rows=5 placeholder="Objetivo" formControlName="subject" required></textarea>
+      <input matInput rows=3 placeholder="Temática" formControlName="subject" required>
       <mat-error *ngIf="form.get('subject').hasError('required')">
         Campo requerido
       </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput rows=5 placeholder="Objetivo" formControlName="purpose" required></textarea>
+      <mat-error *ngIf="form.get('purpose').hasError('required')">
+        Campo requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" placeholder="Población objetivo" formControlName="target_population">
     </mat-form-field>
 
     <div class="loc" *ngIf="!_editMode">
@@ -57,6 +68,10 @@
 
     <mat-form-field>
       <input matInput placeholder="Nombre y Apellido" formControlName="ref_name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Cargo" formControlName="ref_title">
     </mat-form-field>
 
     <mat-form-field>

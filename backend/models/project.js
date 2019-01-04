@@ -20,6 +20,7 @@ var projectSchema = new mongoose.Schema({
     target_population: String,
     
     ref_name: String,
+    ref_title: String,
     ref_phone: String,
     ref_mail: String,
     
