@@ -18,8 +18,7 @@ import { ProjectMapComponent } from './project-map/project-map.component';
 import { ProjectDetailsResolver } from './project-details/project-details.resolver';
 import { ProjectFormComponent } from './project-form/project-form.component';
 import { ProjectMapResolver } from './project-map/project-map.resolver';
-
-
+import { SelectableDialogComponent } from './project-form/selectable-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +28,7 @@ import { ProjectMapResolver } from './project-map/project-map.resolver';
     ProjectDetailsComponent,
     ProjectMapComponent,
     ProjectFormComponent,
+    SelectableDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +48,9 @@ import { ProjectMapResolver } from './project-map/project-map.resolver';
     ProjectService,
     ProjectDetailsResolver,
     ProjectMapResolver
+  ],
+  entryComponents: [
+    SelectableDialogComponent
   ],
   bootstrap: [AppComponent]
 })

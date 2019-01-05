@@ -1,9 +1,17 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit, Input, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, NgZone, ViewChild, Inject } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { Project } from '../project.service';
-import { ZoomControlOptions, ControlPosition, ZoomControlStyle } from '@agm/core/services/google-maps-types';
+import { MatDialog } from '@angular/material';
+import { SelectableDialogComponent } from './selectable-dialog.component';
+
+
+export interface DialogData {
+  dialaogTitle: string;
+  selectableKey: string;
+  selectables: Map<string, string[]>;
+}
 
 @Component({
   selector: 'app-project-form',
@@ -12,23 +20,27 @@ import { ZoomControlOptions, ControlPosition, ZoomControlStyle } from '@agm/core
 })
 export class ProjectFormComponent implements OnInit {
 
+  selectables = new Map<string, string[]>();
+
   @ViewChild('search') searchElement: ElementRef;
   @Input() initData: Project;
   _editMode: boolean;
-
   form: FormGroup;
 
   latMap = -39;
   lngMap = -64.63;
   zoomMap = 3;
 
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder, private dialog: MatDialog) {
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder) {
+    this.selectables.set('universities', ['UBA', 'UCA']);
+
     this.form = this.fb.group({
       'title': this.fb.control('', [Validators.required]),
       'subject': this.fb.control('', [Validators.required]),
       'purpose': this.fb.control('', [Validators.required]),
       'target_population': this.fb.control(''),
+      'university': this.fb.control('', [Validators.required]),
       'ref_name': this.fb.control(''),
       'ref_title': this.fb.control(''),
       'ref_phone': this.fb.control(''),
@@ -107,8 +119,16 @@ export class ProjectFormComponent implements OnInit {
     this.form.patchValue(updatedProject);
   }
 
-  mapClicked(eventData: any): void {
+  public mapClicked(eventData: any): void {
     this.updateMarker(eventData.coords.lat, eventData.coords.lng);
+    this.searchElement.nativeElement.value = '';
+  }
+
+  public editSelectable(dialaogTitle: string, selectableKey: string): void {
+    this.dialog.open(SelectableDialogComponent, {
+      width: '350px',
+      data: { dialaogTitle: dialaogTitle, selectableKey: selectableKey, selectables: this.selectables }
+    });
   }
 
   private updateMarker(lat: number, lng: number): void {
@@ -130,4 +150,3 @@ export class ProjectFormComponent implements OnInit {
     });
   }
 }
-

@@ -67,6 +67,20 @@
     <h3>Referente</h3>
 
     <mat-form-field>
+      <mat-select placeholder="Universidad" formControlName="university" required>
+        <mat-option>-</mat-option>
+        <mat-option (click)="editSelectable('Editar Universidades', 'universities')">
+          <mat-icon>add_box</mat-icon>
+          Agregar nuevo
+        </mat-option>
+        <mat-option *ngFor="let uni of selectables.get('universities')" [value]="uni">{{uni}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('university').hasError('required')">
+        Campo requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
       <input matInput placeholder="Nombre y Apellido" formControlName="ref_name">
     </mat-form-field>
 
