@@ -2,6 +2,10 @@
     padding: 20px;
 }
 
+.content-card mat-form-field {
+    width: 100%
+}
+
 .loc {
 	height: 100%;
     width: 100%;

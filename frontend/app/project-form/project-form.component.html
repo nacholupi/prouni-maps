@@ -48,19 +48,21 @@
           </mat-form-field>
         </div>
 
-        <mat-form-field>
-          <input matInput type="number" placeholder="Latitud" formControlName="0" [readonly]="true" required>
-          <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
-            Campo requerido
-          </mat-error>
-        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="25px">
+          <mat-form-field>
+            <input matInput type="number" placeholder="Latitud" formControlName="0" [readonly]="true" required>
+            <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
+              Campo requerido
+            </mat-error>
+          </mat-form-field>
 
-        <mat-form-field>
-          <input matInput type="number" placeholder="Longitud" formControlName="1" [readonly]="true" required>
-          <mat-error *ngIf="form.get('location').get('coordinates').get('1').hasError('required')">
-            Campo requerido
-          </mat-error>
-        </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Longitud" formControlName="1" [readonly]="true" required>
+            <mat-error *ngIf="form.get('location').get('coordinates').get('1').hasError('required')">
+              Campo requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </div>
 
@@ -80,25 +82,26 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Nombre y Apellido" formControlName="ref_name">
-    </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="25px">
+      <mat-form-field>
+        <input matInput placeholder="Nombre y Apellido" formControlName="ref_name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Cargo" formControlName="ref_title">
+      </mat-form-field>
+    </div>
 
-    <mat-form-field>
-      <input matInput placeholder="Cargo" formControlName="ref_title">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Teléfono" formControlName="ref_phone">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Email" formControlName="ref_mail">
-      <mat-error *ngIf="form.get('ref_mail').hasError('email')">
-        Ingrese un email válido
-      </mat-error>
-    </mat-form-field>
-
+    <div fxLayout="row" fxLayoutGap="25px">
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="ref_mail">
+        <mat-error *ngIf="form.get('ref_mail').hasError('email')">
+          Ingrese un email válido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Teléfono" formControlName="ref_phone">
+      </mat-form-field>
+    </div>
   </form>
 
 </mat-card-content>
