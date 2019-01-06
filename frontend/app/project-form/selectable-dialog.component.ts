@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material';
 import { DialogData } from './project-form.component';
 
 @Component({
@@ -8,10 +8,16 @@ import { DialogData } from './project-form.component';
 })
 export class SelectableDialogComponent {
 
+    list: string[];
+
     constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {
-        console.log(this.data.dialaogTitle);
-        console.log(this.data.selectableKey);
-        console.log(this.data.selectables);
+        const origArray = this.data.selectables.get(this.data.selectableKey);
+        this.list = Object.assign([], origArray);
+    }
+
+    public deleteItem(idx: number): void {
+        this.list.splice(idx, 1);
+        console.log(this.list);
     }
 }
 
