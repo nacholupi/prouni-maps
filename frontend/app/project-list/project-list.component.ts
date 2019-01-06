@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../project.service';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { ProjectService, Project } from '../project.service';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.css']
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent implements AfterViewInit {
 
-  projects: any;
+  projects: MatTableDataSource<Project>;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private service: ProjectService) {
-  }
+  constructor(private service: ProjectService) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.service.getAll().subscribe(res => {
       this.projects = new MatTableDataSource(res);
+      this.projects.sort = this.sort;
+      this.projects.paginator = this.paginator;
     });
   }
 }

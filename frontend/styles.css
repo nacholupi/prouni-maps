@@ -9,3 +9,7 @@ html, body, app-root {
 .custom-mat-form-field .mat-form-field-outline {
   background-color: #fafafa;
 }
+
+.full-width {
+  width: 100%;
+}
