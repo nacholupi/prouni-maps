@@ -43,7 +43,7 @@ export class ProjectMapComponent implements OnInit {
     const fInput = this.form.get('filterInput').value;
     this.markers = this.allMarkers.filter(d =>
       d.title && d.title.includes(fInput) ||
-      d.subject && d.subject.includes(fInput) ||
+      d.subjects && d.subjects.includes(fInput) ||
       d.ref_name && d.ref_name.includes(fInput));
 
     if (this.markers.length === 1) {

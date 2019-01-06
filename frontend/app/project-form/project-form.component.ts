@@ -34,13 +34,13 @@ export class ProjectFormComponent implements OnInit {
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder, private dialog: MatDialog) {
 
     this.selectables.set('universities', ['UBA', 'UCA']);
-    this.selectables.set('subjects', ['Salud', 'Educación', 'Arte y cultura', 'Medio ambiente',
+    this.selectables.set('subjs', ['Salud', 'Educación', 'Arte y cultura', 'Medio ambiente',
       'Empleo y Desarrollo Económico', 'Infraestructura']);
 
 
     this.form = this.fb.group({
       'title': this.fb.control('', [Validators.required]),
-      'subject': this.fb.control('', [Validators.required]),
+      'subjects': this.fb.control('', [Validators.required]),
       'purpose': this.fb.control('', [Validators.required]),
       'target_population': this.fb.control(''),
       'university': this.fb.control('', [Validators.required]),

@@ -15,15 +15,15 @@ const pointSchema = new mongoose.Schema({
 var projectSchema = new mongoose.Schema({
     title: String,
     university: String,
-    subject: String,
+    subjects: [String],
     purpose: String,
     target_population: String,
-    
+
     ref_name: String,
     ref_title: String,
     ref_phone: String,
     ref_mail: String,
-    
+
     location: {
         type: pointSchema,
         required: true
