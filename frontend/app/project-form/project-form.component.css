@@ -2,6 +2,10 @@
     padding: 20px;
 }
 
+.edit-icon {
+    color: gray;
+}
+
 .content-card mat-form-field {
     width: 100%
 }
