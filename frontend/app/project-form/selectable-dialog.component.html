@@ -1,6 +1,12 @@
 <h1 mat-dialog-title>{{data.dialaogTitle}}</h1>
+
+
 <mat-list>
     <h3 mat-subheader>Agregar o eliminar items</h3>
+    <mat-list-item>
+        <input matInput type="text" placeholder="Agregar nuevo item" #item>
+        <mat-icon mat-list-icon (click)="addItem(item.value)">add</mat-icon>
+    </mat-list-item>
     <mat-list-item *ngFor="let item of list; let i = index" [attr.data-index]="i">
         <h4 mat-line>{{item}}</h4>
         <mat-icon mat-list-icon (click)="deleteItem(i)">delete</mat-icon>

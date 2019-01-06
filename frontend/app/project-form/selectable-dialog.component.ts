@@ -15,9 +15,16 @@ export class SelectableDialogComponent {
         this.list = Object.assign([], origArray);
     }
 
-    public deleteItem(idx: number): void {
-        this.list.splice(idx, 1);
+    public addItem(item: string): void {
+        this.list.push(item);
         console.log(this.list);
     }
-}
 
+    public deleteItem(idx: number): void {
+        const ok = confirm('¿Seguro que desea borrar el item?');
+        if (ok) {
+            this.list.splice(idx, 1);
+            console.log(this.list);
+        }
+    }
+}
