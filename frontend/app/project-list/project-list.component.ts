@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { ProjectService, Project } from '../project.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 

@@ -15,9 +15,9 @@ const pointSchema = new mongoose.Schema({
 var projectSchema = new mongoose.Schema({
     title: String,
     university: String,
-    subjects: [String],
+    subject: String,
     purpose: String,
-    target_population: String,
+    target_population: [String],
 
     ref_name: String,
     ref_title: String,

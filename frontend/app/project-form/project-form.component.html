@@ -11,10 +11,10 @@
 
     <div fxLayout="row" fxLayoutGap="10px">
       <mat-form-field>
-        <mat-select placeholder="Temática" formControlName="subjects" multiple required>
+        <mat-select placeholder="Temática" formControlName="subject" required>
           <mat-option *ngFor="let sub of selectables.get('subjs')" [value]="sub">{{sub}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="form.get('subjects').hasError('required')">
+        <mat-error *ngIf="form.get('subject').hasError('required')">
           Campo requerido
         </mat-error>
       </mat-form-field>
@@ -32,9 +32,21 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput type="text" placeholder="Población objetivo" formControlName="target_population">
-    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutGap="10px">
+      <mat-form-field>
+        <mat-select placeholder="Población objetivo" formControlName="target_population" multiple required>
+          <mat-option *ngFor="let pop of selectables.get('target_pop')" [value]="pop">{{pop}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('target_population').hasError('required')">
+          Campo requerido
+        </mat-error>
+      </mat-form-field>
+      <button type="button" mat-button matSuffix mat-icon-button matTooltip="Editar población obj." matTooltipPosition="above"
+        (click)="editSelectable('Editar Poblaciones objetivo', 'target_pop')" *ngIf="_editMode">
+        <mat-icon class="edit-icon">edit</mat-icon>
+      </button>
+    </div>
 
     <div class="loc" *ngIf="!_editMode">
       <img class="loc-int" src="https://maps.googleapis.com/maps/api/staticmap?center={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&&markers={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&zoom=14&size=500x300&key=AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA">

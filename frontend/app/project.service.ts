@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 export interface Project {
   _id: string;
   title: string;
-  subjects: string[];
+  subject: string;
   purpose: string;
-  target_population: string;
+  target_population: string[];
 
   university: string;
   ref_name: string;

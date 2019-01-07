@@ -1,5 +1,5 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit, Input, ElementRef, NgZone, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { Project } from '../project.service';
@@ -36,11 +36,13 @@ export class ProjectFormComponent implements OnInit {
     this.selectables.set('universities', ['UBA', 'UCA']);
     this.selectables.set('subjs', ['Salud', 'Educación', 'Arte y cultura', 'Medio ambiente',
       'Empleo y Desarrollo Económico', 'Infraestructura']);
+    this.selectables.set('target_pop', ['Pueblos originarios', 'Primera infancia', 'Niños/as', 'Adolescencia', 'Juventud', 'Mujeres',
+      'Personas mayores', 'Adultos', 'Vulnerable']);
 
 
     this.form = this.fb.group({
       'title': this.fb.control('', [Validators.required]),
-      'subjects': this.fb.control('', [Validators.required]),
+      'subject': this.fb.control('', [Validators.required]),
       'purpose': this.fb.control('', [Validators.required]),
       'target_population': this.fb.control(''),
       'university': this.fb.control('', [Validators.required]),
