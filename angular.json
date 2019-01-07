@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "crud": {
-      "root": "",
+      "root": "frontend",
       "sourceRoot": "frontend",
       "projectType": "application",
       "prefix": "app",

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var controller = require("../backend/controllers/project_controller");
+var controller = require("../controllers/project_controller");
 
 router.get('/', (req, res, next) => {
   controller.find(req, res)

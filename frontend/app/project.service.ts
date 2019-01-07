@@ -26,32 +26,27 @@ export interface Project {
 })
 export class ProjectService {
 
-  nodeURL = 'http://localhost:3000';
+  API_PROJ = '/api/project/';
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.nodeURL + '/project');
+  public getAll(): Observable<Project[]> {
+    return this.http.get<Project[]>(this.API_PROJ);
   }
 
-  getById(id: string): Observable<Project> {
-    return this.http.get<Project>(this.nodeURL + '/project/' + id);
+  public getById(id: string): Observable<Project> {
+    return this.http.get<Project>(this.API_PROJ + id);
   }
 
-  update(id: string, project: Project): Observable<Project> {
-    return this.http.put<Project>(this.nodeURL + '/project/' + id, project);
+  public update(id: string, project: Project): Observable<Project> {
+    return this.http.put<Project>(this.API_PROJ + id, project);
   }
 
-  delete(id: string): Observable<Project> {
-    return this.http.delete<Project>(this.nodeURL + '/project/' + id);
+  public delete(id: string): Observable<Project> {
+    return this.http.delete<Project>(this.API_PROJ + id);
   }
 
-  save(project: Project) {
-    this.http.post<Project>(this.nodeURL + '/project', project)
-      .subscribe(res => {
-        return;
-      }, (err) => {
-        console.log(err);
-      });
+  public save(project: Project): Observable<Project> {
+    return this.http.post<Project>(this.API_PROJ, project);
   }
 }

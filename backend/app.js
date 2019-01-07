@@ -1,7 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
 var cors = require('cors');
-var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
@@ -19,12 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'dist')));
-app.use('/scripts/handlebars', express.static(__dirname + '/node_modules/handlebars/dist/'));
-app.use('/scripts/google', express.static(__dirname + '/node_modules/@google/markerclusterer/src/'));
-
-
-app.use('/project', projectRoute);
+app.use('/api/project', projectRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
