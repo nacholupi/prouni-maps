@@ -2,8 +2,8 @@
   "name": "prouni-maps",
   "version": "0.0.1",
   "scripts": {
-    "ng": "ng serve --proxy-config proxy.conf.json",
-    "server": "node ./backend/bin/www"
+    "start": "ng build && node backend/bin/www",
+    "ng": "ng serve --proxy-config proxy.conf.json"
   },
   "repository": {
     "type": "git",
