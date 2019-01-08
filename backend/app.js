@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var projectRoute = require('./routes/project_route');
+var optionsRoute = require('./routes/options_route');
 
 mongoose.connect('mongodb://localhost:27017/project')
   .then(() => console.log('connection succesful'))
@@ -20,6 +21,7 @@ const __distDir = __dirname + '/../dist'
 app.use(express.static(__distDir));
 
 app.use('/api/project', projectRoute);
+app.use('/api/options', optionsRoute);
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__distDir, 'index.html'));

@@ -5,6 +5,7 @@ import { MapsAPILoader } from '@agm/core';
 import { Project } from '../project.service';
 import { MatDialog } from '@angular/material';
 import { SelectableDialogComponent } from './selectable-dialog.component';
+import { OptionsService } from '../options.service';
 
 
 export interface DialogData {
@@ -31,7 +32,8 @@ export class ProjectFormComponent implements OnInit {
   lngMap = -64.63;
   zoomMap = 3;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder, private dialog: MatDialog) {
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder,
+    private dialog: MatDialog, private service: OptionsService) {
 
     this.selectables.set('universities', ['UBA', 'UCA']);
     this.selectables.set('subjs', ['Salud', 'Educación', 'Arte y cultura', 'Medio ambiente',
@@ -66,6 +68,7 @@ export class ProjectFormComponent implements OnInit {
     this._editMode = edit;
     if (this._editMode) {
       this.form.enable();
+      this.initSelectables();
       this.initPlaceSearcher();
     } else {
       this.form.disable();
@@ -81,7 +84,19 @@ export class ProjectFormComponent implements OnInit {
     }
   }
 
-  initPlaceSearcher(): void {
+  private initSelectables(): void {
+    this.service.getAll().subscribe(res => {
+      console.log(res);
+      console.log(this.selectables);
+      Object.keys(res.map).forEach(key => {
+        console.log(res.map[key]);
+        this.selectables.set(key, res.map[key]);
+      });
+      console.log(this.selectables);
+    });
+  }
+
+  private initPlaceSearcher(): void {
 
     this.mapsAPILoader.load().then(
       () => {

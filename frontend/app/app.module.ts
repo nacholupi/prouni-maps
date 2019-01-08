@@ -19,6 +19,7 @@ import { ProjectDetailsResolver } from './project-details/project-details.resolv
 import { ProjectFormComponent } from './project-form/project-form.component';
 import { ProjectMapResolver } from './project-map/project-map.resolver';
 import { SelectableDialogComponent } from './project-form/selectable-dialog.component';
+import { OptionsService } from './options.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { SelectableDialogComponent } from './project-form/selectable-dialog.comp
     routing
   ],
   providers: [
+    OptionsService,
     ProjectService,
     ProjectDetailsResolver,
     ProjectMapResolver
