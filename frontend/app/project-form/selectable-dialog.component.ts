@@ -10,7 +10,6 @@ import { OptionsService } from '../options.service';
 })
 export class SelectableDialogComponent implements AfterViewInit {
     dsList: MatTableDataSource<string>;
-    @ViewChild(MatTable) table: MatTable<string>;
     @ViewChild(MatPaginator) pag: MatPaginator;
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, private service: OptionsService) {
@@ -25,39 +24,26 @@ export class SelectableDialogComponent implements AfterViewInit {
 
     public addItem(item: string): void {
         this.dsList.data.push(item);
-        this.table.renderRows();
-        this.dsList.paginator = this.pag;
+        this.dsList._updateChangeSubscription();
     }
 
-    public deleteItem(idx: number, n: number): void {
-        console.log(n);
+    public deleteItem(idx: number): void {
         const ok = confirm('¿Seguro que desea borrar el item?');
         if (ok) {
-            this.dsList.data.splice(idx, 1);
-            this.dsList.paginator.pageIndex = 0;
+            const ind = idx + (this.pag.pageIndex * this.pag.pageSize);
+            this.dsList.data.splice(ind, 1);
+            this.solvePaginatorIdx(idx);
             this.dsList._updateChangeSubscription();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            // this.table.renderRows();
         }
     }
 
-    public save() {
+    private solvePaginatorIdx(idx: number): void {
+        if (idx === 0 && !this.pag.hasNextPage() && (this.pag.length - 1) / this.pag.pageSize === 1) {
+            this.pag.previousPage();
+        }
+    }
+
+    public save(): void {
         this.service.save(this.data.selectableKey, this.dsList.data).subscribe(() => {
             this.data.selectables.set(this.data.selectableKey, this.dsList.data);
         }, (err) => {
