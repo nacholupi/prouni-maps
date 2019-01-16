@@ -1,19 +1,17 @@
-require('dotenv').config()
+require('dotenv').config();
+require('./db_init.js');
+require('./auth_init.js');
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-
 var logger = require('morgan');
-var mongoose = require('mongoose');
 var passport = require('passport');
+var authRoute = require('./routes/auth_route');
 var projectRoute = require('./routes/project_route');
 var optionsRoute = require('./routes/options_route');
-
-mongoose.connect('mongodb://localhost:27017/project')
-  .then(() => console.log('connection succesful'))
-  .catch((err) => console.error(err));
 
 const __distDir = __dirname + '/../dist'
 
@@ -23,15 +21,17 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ secret: "Shh, secret!!" }));
+app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(__distDir));
+
+app.use('/auth', authRoute);
 app.use('/api/project', projectRoute);
 app.use('/api/options', optionsRoute);
 
-
+// angular
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__distDir, 'index.html'));
 });
