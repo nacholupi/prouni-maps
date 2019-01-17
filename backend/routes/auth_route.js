@@ -1,18 +1,37 @@
 var router = require('express').Router();
 var passport = require('passport');
+var controller = require('../controllers/user_controller');
+var hand = require('./auth_req_handlers')
 
 router.get('/login',
-  passport.authenticate('google', { scope: ['email', 'profile'] }));
+  passport.authenticate('google', {
+    scope: ['email', 'profile']
+  })
+);
 
-router.get('/login/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  function (req, res) {
-    res.redirect('/');
-  });
-
-router.get('/logout', function (req, res) {
-  req.logout();
+router.get('/login/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
   res.redirect('/');
+});
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.status(200).send('OK')
+});
+
+router.get('/loggedUser', (req, res) => {
+  controller.loggedUser(req, res);
+});
+
+router.get('/users', hand.isAdmin, (req, res) => {
+  controller.find(res);
+});
+
+router.get('/users/:id/admin', hand.isAdmin, (req, res) => {
+  controller.changeRole(req, res, 'ADMIN');
+});
+
+router.get('/users/:id/writer', hand.isAdmin, (req, res) => {
+  controller.changeRole(req, res, 'WRITER');
 });
 
 module.exports = router;

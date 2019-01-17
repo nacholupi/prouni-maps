@@ -2,65 +2,65 @@ var Project = require("../models/project");
 
 var projectController = {};
 
-projectController.save = function (req, res) {
+projectController.save = (req, res) => {
     var project = new Project(req.body);
     var error = project.validateSync();
 
     if (error) {
         res.status(400).send(error.errors)
     } else {
-        project.save(function (err) {
+        project.save((err) => {
             if (err) {
                 console.log(err);
-                res.status(500).send(err)
+                res.status(500).send(err);
             } else {
                 console.log("Successfully created project.");
-                res.status(201).send(project)
+                res.status(201).send(project);
             }
         });
     }
 };
 
-projectController.find = function (req, res) {
-    Project.find({}, function (err, projects) {
+projectController.find = (req, res) => {
+    Project.find({}, (err, projects) => {
         if (err) {
             console.log(err);
-            res.status(500).send(err)
+            res.status(500).send(err);
         } else {
-            res.json(projects)
+            res.json(projects);
         }
     })
 }
 
-projectController.findById = function (req, res) {
-    Project.findById(req.params.id, function (err, project) {
+projectController.findById = (req, res) => {
+    Project.findById(req.params.id, (err, project) => {
         if (err) {
             console.log(err);
-            res.status(500).send(err)
+            res.status(500).send(err);
         } else {
             res.json(project)
         }
     })
 }
 
-projectController.delete = function (req, res) {
-    Project.findByIdAndRemove(req.params.id, function (err, project) {
+projectController.delete = (req, res) => {
+    Project.findByIdAndRemove(req.params.id, (err, project) => {
         if (err) {
             console.log(err);
-            res.status(500).send(err)
+            res.status(500).send(err);
         } else {
             res.json(project)
         }
     })
 }
 
-projectController.update = function (req, res) {
-    Project.findByIdAndUpdate(req.params.id, req.body, function (err, project) {
+projectController.update = (req, res) => {
+    Project.findByIdAndUpdate(req.params.id, req.body, (err, project) => {
         if (err) {
             console.log(err);
-            res.status(500).send(err)
+            res.status(500).send(err);
         } else {
-            res.json(project)
+            res.json(project);
         }
     })
 }

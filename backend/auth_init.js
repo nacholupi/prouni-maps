@@ -8,23 +8,26 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.OAUTH_CALLBACK
 },
     function (request, accessToken, refreshToken, profile, done) {
-        User.findOne({ oauthID: profile.id }, function (err, user) {
-            if (err) {
-                console.log(err);  // handle errors!
-            }
+        User.findOne({ oauthID: profile.id }, { _id: 0, }, function (err, user) {
+            console.log(err);
             if (!err && user !== null) {
                 done(null, user);
             } else {
+                theEmail = (profile.emails[0]) ? profile.emails[0].value : undefined;
+                now = Date.now();
                 user = new User({
                     oauthID: profile.id,
                     name: profile.displayName,
-                    created: Date.now()
+                    created: now,
+                    email: theEmail
                 });
+
+                if (user.oauthID == process.env.SUPER_USER_PROFILE_ID) {
+                    user.role = 'ADMIN'
+                }
                 user.save(function (err) {
-                    if (err) {
-                        console.log(err);  // handle errors!
-                    } else {
-                        console.log("saving user ...");
+                    if (!err) {
+                        console.log('saving user ...');
                         done(null, user);
                     }
                 });
@@ -39,6 +42,5 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (user, done) {
-    console.log('deserializeUser: ' + user);
     done(null, user);
 });
