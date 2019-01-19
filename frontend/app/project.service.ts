@@ -26,7 +26,7 @@ export interface Project {
 })
 export class ProjectService {
 
-  API_PROJ = '/api/project/';
+  private API_PROJ = '/api/project/';
 
   constructor(private http: HttpClient) { }
 

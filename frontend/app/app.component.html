@@ -37,7 +37,7 @@
                                 <span class="label">Listar</span>
                             </a>
                         </li>
-                        <li>
+                        <li *ngIf="writer">
                             <a routerLink="/project-create">
                                 <mat-icon class="icon">add_location</mat-icon>
                                 <span class="label">Agregar</span>

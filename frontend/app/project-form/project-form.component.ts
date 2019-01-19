@@ -86,13 +86,10 @@ export class ProjectFormComponent implements OnInit {
 
   private initSelectables(): void {
     this.service.getAll().subscribe(res => {
-      console.log(res);
-      console.log(this.selectables);
       Object.keys(res.map).forEach(key => {
         console.log(res.map[key]);
         this.selectables.set(key, res.map[key]);
       });
-      console.log(this.selectables);
     });
   }
 

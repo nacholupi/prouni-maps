@@ -11,7 +11,7 @@ export interface Options {
 })
 export class OptionsService {
 
-  API_OPTS = '/api/options/';
+  private API_OPTS = '/api/options/';
 
   constructor(private http: HttpClient) { }
 

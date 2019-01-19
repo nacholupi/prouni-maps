@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
@@ -20,6 +20,11 @@ import { ProjectFormComponent } from './project-form/project-form.component';
 import { ProjectMapResolver } from './project-map/project-map.resolver';
 import { SelectableDialogComponent } from './project-form/selectable-dialog.component';
 import { OptionsService } from './options.service';
+import { AuthService } from './auth.service';
+
+export function set_user(authService: AuthService) {
+  return () => authService.setUser();
+}
 
 @NgModule({
   declarations: [
@@ -48,8 +53,10 @@ import { OptionsService } from './options.service';
   providers: [
     OptionsService,
     ProjectService,
+    AuthService,
     ProjectDetailsResolver,
-    ProjectMapResolver
+    ProjectMapResolver,
+    { provide: APP_INITIALIZER, useFactory: set_user, deps: [AuthService], multi: true },
   ],
   entryComponents: [
     SelectableDialogComponent
