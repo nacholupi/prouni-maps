@@ -37,7 +37,7 @@
                                 <span class="label">Listar</span>
                             </a>
                         </li>
-                        <li *ngIf="writer">
+                        <li *ngIf="loggedUser && loggedUser.writer">
                             <a routerLink="/project-create">
                                 <mat-icon class="icon">add_location</mat-icon>
                                 <span class="label">Agregar</span>
@@ -47,6 +47,12 @@
                             <a routerLink="/project-map">
                                 <mat-icon class="icon">map</mat-icon>
                                 <span class="label">Mapa</span>
+                            </a>
+                        </li>
+                        <li *ngIf="loggedUser">
+                            <a (click)="logout()">
+                                <mat-icon class="icon">exit_to_app</mat-icon>
+                                <span class="label">Logout</span>
                             </a>
                         </li>
                     </ul>

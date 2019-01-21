@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './auth.service';
+import { AuthService, User } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +9,26 @@ import { AuthService } from './auth.service';
 
 export class AppComponent implements OnInit {
 
-  writer = false;
-  authUser = false;
+  loggedUser: User;
 
   constructor(private service: AuthService) {
   }
 
   ngOnInit() {
-    this.writer = this.service.isWriter();
-    this.authUser = this.service.isAuth();
+    this.loggedUser = this.getLoggedUser();
+  }
+
+  public logout(): void {
+    this.service.logout().subscribe(() => {
+      this.ngOnInit();
+    }, (err) => {
+      this.ngOnInit();
+      console.log(err);
+    });
+  }
+
+  private getLoggedUser(): User {
+    const loggedUserStr = localStorage.getItem('loggedUser');
+    return JSON.parse(loggedUserStr);
   }
 }

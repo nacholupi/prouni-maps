@@ -8,9 +8,9 @@
   <app-project-form [editMode]="editMode" [initData]="proj"></app-project-form>
 
   <div fxLayout="row" fxLayoutGap="20px" class="buttons-card">
-    <button mat-raised-button class="custom-button" color="primary" *ngIf="!editMode" (click)="edit()">Edit</button>
-    <button mat-raised-button class="custom-button" color="primary" *ngIf="!editMode" (click)="delete(proj._id)">Delete</button>
-    <button mat-raised-button class="custom-button" color="primary" *ngIf="editMode" (click)="update(proj._id)">Save</button>
+    <button mat-raised-button class="custom-button" color="primary" *ngIf="!editMode && adminUser" (click)="edit()">Edit</button>
+    <button mat-raised-button class="custom-button" color="primary" *ngIf="!editMode && adminUser" (click)="delete(proj._id)">Delete</button>
+    <button mat-raised-button class="custom-button" color="primary" *ngIf="editMode && adminUser" (click)="update(proj._id)">Save</button>
   </div>
 
 </mat-card>

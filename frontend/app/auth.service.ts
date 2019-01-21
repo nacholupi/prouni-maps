@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface User {
   oauthID: string;
@@ -7,6 +8,8 @@ export interface User {
   role: string;
   created: Date;
   email: string;
+  admin: boolean;
+  writer: boolean;
 }
 
 @Injectable({
@@ -15,25 +18,24 @@ export interface User {
 export class AuthService {
 
   private API_LOGGEDUSER = '/auth/loggedUser';
-  API_LOGOUT = '/auth/logout';
-  logUs: User;
+  private API_LOGOUT = '/auth/logout';
 
   constructor(private http: HttpClient) {
-    this.logUs = null;
   }
 
-  setUser(): Promise<void | User> {
+  public setUser(): Promise<void | User> {
     return this.http.get<User>(this.API_LOGGEDUSER)
       .toPromise()
 
       .then(user => {
-        console.log('user: ', user);
-        this.logUs = user;
+        user.admin = user.role === 'ADMIN';
+        user.writer = user.role === 'ADMIN' || user.role === 'WRITER';
+        localStorage.setItem('loggedUser', JSON.stringify(user));
         return user;
       })
 
       .catch(err => {
-        this.logUs = null;
+        localStorage.setItem('loggedUser', null);
         if (err.status === 404) {
           console.log('Not authorized');
         } else {
@@ -42,15 +44,8 @@ export class AuthService {
       });
   }
 
-  public isAdmin(): boolean {
-    return this.logUs && this.logUs.role === 'ADMIN';
-  }
-
-  public isWriter(): boolean {
-    return this.logUs && (this.logUs.role === 'ADMIN' || this.logUs.role === 'WRITER');
-  }
-
-  public isAuth(): boolean {
-    return this.logUs != null;
+  public logout(): Observable<any> {
+    localStorage.setItem('loggedUser', null);
+    return this.http.get(this.API_LOGOUT, { responseType: 'text' });
   }
 }
