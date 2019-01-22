@@ -19,7 +19,7 @@
         </mat-error>
       </mat-form-field>
       <button type="button" mat-button matSuffix mat-icon-button matTooltip="Editar temáticas" matTooltipPosition="above"
-        (click)="editSelectable('Editar Temáticas', 'subjs')" *ngIf="_editMode">
+        (click)="editSelectable('Editar Temáticas', 'subjs')" *ngIf="_editMode && adminMode">
         <mat-icon class="edit-icon">edit</mat-icon>
       </button>
     </div>
@@ -43,7 +43,7 @@
         </mat-error>
       </mat-form-field>
       <button type="button" mat-button matSuffix mat-icon-button matTooltip="Editar población obj." matTooltipPosition="above"
-        (click)="editSelectable('Editar Poblaciones objetivo', 'target_pop')" *ngIf="_editMode">
+        (click)="editSelectable('Editar Poblaciones objetivo', 'target_pop')" *ngIf="_editMode && adminMode">
         <mat-icon class="edit-icon">edit</mat-icon>
       </button>
     </div>
@@ -100,7 +100,7 @@
         </mat-error>
       </mat-form-field>
       <button type="button" mat-button matSuffix mat-icon-button matTooltip="Editar universidades" matTooltipPosition="above"
-        (click)="editSelectable('Editar Universidades', 'universities')" *ngIf="_editMode">
+        (click)="editSelectable('Editar Universidades', 'universities')" *ngIf="_editMode && adminMode">
         <mat-icon class="edit-icon">edit</mat-icon>
       </button>
     </div>

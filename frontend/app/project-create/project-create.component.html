@@ -5,7 +5,7 @@
   </mat-card-header>
   <mat-divider></mat-divider>
 
-  <app-project-form [editMode]="true"></app-project-form>
+  <app-project-form [editMode]="true" [adminMode]="adminUser"></app-project-form>
 
   <div class="buttons-card">
     <button mat-raised-button color="primary" (click)="saveProject()">Save</button>

@@ -25,6 +25,7 @@ export class ProjectFormComponent implements OnInit {
 
   @ViewChild('search') searchElement: ElementRef;
   @Input() initData: Project;
+  @Input() adminMode: boolean;
   _editMode: boolean;
   form: FormGroup;
 
@@ -34,13 +35,6 @@ export class ProjectFormComponent implements OnInit {
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder,
     private dialog: MatDialog, private service: OptionsService) {
-
-    this.selectables.set('universities', ['UBA', 'UCA']);
-    this.selectables.set('subjs', ['Salud', 'Educación', 'Arte y cultura', 'Medio ambiente',
-      'Empleo y Desarrollo Económico', 'Infraestructura']);
-    this.selectables.set('target_pop', ['Pueblos originarios', 'Primera infancia', 'Niños/as', 'Adolescencia', 'Juventud', 'Mujeres',
-      'Personas mayores', 'Adultos', 'Vulnerable']);
-
 
     this.form = this.fb.group({
       'title': this.fb.control('', [Validators.required]),

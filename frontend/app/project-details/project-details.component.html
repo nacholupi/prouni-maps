@@ -5,7 +5,7 @@
   </mat-card-header>
   <mat-divider></mat-divider>
 
-  <app-project-form [editMode]="editMode" [initData]="proj"></app-project-form>
+  <app-project-form [editMode]="editMode" [adminMode]="adminUser" [initData]="proj"></app-project-form>
 
   <div fxLayout="row" fxLayoutGap="20px" class="buttons-card">
     <button mat-raised-button class="custom-button" color="primary" *ngIf="!editMode && adminUser" (click)="edit()">Edit</button>
