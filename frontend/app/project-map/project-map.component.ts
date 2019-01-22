@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../project.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -18,7 +18,7 @@ export class ProjectMapComponent implements OnInit {
   mapLat: number;
   mapLng: number;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private cdr: ChangeDetectorRef) {
     this.form = this.fb.group({
       'filterInput': this.fb.control(''),
     });
@@ -29,14 +29,15 @@ export class ProjectMapComponent implements OnInit {
     this.markers = this.allMarkers;
   }
 
-  clickedMarker(marker: Project): void {
+  public clickedMarker(marker: Project): void {
     this.fitBounds = false;
     this.selectedMarker = marker;
+    this.cdr.detectChanges();
     this.mapLat = marker.location.coordinates[0];
     this.mapLng = marker.location.coordinates[1];
   }
 
-  filter(): void {
+  public filter(): void {
     this.fitBounds = true;
     this.selectedMarker = null;
     const fInput = this.form.get('filterInput').value;
