@@ -5,14 +5,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install --only=production
+RUN npm install
 
 # Bundle app source
 COPY . .
 
-COPY --chown=node:node . .
+EXPOSE 3000
 
-USER node
-
-EXPOSE 4200
 CMD [ "npm", "start" ]
