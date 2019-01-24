@@ -1,8 +1,9 @@
 {
   "name": "prouni-maps",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
-    "start": "ng build && node backend/bin/www",
+    "start": "node backend/bin/www",
+    "deploy": "ng build && gcloud app deploy",
     "ng": "ng serve --proxy-config proxy.conf.json --disable-host-check"
   },
   "repository": {
