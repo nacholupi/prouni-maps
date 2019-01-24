@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node backend/bin/www",
-    "deploy": "ng build && gcloud app deploy",
+    "build": "ng build",
+    "gdeploy": "ng build && gcloud app deploy",
     "ng": "ng serve --proxy-config proxy.conf.json --disable-host-check"
   },
   "repository": {
