@@ -5,13 +5,17 @@
                 <mat-icon class="icon">list</mat-icon>
                 <span class="label">Listar</span>
             </a>
-            <a mat-list-item routerLink="/project-create">
+            <a mat-list-item routerLink="/project-create" *ngIf="loggedUser && loggedUser.writer">
                 <mat-icon class="icon">add_location</mat-icon>
                 <span class="label">Agregar</span>
             </a>
             <a mat-list-item routerLink="/project-map">
                 <mat-icon class="icon">map</mat-icon>
                 <span class="label">Mapa</span>
+            </a>
+            <a mat-list-item (click)="logout()" *ngIf="loggedUser">
+                <mat-icon class="icon">exit_to_app</mat-icon>
+                <span class="label">Logout</span>
             </a>
         </mat-nav-list>
     </mat-sidenav>
