@@ -6,6 +6,7 @@ import { Project } from '../project.service';
 import { MatDialog } from '@angular/material';
 import { SelectableDialogComponent } from './selectable-dialog.component';
 import { OptionsService } from '../options.service';
+import { environment } from 'frontend/environments/environment';
 
 
 export interface DialogData {
@@ -32,6 +33,7 @@ export class ProjectFormComponent implements OnInit {
   latMap = -39;
   lngMap = -64.63;
   zoomMap = 3;
+  googleMapApiKey = environment.GOOGLE_MAP_API_KEY;
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder,
     private dialog: MatDialog, private service: OptionsService) {

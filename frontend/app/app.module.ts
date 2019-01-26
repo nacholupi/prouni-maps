@@ -21,6 +21,7 @@ import { ProjectMapResolver } from './project-map/project-map.resolver';
 import { SelectableDialogComponent } from './project-form/selectable-dialog.component';
 import { OptionsService } from './options.service';
 import { AuthService } from './auth.service';
+import { environment } from 'frontend/environments/environment';
 
 export function set_user(authService: AuthService) {
   return () => authService.setUser();
@@ -44,7 +45,7 @@ export function set_user(authService: AuthService) {
     MaterialModule,
     FlexLayoutModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA0TQ6QmZqwlj5I7mmbs5yjvRH7dz8zdeA',
+      apiKey: environment.GOOGLE_MAP_API_KEY,
       libraries: ['places']
     }),
     AgmJsMarkerClustererModule,
