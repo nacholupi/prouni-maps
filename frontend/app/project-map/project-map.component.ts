@@ -37,6 +37,17 @@ export class ProjectMapComponent implements OnInit {
     this.mapLng = marker.location.coordinates[1];
   }
 
+  public closeSidenav(): void {
+    this.fitBounds = false;
+    const marker = this.selectedMarker;
+    this.selectedMarker = null;
+    this.cdr.detectChanges();
+    if (this.selectedMarker) {
+      this.mapLat = marker.location.coordinates[0];
+      this.mapLng = marker.location.coordinates[1];
+    }
+  }
+
   public filter(): void {
     this.fitBounds = true;
     this.selectedMarker = null;

@@ -33,6 +33,20 @@
   font-size: 15px;
 }
 
+.close_row {
+  width: 100%;
+  clear:both;
+  overflow:hidden;
+  
+}
+
+.close_icon {
+  padding-top: 8px;
+  float:right;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 .row {
   display: inline-block;
   align-items: center;

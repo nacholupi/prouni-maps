@@ -1,7 +1,7 @@
 <mat-drawer-container autosize>
     <mat-drawer *ngIf="selectedMarker" [opened]="true" mode="side" class="sidenav-content">
-        <div class="full-with">
-            <mat-icon class="icon">close</mat-icon>
+        <div class="close_row">
+            <mat-icon class="close_icon" (click)="closeSidenav()">close</mat-icon>
         </div>
         <mat-card class="card">
             <mat-card-content class="content-card">
