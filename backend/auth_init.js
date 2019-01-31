@@ -5,21 +5,22 @@ var User = require('./models/user.js');
 passport.use(new GoogleStrategy({
     clientID: process.env.OAUTH_CLIENTID,
     clientSecret: process.env.OAUTH_CLI_SECRET,
-    callbackURL: process.env.OAUTH_CALLBACK
+    callbackURL: process.env.OAUTH_CALLBACK,
+    userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
 },
     function (request, accessToken, refreshToken, profile, done) {
+        console.log(profile);
         User.findOne({ oauthID: profile.id }, { _id: 0, }, function (err, user) {
-            console.log(err);
             if (!err && user !== null) {
+                console.log(err);
                 done(null, user);
             } else {
-                theEmail = (profile.emails[0]) ? profile.emails[0].value : undefined;
                 now = Date.now();
                 user = new User({
                     oauthID: profile.id,
                     name: profile.displayName,
                     created: now,
-                    email: theEmail
+                    email: profile.email
                 });
 
                 if (user.oauthID == process.env.SUPER_USER_PROFILE_ID) {
