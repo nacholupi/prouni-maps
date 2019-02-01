@@ -9,7 +9,6 @@ passport.use(new GoogleStrategy({
     userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
 },
     function (request, accessToken, refreshToken, profile, done) {
-        console.log(profile);
         User.findOne({ oauthID: profile.id }, { _id: 0, }, function (err, user) {
             if (!err && user !== null) {
                 console.log(err);
