@@ -1,13 +1,13 @@
 <mat-card class="card">
 
   <mat-card-header>
-    <h2>Agregar Nuevo Proyecto</h2>
+    <h2 i18n="@@create.title">Add new project</h2>
   </mat-card-header>
   <mat-divider></mat-divider>
 
   <app-project-form [editMode]="true" [adminMode]="adminUser"></app-project-form>
 
   <div class="buttons-card">
-    <button mat-raised-button color="primary" (click)="saveProject()">Save</button>
+    <button mat-raised-button color="primary" (click)="saveProject()" i18n="@@create.save">Save</button>
   </div>
 </mat-card>

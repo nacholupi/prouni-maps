@@ -3,7 +3,7 @@ import { Component, OnInit, Input, ElementRef, NgZone, ViewChild } from '@angula
 import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { Project } from '../project.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatButton } from '@angular/material';
 import { SelectableDialogComponent } from './selectable-dialog.component';
 import { OptionsService } from '../options.service';
 import { environment } from 'frontend/environments/environment';
@@ -83,7 +83,6 @@ export class ProjectFormComponent implements OnInit {
   private initSelectables(): void {
     this.service.getAll().subscribe(res => {
       Object.keys(res.map).forEach(key => {
-        console.log(res.map[key]);
         this.selectables.set(key, res.map[key]);
       });
     });
@@ -137,10 +136,12 @@ export class ProjectFormComponent implements OnInit {
     this.searchElement.nativeElement.value = '';
   }
 
-  public editSelectable(dialaogTitle: string, selectableKey: string): void {
+  public editSelectable(dialaogTitle: MatButton, selectableKey: string): void {
+    // I don't like this
+    const mattooltip = dialaogTitle._elementRef.nativeElement.attributes['mattooltip'].value;
     this.dialog.open(SelectableDialogComponent, {
       width: '350px',
-      data: { dialaogTitle: dialaogTitle, selectableKey: selectableKey, selectables: this.selectables }
+      data: { dialaogTitle: mattooltip, selectableKey: selectableKey, selectables: this.selectables }
     });
   }
 

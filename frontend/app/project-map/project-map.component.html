@@ -9,24 +9,24 @@
 
                 <hr class="separator">
 
-                <h3>Temáticas</h3>
+                <h3 i18n="@@map.subject">Subject</h3>
                 <div class="row">
                     {{selectedMarker.subject}}
                 </div>
 
-                <h3>Información del proyecto</h3>
+                <h3 i18n="@@map.purpose">Purpose</h3>
                 <div class="row">
                     {{selectedMarker.purpose}}
                 </div>
 
-                <h3>Población objetivo</h3>
+                <h3 i18n="@@map.target.pop">Target population</h3>
                 <div class="row">
                     {{selectedMarker.target_population}}
                 </div>
 
                 <hr class="separator">
 
-                <h3>Referente</h3>
+                <h3 i18n="@@map.target.ref">Referent</h3>
                 <div class="row">
                     <mat-icon class="icon">person_outline</mat-icon>
                     {{selectedMarker.ref_name}}
@@ -72,9 +72,9 @@
         <mat-card-content>
             <div class="custom-mat-form-field ">
                 <mat-form-field appearance="outline" class="floating-searcher">
-                    <mat-label>Filtrar</mat-label>
-                    <input matInput type="text" formControlName="filterInput" placeholder="Proyecto, referente..."
-                        (keyup.enter)="filter()">
+                    <mat-label i18n="@@map.filter">Filter</mat-label>
+                    <input matInput type="text" formControlName="filterInput" i18n-placeholder="@@map.placeholder.filter"
+                        placeholder="Project, referent..." (keyup.enter)="filter()">
                     <mat-icon matPrefix>search</mat-icon>
                 </mat-form-field>
             </div>

@@ -2,14 +2,14 @@
   <table mat-table matSort [dataSource]="projects" class="full-width">
 
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@list.title">Title</th>
       <td mat-cell *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
 
     <ng-container matColumnDef="details">
-      <th mat-header-cell *matHeaderCellDef> Detalles </th>
+      <th mat-header-cell *matHeaderCellDef i18n="@@list.details">Details</th>
       <td mat-cell *matCellDef="let element">
-        <a [routerLink]="['/project-details', element._id]">Mostrar Detalles</a>
+        <a [routerLink]="['/project-details', element._id]" i18n="@@list.show">Show details</a>
       </td>
     </ng-container>
 

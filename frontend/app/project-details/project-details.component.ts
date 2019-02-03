@@ -40,7 +40,7 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   public delete(id: string) {
-    const response = confirm('¿Seguro que desea borrar el proyecto?');
+    const response = confirm('¿Are you sure you want to delete this project?');
 
     if (response) {
       this.service.delete(id).subscribe(() => {

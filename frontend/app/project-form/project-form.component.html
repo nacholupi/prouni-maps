@@ -1,49 +1,50 @@
 <mat-card-content class="content-card">
 
-  <form [formGroup]="form" (ngSubmit)="saveProject()" fxLayout="column">
+  <form [formGroup]="form" fxLayout="column">
 
     <mat-form-field>
-      <input matInput type="text" placeholder="Titulo" formControlName="title" required>
-      <mat-error *ngIf="form.get('title').hasError('required')">
-        Campo requerido
+      <input matInput type="text" placeholder="Title" i18n-placeholder="@@form.placeholder.title" formControlName="title"
+        required>
+      <mat-error *ngIf="form.get('title').hasError('required')" i18n="@@form.required.field">
+        Required field
       </mat-error>
     </mat-form-field>
 
     <div fxLayout="row" fxLayoutGap="10px">
       <mat-form-field>
-        <mat-select placeholder="Temática" formControlName="subject" required>
+        <mat-select placeholder="Subject" formControlName="subject" required i18n-placeholder="@@form.placeholder.subject">
           <mat-option *ngFor="let sub of selectables.get('subjs')" [value]="sub">{{sub}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="form.get('subject').hasError('required')">
-          Campo requerido
+        <mat-error *ngIf="form.get('subject').hasError('required')" i18n="@@form.required.field">
+          Required field
         </mat-error>
       </mat-form-field>
-      <button type="button" mat-button matSuffix mat-icon-button matTooltip="Editar temáticas" matTooltipPosition="above"
-        (click)="editSelectable('Editar Temáticas', 'subjs')" *ngIf="_editMode && adminMode">
+      <button type="button" mat-button matSuffix mat-icon-button matTooltip="Edit subjects" i18n-matTooltip="@@form.mattooltip.edit.subjects"
+        matTooltipPosition="above" (click)="editSelectable(button_s, 'subjs')" *ngIf="_editMode && adminMode" #button_s>
         <mat-icon class="edit-icon">edit</mat-icon>
       </button>
     </div>
 
-
     <mat-form-field>
-      <textarea matInput rows=5 placeholder="Objetivo" formControlName="purpose" required></textarea>
-      <mat-error *ngIf="form.get('purpose').hasError('required')">
-        Campo requerido
+      <textarea matInput rows=5 placeholder="Purpose" formControlName="purpose" required i18n-placeholder="@@form.placeholder.purpose"></textarea>
+      <mat-error *ngIf="form.get('purpose').hasError('required')" i18n="@@form.required.field">
+        Required field
       </mat-error>
     </mat-form-field>
 
-
     <div fxLayout="row" fxLayoutGap="10px">
       <mat-form-field>
-        <mat-select placeholder="Población objetivo" formControlName="target_population" multiple required>
+        <mat-select placeholder="Target Population" formControlName="target_population" multiple required
+          i18n-placeholder="@@form.placeholder.target.pop">
           <mat-option *ngFor="let pop of selectables.get('target_pop')" [value]="pop">{{pop}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="form.get('target_population').hasError('required')">
-          Campo requerido
+        <mat-error *ngIf="form.get('target_population').hasError('required')" i18n="@@form.required.field">
+          Required field
         </mat-error>
       </mat-form-field>
-      <button type="button" mat-button matSuffix mat-icon-button matTooltip="Editar población obj." matTooltipPosition="above"
-        (click)="editSelectable('Editar Poblaciones objetivo', 'target_pop')" *ngIf="_editMode && adminMode">
+      <button type="button" mat-button matSuffix mat-icon-button matTooltip="Edit target population" matTooltipPosition="above"
+        i18n-matTooltip="@@form.matTooltip.target.pop" (click)="editSelectable(button_t, 'target_pop')" *ngIf="_editMode && adminMode"
+        #button_t>
         <mat-icon class="edit-icon">edit</mat-icon>
       </button>
     </div>
@@ -64,65 +65,69 @@
           </agm-map>
 
           <mat-form-field>
-            <input matInput type="text" placeholder="Buscar" autocorrect="off" autocapitalize="off" spellcheck="off"
-              #search>
+            <input matInput type="text" placeholder="Search" i18n-placeholder="@@form.map.search" autocorrect="off"
+              autocapitalize="off" spellcheck="off" #search>
           </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayoutGap="25px">
           <mat-form-field>
-            <input matInput type="number" placeholder="Latitud" formControlName="0" [readonly]="true" required>
-            <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')">
-              Campo requerido
+            <input matInput type="number" placeholder="Latitude" i18n-placeholder="@@form.placeholder.lat"
+              formControlName="0" [readonly]="true" required>
+            <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')" i18n="@@form.required.field">
+              Required field
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput type="number" placeholder="Longitud" formControlName="1" [readonly]="true" required>
-            <mat-error *ngIf="form.get('location').get('coordinates').get('1').hasError('required')">
-              Campo requerido
+            <input matInput type="number" placeholder="Longitude" i18n-placeholder="@@form.placeholder.lng"
+              formControlName="1" [readonly]="true" required>
+            <mat-error *ngIf="form.get('location').get('coordinates').get('1').hasError('required')" i18n="@@form.required.field">
+              Required field
             </mat-error>
           </mat-form-field>
         </div>
       </div>
     </div>
 
-    <h3>Referente</h3>
+    <h3 i18n="@@form.referent">Referent</h3>
 
     <div fxLayout="row" fxLayoutGap="10px">
       <mat-form-field>
-        <mat-select placeholder="Universidad" formControlName="university" required>
+        <mat-select placeholder="University" i18n-placeholder="@@form.placeholder.ref.uni" formControlName="university"
+          required>
           <mat-option>-</mat-option>
           <mat-option *ngFor="let uni of selectables.get('universities')" [value]="uni">{{uni}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="form.get('university').hasError('required')">
-          Campo requerido
+        <mat-error *ngIf="form.get('university').hasError('required')" i18n="@@form.required.field">
+          Required field
         </mat-error>
       </mat-form-field>
-      <button type="button" mat-button matSuffix mat-icon-button matTooltip="Editar universidades" matTooltipPosition="above"
-        (click)="editSelectable('Editar Universidades', 'universities')" *ngIf="_editMode && adminMode">
+      <button type="button" mat-button matSuffix mat-icon-button i18n-matTooltip="@@form.matTooltip.edit.uni"
+        matTooltip="Edit universities" matTooltipPosition="above" (click)="editSelectable( button_u, 'universities')"
+        *ngIf="_editMode && adminMode" #button_u>
         <mat-icon class="edit-icon">edit</mat-icon>
       </button>
     </div>
 
     <div fxLayout="row" fxLayoutGap="25px">
       <mat-form-field>
-        <input matInput placeholder="Nombre y Apellido" formControlName="ref_name">
+        <input matInput i18n-placeholder="@@form.placeholder.ref.fullname" placeholder="Full name" formControlName="ref_name">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Cargo" formControlName="ref_title">
+        <input matInput placeholder="Title" i18n-placeholder="@@form.placeholder.ref.title" formControlName="ref_title">
       </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutGap="25px">
       <mat-form-field>
-        <input matInput placeholder="Email" formControlName="ref_mail">
-        <mat-error *ngIf="form.get('ref_mail').hasError('email')">
-          Ingrese un email válido
+        <input matInput placeholder="Email" formControlName="ref_mail" i18n-placeholder="@@form.placeholder.ref.mail">
+        <mat-error *ngIf="form.get('ref_mail').hasError('email')" i18n="@@form.valid.email">
+          Enter a valid email
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Teléfono" formControlName="ref_phone">
+        <input matInput placeholder="Phone" i18n-placeholder="@@form.placeholder.ref.phone" formControlName="ref_phone">
       </mat-form-field>
     </div>
   </form>

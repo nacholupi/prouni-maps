@@ -1,16 +1,19 @@
 <mat-card class="card">
 
   <mat-card-header>
-    <h2>Detalles Proyecto</h2>
+    <h2 i18n="@@details.title">Project details</h2>
   </mat-card-header>
   <mat-divider></mat-divider>
 
   <app-project-form [editMode]="editMode" [adminMode]="adminUser" [initData]="proj"></app-project-form>
 
   <div fxLayout="row" fxLayoutGap="20px" class="buttons-card">
-    <button mat-raised-button class="custom-button" color="primary" *ngIf="!editMode && adminUser" (click)="edit()">Edit</button>
-    <button mat-raised-button class="custom-button" color="primary" *ngIf="!editMode && adminUser" (click)="delete(proj._id)">Delete</button>
-    <button mat-raised-button class="custom-button" color="primary" *ngIf="editMode && adminUser" (click)="update(proj._id)">Save</button>
+    <button mat-raised-button class="custom-button" color="primary" *ngIf="!editMode && adminUser" (click)="edit()"
+      i18n="@@details.edit">Edit</button>
+    <button mat-raised-button class="custom-button" color="primary" *ngIf="!editMode && adminUser" (click)="delete(proj._id)"
+      i18n="@@details.delete">Delete</button>
+    <button mat-raised-button class="custom-button" color="primary" *ngIf="editMode && adminUser" (click)="update(proj._id)"
+      i18n="@@details.save">Save</button>
   </div>
 
 </mat-card>
