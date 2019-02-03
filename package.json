@@ -2,7 +2,8 @@
   "name": "prouni-maps",
   "version": "1.0.0",
   "scripts": {
-    "start": "ng build && node backend/bin/www",
+    "start": "node backend/bin/www",
+    "local": "ng build && node backend/bin/www",
     "local-front": "ng serve --proxy-config proxy.conf.json --disable-host-check",
     "local-back": "nodemon backend/bin/www",
     "build:prod": "ng build --configuration=production",
