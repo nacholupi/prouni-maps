@@ -20,7 +20,7 @@ Yes, please! Pull requests are most welcome. On the wish list:
 
 MIT
 
-Copyright 2016 Sebastian Dahlgren <sebastian.dahlgren@gmail.com>
+Copyright 2019 Ignacio Lupi <nacholupi@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
