@@ -10,6 +10,8 @@ html, body, app-root {
   background-color: #fafafa;
 }
 
+mat-drawer-content { overflow: hidden !important; }
+
 .full-width {
   width: 100%;
 }
