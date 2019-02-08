@@ -48,36 +48,38 @@
         </mat-card>
 
     </mat-drawer>
+    <mat-drawer-content class="map-container">
+        <agm-map [fitBounds]="fitBounds" [streetViewControl]="false" class="map" [latitude]="mapLat" [longitude]="mapLng">
+            <agm-marker-cluster imagePath="/assets/images/cluster/m">
+                <div *ngFor="let marker of markers">
+                    <div *ngIf="marker != selectedMarker">
+                        <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/marker_blue.png"
+                            [latitude]="marker.location.coordinates[0]" [longitude]="marker.location.coordinates[1]"
+                            (markerClick)="clickedMarker(marker)">
+                        </agm-marker>
 
-    <agm-map [fitBounds]="fitBounds" [streetViewControl]="false" class="map" [latitude]="mapLat" [longitude]="mapLng">
-        <agm-marker-cluster imagePath="/assets/images/cluster/m">
-            <div *ngFor="let marker of markers">
-                <div *ngIf="marker != selectedMarker">
-                    <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/marker_blue.png" [latitude]="marker.location.coordinates[0]"
-                        [longitude]="marker.location.coordinates[1]" (markerClick)="clickedMarker(marker)">
-                    </agm-marker>
-
+                    </div>
+                    <div *ngIf="marker == selectedMarker">
+                        <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/marker_orange.png"
+                            [latitude]="marker.location.coordinates[0]" [longitude]="marker.location.coordinates[1]"
+                            (markerClick)="clickedMarker(marker)">
+                        </agm-marker>
+                    </div>
                 </div>
-                <div *ngIf="marker == selectedMarker">
-                    <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/marker_orange.png"
-                        [latitude]="marker.location.coordinates[0]" [longitude]="marker.location.coordinates[1]"
-                        (markerClick)="clickedMarker(marker)">
-                    </agm-marker>
-                </div>
-            </div>
-        </agm-marker-cluster>
-    </agm-map>
+            </agm-marker-cluster>
+        </agm-map>
 
-    <form [formGroup]="form">
-        <mat-card-content>
-            <div class="custom-mat-form-field ">
-                <mat-form-field appearance="outline" class="floating-searcher">
-                    <mat-label i18n="@@map.filter">Filter</mat-label>
-                    <input matInput type="text" formControlName="filterInput" i18n-placeholder="@@map.placeholder.filter"
-                        placeholder="Project, referent..." (keyup.enter)="filter()">
-                    <mat-icon matPrefix>search</mat-icon>
-                </mat-form-field>
-            </div>
-        </mat-card-content>
-    </form>
+        <form [formGroup]="form">
+            <mat-card-content>
+                <div class="custom-mat-form-field ">
+                    <mat-form-field appearance="outline" class="floating-searcher">
+                        <mat-label i18n="@@map.filter">Filter</mat-label>
+                        <input matInput type="text" formControlName="filterInput" i18n-placeholder="@@map.placeholder.filter"
+                            placeholder="Project, referent..." (keyup.enter)="filter()">
+                        <mat-icon matPrefix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+        </form>
+    </mat-drawer-content>
 </mat-drawer-container>

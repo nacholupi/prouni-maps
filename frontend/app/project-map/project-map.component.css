@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.map-container { 
+  overflow: hidden;
+}
+
 .sidenav-content {
   display: flex;
   height: 100%;
