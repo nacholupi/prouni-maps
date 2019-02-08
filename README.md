@@ -15,4 +15,3 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 Yes, please! Pull requests are most welcome. On the wish list:
 
 - Unit tests.
-- Better output for failed tests. A diff of some sort would be great.
