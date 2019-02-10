@@ -48,7 +48,7 @@
         </mat-card>
 
     </mat-drawer>
-    <mat-drawer-content class="map-container">
+    <mat-drawer-content>
         <agm-map [fitBounds]="fitBounds" [streetViewControl]="false" class="map" [latitude]="mapLat" [longitude]="mapLng">
             <agm-marker-cluster imagePath="/assets/images/cluster/m">
                 <div *ngFor="let marker of markers">
