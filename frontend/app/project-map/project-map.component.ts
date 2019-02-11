@@ -49,18 +49,32 @@ export class ProjectMapComponent implements OnInit {
   }
 
   public filter(): void {
+    console.log('filter');
     this.fitBounds = true;
     this.selectedMarker = null;
-    const fInput = this.form.get('filterInput').value;
-    this.markers = this.allMarkers.filter(d =>
-      d.title && d.title.includes(fInput) ||
-      d.subject && d.subject.includes(fInput) ||
-      d.ref_name && d.ref_name.includes(fInput));
+    const fInput = this.form.get('filterInput');
+    const fValue = fInput.value;
+    const fMarkers = this.allMarkers.filter(d =>
+      d.title && d.title.includes(fValue) ||
+      d.subject && d.subject.includes(fValue) ||
+      d.ref_name && d.ref_name.includes(fValue));
 
-    if (this.markers.length === 1) {
-      this.selectedMarker = this.markers[0];
-    } else {
-      this.selectedMarker = null;
+    if (fMarkers.length !== 0) {
+      this.markers = fMarkers;
+      if (this.markers.length === 1) {
+        this.selectedMarker = this.markers[0];
+      }
     }
+
+    fInput.disable();
+  }
+
+  public clearFilter(): void {
+    this.fitBounds = true;
+    this.selectedMarker = null;
+    this.markers = this.allMarkers;
+    const fInput = this.form.get('filterInput');
+    fInput.setValue('');
+    fInput.enable();
   }
 }
