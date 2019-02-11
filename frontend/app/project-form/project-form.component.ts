@@ -64,7 +64,6 @@ export class ProjectFormComponent implements OnInit {
     this._editMode = edit;
     if (this._editMode) {
       this.form.enable();
-      this.initSelectables();
       this.initPlaceSearcher();
     } else {
       this.form.disable();
@@ -75,6 +74,7 @@ export class ProjectFormComponent implements OnInit {
     if (!this.initData) {
       this.initData = {} as Project;
     } else {
+      this.initSelectables();
       this.updateFormData(this.initData);
       this.centerMap(this.initData.location.coordinates[0], this.initData.location.coordinates[1]);
     }
