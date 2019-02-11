@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.red-hint {
+  color: red;
+}
+
 .sidenav-content {
   display: flex;
   height: 100%;

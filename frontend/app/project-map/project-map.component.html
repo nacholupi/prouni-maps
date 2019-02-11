@@ -71,11 +71,14 @@
 
         <form [formGroup]="form">
             <mat-card-content>
-                <div class="custom-mat-form-field ">
+                <div class="custom-mat-form-field">
                     <mat-form-field appearance="outline" class="floating-searcher">
                         <mat-label i18n="@@map.filter">Filter</mat-label>
                         <input matInput type="text" formControlName="filterInput" i18n-placeholder="@@map.placeholder.filter"
                             placeholder="Project, referent..." (keyup.enter)="filter()" autocomplete="off" #filterIn>
+                        <mat-hint class="red-hint" *ngIf="noResults" i18n="@@form.filter.no.results">
+                            No results
+                        </mat-hint>
                         <mat-icon matPrefix>search</mat-icon>
                         <button mat-button *ngIf="filterIn.disabled" matSuffix mat-icon-button (click)="clearFilter()">
                             <mat-icon>close</mat-icon>

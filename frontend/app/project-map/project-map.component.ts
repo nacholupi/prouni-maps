@@ -13,6 +13,7 @@ export class ProjectMapComponent implements OnInit {
   allMarkers: Project[];
   markers: Project[];
   fitBounds = true;
+  noResults = false;
   selectedMarker: Project;
   form: FormGroup;
   mapLat: number;
@@ -49,7 +50,7 @@ export class ProjectMapComponent implements OnInit {
   }
 
   public filter(): void {
-    console.log('filter');
+    this.noResults = false;
     this.fitBounds = true;
     this.selectedMarker = null;
     const fInput = this.form.get('filterInput');
@@ -64,12 +65,15 @@ export class ProjectMapComponent implements OnInit {
       if (this.markers.length === 1) {
         this.selectedMarker = this.markers[0];
       }
+    } else {
+      this.noResults = true;
     }
 
     fInput.disable();
   }
 
   public clearFilter(): void {
+    this.noResults = false;
     this.fitBounds = true;
     this.selectedMarker = null;
     this.markers = this.allMarkers;
