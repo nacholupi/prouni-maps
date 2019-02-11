@@ -1,6 +1,10 @@
-mat-sidenav-container, mat-sidenav-content, mat-sidenav, main {
+mat-sidenav-content, mat-sidenav, main {
   height: 100%;
   overflow: hidden;
+}
+
+mat-sidenav-container {
+  overflow-x: hidden;
 }
   
 mat-sidenav {
