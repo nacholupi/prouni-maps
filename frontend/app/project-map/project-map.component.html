@@ -49,8 +49,9 @@
 
     </mat-drawer>
     <mat-drawer-content>
-        <agm-map [fitBounds]="fitBounds" [streetViewControl]="false" class="map" [latitude]="mapLat" [longitude]="mapLng">
-            <agm-marker-cluster imagePath="/assets/images/cluster/m">
+        <agm-map [fitBounds]="fitBounds" [streetViewControl]="false" class="map" [latitude]="mapLat"
+            [longitude]="mapLng">
+            <agm-marker-cluster imagePath="/assets/images/cluster/m" maxZoom=20>
                 <div *ngFor="let marker of markers">
                     <div *ngIf="marker != selectedMarker">
                         <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/marker_blue.png"
@@ -74,8 +75,9 @@
                 <div class="custom-mat-form-field">
                     <mat-form-field appearance="outline" class="floating-searcher">
                         <mat-label i18n="@@map.filter">Filter</mat-label>
-                        <input matInput type="text" formControlName="filterInput" i18n-placeholder="@@map.placeholder.filter"
-                            placeholder="Project, referent..." (keyup.enter)="filter()" autocomplete="off" #filterIn>
+                        <input matInput type="text" formControlName="filterInput"
+                            i18n-placeholder="@@map.placeholder.filter" placeholder="Project, referent..."
+                            (keyup.enter)="filter()" autocomplete="off" #filterIn>
                         <mat-hint class="red-hint" *ngIf="noResults" i18n="@@form.filter.no.results">
                             No results
                         </mat-hint>

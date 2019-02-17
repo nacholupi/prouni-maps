@@ -90,9 +90,14 @@ export class ProjectFormComponent implements OnInit {
 
   private initPlaceSearcher(): void {
 
+    // Search only in Argentina
+    const sw = new google.maps.LatLng(-55.847774, -82.645068);
+    const ne = new google.maps.LatLng(-21.836707, -49.234343);
+    const bounds = new google.maps.LatLngBounds(sw, ne);
+
     this.mapsAPILoader.load().then(
       () => {
-        const autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ['address'] });
+        const autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { bounds: bounds, strictBounds: true });
 
         autocomplete.addListener('place_changed', () => {
           this.ngZone.run(() => {
