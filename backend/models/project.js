@@ -23,7 +23,7 @@ var projectSchema = new mongoose.Schema({
     ref_title: String,
     ref_phone: String,
     ref_mail: String,
-
+    place: String,
     location: {
         type: pointSchema,
         required: true

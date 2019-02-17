@@ -49,6 +49,10 @@
       </button>
     </div>
 
+    <mat-form-field>
+      <input matInput type="text" placeholder="Place" i18n-placeholder="@@form.placeholder.place" formControlName="place">
+    </mat-form-field>
+
     <div class="loc" *ngIf="!_editMode">
       <img class="loc-int" src="https://maps.googleapis.com/maps/api/staticmap?center={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&&markers={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&zoom=14&size=500x300&key={{googleMapApiKey}}">
     </div>

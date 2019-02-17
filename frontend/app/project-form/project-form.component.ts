@@ -48,6 +48,7 @@ export class ProjectFormComponent implements OnInit {
       'ref_title': this.fb.control(''),
       'ref_phone': this.fb.control(''),
       'ref_mail': this.fb.control('', [Validators.email]),
+      'place': this.fb.control(''),
       'location': this.fb.group({
         'type': this.fb.control('Point'),
         'coordinates': this.fb.array([null, null], Validators.required)

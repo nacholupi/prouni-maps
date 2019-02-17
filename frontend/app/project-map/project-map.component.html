@@ -78,8 +78,7 @@
                         <input matInput type="text" formControlName="filterInput"
                             i18n-placeholder="@@map.placeholder.filter" placeholder="Project, referent..."
                             (keyup.enter)="filter()" autocomplete="off" #filterIn>
-                        <mat-hint class="red-hint" *ngIf="noResults" i18n="@@form.filter.no.results">
-                            No results
+                        <mat-hint class="red-hint" *ngIf="noResults" i18n="@@form.filter.no.results">No results
                         </mat-hint>
                         <mat-icon matPrefix>search</mat-icon>
                         <button mat-button *ngIf="filterIn.disabled" matSuffix mat-icon-button (click)="clearFilter()">

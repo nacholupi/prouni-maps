@@ -8,7 +8,8 @@
     "local-back": "nodemon backend/bin/www",
     "build:prod": "ng build --configuration=production",
     "start:prod": "node backend/bin/www",
-    "gdeploy": "ng build --configuration=production && gcloud app deploy"
+    "gdeploy": "ng build --configuration=production && gcloud app deploy",
+    "extract-i18n": "ng xi18n --i18n-format xlf --output-path i18n --i18n-locale en && ng run crud:xliffmerge"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
     "@google/markerclusterer": "^1.0.3",
+    "@ngx-i18nsupport/tooling": "^1.1.2",
     "@types/googlemaps": "^3.30.16",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
@@ -54,8 +56,9 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.1",
     "@angular/cli": "~7.1.1",
-    "@angular/compiler-cli": "~7.1.0",
+    "@angular/compiler-cli": "^7.2.5",
     "@angular/language-service": "~7.1.0",
+    "@ngx-i18nsupport/ngx-i18nsupport": "^1.1.2",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "protractor": "~5.4.0",
