@@ -11,15 +11,15 @@ passport.use(new GoogleStrategy({
     function (request, accessToken, refreshToken, profile, done) {
         User.findOne({ oauthID: profile.id }, { _id: 0, }, function (err, user) {
             if (!err && user !== null) {
-                console.log(err);
                 done(null, user);
             } else {
+                theEmail = (profile.emails && profile.emails[0]) ? profile.emails[0].value : undefined;
                 now = Date.now();
                 user = new User({
                     oauthID: profile.id,
                     name: profile.displayName,
                     created: now,
-                    email: profile.email
+                    email: theEmail
                 });
 
                 if (user.oauthID == process.env.SUPER_USER_PROFILE_ID) {
