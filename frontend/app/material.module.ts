@@ -12,7 +12,7 @@ import {
     MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatPaginatorModule,
     MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule,
     MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule,
-    MatStepperModule, MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule
+    MatStepperModule, MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule, MatNativeDateModule
 } from '@angular/material';
 
 @NgModule({
@@ -57,6 +57,7 @@ import {
         MatTooltipModule,
         MatTreeModule,
         ScrollingModule,
+        MatNativeDateModule,
     ],
     exports: [
         A11yModule,
@@ -99,6 +100,7 @@ import {
         MatTooltipModule,
         MatTreeModule,
         ScrollingModule,
+        MatNativeDateModule,
     ]
 })
 export class MaterialModule { }

@@ -3,8 +3,8 @@
   <form [formGroup]="form" fxLayout="column">
 
     <mat-form-field>
-      <input matInput type="text" placeholder="Title" i18n-placeholder="@@form.placeholder.title" formControlName="title"
-        required>
+      <input matInput type="text" placeholder="Title" i18n-placeholder="@@form.placeholder.title"
+        formControlName="title" required>
       <mat-error *ngIf="form.get('title').hasError('required')" i18n="@@form.required.field">
         Required field
       </mat-error>
@@ -12,25 +12,44 @@
 
     <div fxLayout="row" fxLayoutGap="10px">
       <mat-form-field>
-        <mat-select placeholder="Subject" formControlName="subject" required i18n-placeholder="@@form.placeholder.subject">
+        <mat-select placeholder="Subject" formControlName="subject" required
+          i18n-placeholder="@@form.placeholder.subject">
           <mat-option *ngFor="let sub of selectables.get('subjs')" [value]="sub">{{sub}}</mat-option>
         </mat-select>
         <mat-error *ngIf="form.get('subject').hasError('required')" i18n="@@form.required.field">
           Required field
         </mat-error>
       </mat-form-field>
-      <button type="button" mat-button matSuffix mat-icon-button matTooltip="Edit subjects" i18n-matTooltip="@@form.mattooltip.edit.subjects"
-        matTooltipPosition="above" (click)="editSelectable(button_s, 'subjs')" *ngIf="_editMode && adminMode" #button_s>
+      <button type="button" mat-button matSuffix mat-icon-button matTooltip="Edit subjects"
+        i18n-matTooltip="@@form.mattooltip.edit.subjects" matTooltipPosition="above"
+        (click)="editSelectable(button_s, 'subjs')" *ngIf="_editMode && adminMode" #button_s>
         <mat-icon class="edit-icon">edit</mat-icon>
       </button>
     </div>
 
     <mat-form-field>
-      <textarea matInput rows=5 placeholder="Purpose" formControlName="purpose" required i18n-placeholder="@@form.placeholder.purpose"></textarea>
+      <textarea matInput rows=5 placeholder="Purpose" formControlName="purpose" required
+        i18n-placeholder="@@form.placeholder.purpose"></textarea>
       <mat-error *ngIf="form.get('purpose').hasError('required')" i18n="@@form.required.field">
         Required field
       </mat-error>
     </mat-form-field>
+
+    <div fxLayout="row" fxLayoutGap="25px">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker_init" placeholder="Init date" formControlName="from_date"
+          i18n-placeholder="@@form.placeholder.init.date">
+        <mat-datepicker-toggle matSuffix [for]="picker_init"></mat-datepicker-toggle>
+        <mat-datepicker #picker_init></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker_end" placeholder="End date" formControlName="to_date"
+          i18n-placeholder="@@form.placeholder.end.date">
+        <mat-datepicker-toggle matSuffix [for]="picker_end"></mat-datepicker-toggle>
+        <mat-datepicker #picker_end></mat-datepicker>
+      </mat-form-field>
+    </div>
 
     <div fxLayout="row" fxLayoutGap="10px">
       <mat-form-field>
@@ -42,19 +61,28 @@
           Required field
         </mat-error>
       </mat-form-field>
-      <button type="button" mat-button matSuffix mat-icon-button matTooltip="Edit target population" matTooltipPosition="above"
-        i18n-matTooltip="@@form.matTooltip.target.pop" (click)="editSelectable(button_t, 'target_pop')" *ngIf="_editMode && adminMode"
-        #button_t>
+      <button type="button" mat-button matSuffix mat-icon-button matTooltip="Edit target population"
+        matTooltipPosition="above" i18n-matTooltip="@@form.matTooltip.target.pop"
+        (click)="editSelectable(button_t, 'target_pop')" *ngIf="_editMode && adminMode" #button_t>
         <mat-icon class="edit-icon">edit</mat-icon>
       </button>
     </div>
 
     <mat-form-field>
-      <input matInput type="text" placeholder="Place" i18n-placeholder="@@form.placeholder.place" formControlName="place">
+      <input matInput type="text" placeholder="Link" i18n-placeholder="@@form.placeholder.link" formControlName="link">
+      <mat-error *ngIf="form.get('link').hasError('pattern')" i18n="@@form.invalid.url">
+        Invalid link
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" placeholder="Place" i18n-placeholder="@@form.placeholder.place"
+        formControlName="place">
     </mat-form-field>
 
     <div class="loc" *ngIf="!_editMode">
-      <img class="loc-int" src="https://maps.googleapis.com/maps/api/staticmap?center={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&&markers={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&zoom=14&size=500x300&key={{googleMapApiKey}}">
+      <img class="loc-int"
+        src="https://maps.googleapis.com/maps/api/staticmap?center={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&&markers={{form.get('location').get('coordinates').get('0').value}},{{form.get('location').get('coordinates').get('1').value}}&zoom=14&size=500x300&key={{googleMapApiKey}}">
     </div>
 
     <div formGroupName="location">
@@ -64,7 +92,8 @@
 
           <agm-map class="loc-int edit-map" [latitude]="latMap" [longitude]="lngMap" [zoom]="zoomMap"
             [streetViewControl]="false" (mapDblClick)="mapClicked($event)">
-            <agm-marker [latitude]="form.get('location').get('coordinates').get('0').value" [longitude]="form.get('location').get('coordinates').get('1').value">
+            <agm-marker [latitude]="form.get('location').get('coordinates').get('0').value"
+              [longitude]="form.get('location').get('coordinates').get('1').value">
             </agm-marker>
           </agm-map>
 
@@ -78,7 +107,8 @@
           <mat-form-field>
             <input matInput type="number" placeholder="Latitude" i18n-placeholder="@@form.placeholder.lat"
               formControlName="0" [readonly]="true" required>
-            <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')" i18n="@@form.required.field">
+            <mat-error *ngIf="form.get('location').get('coordinates').get('0').hasError('required')"
+              i18n="@@form.required.field">
               Required field
             </mat-error>
           </mat-form-field>
@@ -86,7 +116,8 @@
           <mat-form-field>
             <input matInput type="number" placeholder="Longitude" i18n-placeholder="@@form.placeholder.lng"
               formControlName="1" [readonly]="true" required>
-            <mat-error *ngIf="form.get('location').get('coordinates').get('1').hasError('required')" i18n="@@form.required.field">
+            <mat-error *ngIf="form.get('location').get('coordinates').get('1').hasError('required')"
+              i18n="@@form.required.field">
               Required field
             </mat-error>
           </mat-form-field>
@@ -116,7 +147,8 @@
 
     <div fxLayout="row" fxLayoutGap="25px">
       <mat-form-field>
-        <input matInput i18n-placeholder="@@form.placeholder.ref.fullname" placeholder="Full name" formControlName="ref_name">
+        <input matInput i18n-placeholder="@@form.placeholder.ref.fullname" placeholder="Full name"
+          formControlName="ref_name">
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Title" i18n-placeholder="@@form.placeholder.ref.title" formControlName="ref_title">

@@ -8,13 +8,13 @@ import { SelectableDialogComponent } from './selectable-dialog.component';
 import { OptionsService } from '../options.service';
 import { environment } from 'frontend/environments/environment';
 
-
 export interface DialogData {
   dialaogTitle: string;
   selectableKey: string;
   selectables: Map<string, string[]>;
 }
 
+const REG_URL = '^(http|https):\/\/(.*)';
 @Component({
   selector: 'app-project-form',
   templateUrl: './project-form.component.html',
@@ -44,6 +44,9 @@ export class ProjectFormComponent implements OnInit {
       'purpose': this.fb.control('', [Validators.required]),
       'target_population': this.fb.control(''),
       'university': this.fb.control('', [Validators.required]),
+      'link': this.fb.control('', [Validators.pattern(REG_URL)]),
+      'from_date': this.fb.control(''),
+      'to_date': this.fb.control(''),
       'ref_name': this.fb.control(''),
       'ref_title': this.fb.control(''),
       'ref_phone': this.fb.control(''),

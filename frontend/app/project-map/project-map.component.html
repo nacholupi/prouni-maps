@@ -19,27 +19,39 @@
                     {{selectedMarker.purpose}}
                 </div>
 
+                <div class="lastrow"></div>
+
+                <div class="row" *ngIf="selectedMarker.link">
+                    <a i18n="@@map.more.link" href="{{selectedMarker.link}}" target="_blank">More information</a>
+                </div>
+
                 <h3 i18n="@@map.target.pop">Target population</h3>
                 <div class="row">
                     {{selectedMarker.target_population}}
                 </div>
 
+                <div class="lastrow"></div>
+
                 <hr class="separator">
 
                 <h3 i18n="@@map.target.ref">Referent</h3>
                 <div class="row">
+                    <mat-icon class="icon">school</mat-icon>
+                    {{selectedMarker.university}}
+                </div>
+                <div class="row" *ngIf="selectedMarker.ref_name">
                     <mat-icon class="icon">person_outline</mat-icon>
                     {{selectedMarker.ref_name}}
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="selectedMarker.ref_title">
                     <mat-icon class="icon">title</mat-icon>
                     {{selectedMarker.ref_title}}
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="selectedMarker.ref_phone">
                     <mat-icon class="icon">phone</mat-icon>
                     {{selectedMarker.ref_phone}}
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="selectedMarker.ref_mail">
                     <mat-icon class="icon">email</mat-icon>
                     {{selectedMarker.ref_mail}}
                 </div>

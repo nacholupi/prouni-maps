@@ -17,7 +17,10 @@ var projectSchema = new mongoose.Schema({
     university: String,
     subject: String,
     purpose: String,
+    link: String,
     target_population: [String],
+    from_date: Date,
+    to_date: Date,
 
     ref_name: String,
     ref_title: String,

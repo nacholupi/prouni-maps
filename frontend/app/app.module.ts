@@ -22,6 +22,7 @@ import { SelectableDialogComponent } from './project-form/selectable-dialog.comp
 import { OptionsService } from './options.service';
 import { AuthService } from './auth.service';
 import { environment } from 'frontend/environments/environment';
+import { MAT_DATE_LOCALE } from '@angular/material';
 
 export function set_user(authService: AuthService) {
   return () => authService.setUser();
@@ -58,6 +59,7 @@ export function set_user(authService: AuthService) {
     ProjectDetailsResolver,
     ProjectMapResolver,
     { provide: APP_INITIALIZER, useFactory: set_user, deps: [AuthService], multi: true },
+    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'}
   ],
   entryComponents: [
     SelectableDialogComponent
