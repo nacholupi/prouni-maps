@@ -27,10 +27,9 @@
 }
 
 .card {
-  margin: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .icon {
@@ -60,7 +59,7 @@
 
 .lastrow {
   width: 100%;
-  height: 5px;
+  height: 8px;
   margin: 0;
   clear:both;
 }

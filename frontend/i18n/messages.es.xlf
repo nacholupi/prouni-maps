@@ -416,53 +416,75 @@
       <trans-unit id="map.purpose" datatype="html">
         <source>Purpose</source>
         <target>Información del proyecto</target>
+
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="map.more.link" datatype="html">
         <source>More information</source>
         <target state="new">Mas información del proyecto</target>
+
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="map.start" datatype="html">
+        <source>Start: </source>
+        <target state="new">Inicio: </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/project-map/project-map.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="map.end" datatype="html">
+        <source>End: </source>
+        <target state="new">Fin: </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/project-map/project-map.component.html</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="map.target.pop" datatype="html">
         <source>Target population</source>
         <target>Población objetivo</target>
 
+
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="map.target.ref" datatype="html">
         <source>Referent</source>
         <target>Referente</target>
 
+
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="map.filter" datatype="html">
         <source>Filter</source>
         <target>Filtrar</target>
 
+
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="map.placeholder.filter" datatype="html">
         <source>Project, referent...</source>
         <target>Proyecto, referente...</target>
 
+
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.filter.no.results" datatype="html">
@@ -470,9 +492,10 @@
         </source>
         <target>Sin resultados</target>
 
+
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
     </body>

@@ -14,6 +14,11 @@
                     {{selectedMarker.subject}}
                 </div>
 
+                <h3 i18n="@@map.target.pop">Target population</h3>
+                <div class="row">
+                    {{selectedMarker.target_population}}
+                </div>
+
                 <h3 i18n="@@map.purpose">Purpose</h3>
                 <div class="row">
                     {{selectedMarker.purpose}}
@@ -25,9 +30,16 @@
                     <a i18n="@@map.more.link" href="{{selectedMarker.link}}" target="_blank">More information</a>
                 </div>
 
-                <h3 i18n="@@map.target.pop">Target population</h3>
-                <div class="row">
-                    {{selectedMarker.target_population}}
+                <div class="row" *ngIf="selectedMarker.from_date">
+                    <div class="lastrow"></div>
+                    <div class="lastrow"></div>
+                    <b i18n="@@map.start">Start: </b>{{selectedMarker.from_date | date:'dd-MM-yyyy'}}
+                </div>
+
+                <div class="row" *ngIf="selectedMarker.to_date">
+                    <div class="lastrow"></div>
+                    <div class="lastrow"></div>
+                    <b i18n="@@map.end">End: </b>{{selectedMarker.to_date | date:'dd-MM-yyyy'}}
                 </div>
 
                 <div class="lastrow"></div>
