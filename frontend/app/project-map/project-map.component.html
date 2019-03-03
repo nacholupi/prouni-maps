@@ -78,14 +78,14 @@
             <agm-marker-cluster imagePath="/assets/images/cluster/m" maxZoom=20>
                 <div *ngFor="let marker of markers">
                     <div *ngIf="marker != selectedMarker">
-                        <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/marker_blue.png"
+                        <agm-marker [agmFitBounds]="fitBounds" [iconUrl]="marker.iconUrl"
                             [latitude]="marker.location.coordinates[0]" [longitude]="marker.location.coordinates[1]"
                             (markerClick)="clickedMarker(marker)">
                         </agm-marker>
 
                     </div>
                     <div *ngIf="marker == selectedMarker">
-                        <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/marker_orange.png"
+                        <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/place.selected.svg"
                             [latitude]="marker.location.coordinates[0]" [longitude]="marker.location.coordinates[1]"
                             (markerClick)="clickedMarker(marker)">
                         </agm-marker>
@@ -108,6 +108,16 @@
                         <button mat-button *ngIf="filterIn.disabled" matSuffix mat-icon-button (click)="clearFilter()">
                             <mat-icon>close</mat-icon>
                         </button>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="floating-subject">
+                        <mat-icon matPrefix>subject</mat-icon>
+                        <mat-select placeholder="Subject" formControlName="subject"
+                            i18n-placeholder="@@form.placeholder.subject">
+
+                            <mat-option>-</mat-option>
+                            <mat-option *ngFor="let sub of subjects" [value]="sub">{{sub}}</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
             </mat-card-content>

@@ -19,9 +19,22 @@
 
 .floating-searcher {
   right: 1em;
+  font-size: 10px;
+  font-weight: bold;
   margin-top: 0 !important;
   position: absolute;
   top: 1em;
+  min-width: 300px;
+  z-index: 100;
+}
+
+.floating-subject {
+  right: 1em;
+  font-size: 10px;
+  font-weight: bold;
+  margin-top: 0 !important;
+  position: absolute;
+  top: 6em;
   min-width: 300px;
   z-index: 100;
 }

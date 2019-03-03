@@ -19,6 +19,8 @@ export interface Project {
     type: string;
     coordinates: number[];
   };
+
+  iconUrl: string;
 }
 
 @Injectable({

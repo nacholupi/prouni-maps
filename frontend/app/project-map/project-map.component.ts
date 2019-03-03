@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../project.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { OptionsService } from '../options.service';
 
 @Component({
   selector: 'app-project-map',
@@ -18,16 +19,35 @@ export class ProjectMapComponent implements OnInit {
   form: FormGroup;
   mapLat: number;
   mapLng: number;
+  subjects = new Array();
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private cdr: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private service: OptionsService, private cdr: ChangeDetectorRef) {
     this.form = this.fb.group({
       'filterInput': this.fb.control(''),
+      'subject': this.fb.control(''),
     });
   }
 
   ngOnInit() {
     this.allMarkers = this.route.snapshot.data.markers;
-    this.markers = this.allMarkers;
+    this.initSelectables();
+  }
+
+  private initSelectables(): void {
+    this.service.getAll().subscribe(res => {
+      this.subjects = res.map['subjs'];
+      this.subjects.forEach((sub, i) => {
+        this.allMarkers.forEach((mar) => {
+          if (mar.subject === sub) {
+            console.log(sub);
+            mar.iconUrl = './assets/images/markers/place.' + i + '.svg';
+            console.log(mar.iconUrl);
+          }
+        });
+      });
+      this.markers = this.allMarkers;
+      console.log(this.markers);
+    });
   }
 
   public clickedMarker(marker: Project): void {
