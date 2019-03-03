@@ -102,8 +102,7 @@
                         <input matInput type="text" formControlName="filterInput"
                             i18n-placeholder="@@map.placeholder.filter" placeholder="Project, referent..."
                             (keyup.enter)="filter()" autocomplete="off" #filterIn>
-                        <mat-hint class="red-hint" *ngIf="noResults" i18n="@@form.filter.no.results">No results
-                        </mat-hint>
+
                         <mat-icon matPrefix>search</mat-icon>
                         <button mat-button *ngIf="filterIn.disabled" matSuffix mat-icon-button (click)="clearFilter()">
                             <mat-icon>close</mat-icon>
@@ -112,12 +111,13 @@
 
                     <mat-form-field appearance="outline" class="floating-subject">
                         <mat-icon matPrefix>subject</mat-icon>
-                        <mat-select placeholder="Subject" formControlName="subject"
+                        <mat-select (selectionChange)="filter()" placeholder="Subject" formControlName="subject"
                             i18n-placeholder="@@form.placeholder.subject">
-
                             <mat-option>-</mat-option>
                             <mat-option *ngFor="let sub of subjects" [value]="sub">{{sub}}</mat-option>
                         </mat-select>
+                        <mat-hint class="red-hint" *ngIf="noResults" i18n="@@form.filter.no.results">No results
+                        </mat-hint>
                     </mat-form-field>
                 </div>
             </mat-card-content>

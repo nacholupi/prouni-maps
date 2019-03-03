@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Project } from '../project.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { OptionsService } from '../options.service';
+import { MapData } from './project-map.resolver';
+import { filterQueryId } from '@angular/core/src/view/util';
 
 @Component({
   selector: 'app-project-map',
@@ -11,7 +13,7 @@ import { OptionsService } from '../options.service';
 })
 export class ProjectMapComponent implements OnInit {
 
-  allMarkers: Project[];
+  allData: MapData;
   markers: Project[];
   fitBounds = true;
   noResults = false;
@@ -29,22 +31,9 @@ export class ProjectMapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.allMarkers = this.route.snapshot.data.markers;
-    this.initSelectables();
-  }
-
-  private initSelectables(): void {
-    this.service.getAll().subscribe(res => {
-      this.subjects = res.map['subjs'];
-      this.subjects.forEach((sub, i) => {
-        this.allMarkers.forEach((mar) => {
-          if (mar.subject === sub) {
-            mar.iconUrl = './assets/images/markers/place.' + i + '.svg';
-          }
-        });
-      });
-      this.markers = this.allMarkers;
-    });
+    this.allData = this.route.snapshot.data.markers;
+    this.markers = this.allData.projects;
+    this.subjects = this.allData.subjects;
   }
 
   public clickedMarker(marker: Project): void {
@@ -72,30 +61,40 @@ export class ProjectMapComponent implements OnInit {
     this.selectedMarker = null;
     const fInput = this.form.get('filterInput');
     const fValue = fInput.value;
-    const fMarkers = this.allMarkers.filter(d =>
-      d.title && d.title.includes(fValue) ||
-      d.subject && d.subject.includes(fValue) ||
-      d.ref_name && d.ref_name.includes(fValue));
+    const sValue = this.form.get('subject').value;
+    let fMarkers = this.allData.projects;
 
-    if (fMarkers.length !== 0) {
+    if (fValue && fValue.length !== 0) {
+      fInput.disable();
+      fMarkers = fMarkers.filter(d =>
+        d.title && d.title.includes(fValue) ||
+        d.ref_name && d.ref_name.includes(fValue));
+    }
+
+    if (sValue && sValue.length !== 0) {
+      fMarkers = fMarkers.filter(d =>
+        d.subject && d.subject === sValue);
+    }
+
+    if (fMarkers.length === 0) {
+      this.noResults = true;
+    } else {
       this.markers = fMarkers;
       if (this.markers.length === 1) {
         this.selectedMarker = this.markers[0];
       }
-    } else {
-      this.noResults = true;
     }
 
-    fInput.disable();
   }
 
   public clearFilter(): void {
     this.noResults = false;
     this.fitBounds = true;
     this.selectedMarker = null;
-    this.markers = this.allMarkers;
+    this.markers = this.allData.projects;
     const fInput = this.form.get('filterInput');
     fInput.setValue('');
     fInput.enable();
+    this.filter();
   }
 }
