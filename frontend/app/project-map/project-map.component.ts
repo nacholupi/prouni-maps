@@ -39,14 +39,11 @@ export class ProjectMapComponent implements OnInit {
       this.subjects.forEach((sub, i) => {
         this.allMarkers.forEach((mar) => {
           if (mar.subject === sub) {
-            console.log(sub);
             mar.iconUrl = './assets/images/markers/place.' + i + '.svg';
-            console.log(mar.iconUrl);
           }
         });
       });
       this.markers = this.allMarkers;
-      console.log(this.markers);
     });
   }
 
