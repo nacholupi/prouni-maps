@@ -9,16 +9,6 @@
 
                 <hr class="separator">
 
-                <h3 i18n="@@map.subject">Subject</h3>
-                <div class="row">
-                    {{selectedMarker.subject}}
-                </div>
-
-                <h3 i18n="@@map.target.pop">Target population</h3>
-                <div class="row">
-                    {{selectedMarker.target_population}}
-                </div>
-
                 <h3 i18n="@@map.purpose">Purpose</h3>
                 <div class="row">
                     {{selectedMarker.purpose}}
@@ -30,14 +20,31 @@
                     <a i18n="@@map.more.link" href="{{selectedMarker.link}}" target="_blank">More information</a>
                 </div>
 
-                <div class="row" *ngIf="selectedMarker.from_date">
+                <div class="row" *ngIf="selectedMarker.subject">
                     <div class="lastrow"></div>
+                    <div class="lastrow"></div>
+                    <b i18n="@@map.subject">Subject: </b>{{selectedMarker.subject}}
+                </div>
+
+                <div class="row" *ngIf="selectedMarker.place">
+                    <div class="lastrow"></div>
+                    <div class="lastrow"></div>
+                    <b i18n="@@map.place">Place: </b>{{selectedMarker.place}}
+                </div>
+
+                <div class="row" *ngIf="selectedMarker.subject">
+                    <div class="lastrow"></div>
+                    <div class="lastrow"></div>
+                    <b i18n="@@map.target.pop">Target population: </b>{{selectedMarker.target_population}}
+                    <div class="lastrow"></div>
+                </div>
+
+                <div class="row" *ngIf="selectedMarker.from_date">
                     <div class="lastrow"></div>
                     <b i18n="@@map.start">Start: </b>{{selectedMarker.from_date | date:'dd-MM-yyyy'}}
                 </div>
 
                 <div class="row" *ngIf="selectedMarker.to_date">
-                    <div class="lastrow"></div>
                     <div class="lastrow"></div>
                     <b i18n="@@map.end">End: </b>{{selectedMarker.to_date | date:'dd-MM-yyyy'}}
                 </div>

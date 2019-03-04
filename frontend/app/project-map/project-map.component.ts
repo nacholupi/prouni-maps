@@ -4,7 +4,6 @@ import { Project } from '../project.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { OptionsService } from '../options.service';
 import { MapData } from './project-map.resolver';
-import { filterQueryId } from '@angular/core/src/view/util';
 
 @Component({
   selector: 'app-project-map',
