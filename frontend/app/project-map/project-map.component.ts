@@ -65,9 +65,12 @@ export class ProjectMapComponent implements OnInit {
 
     if (fValue && fValue.length !== 0) {
       fInput.disable();
+      const lowerValue = fValue.toLocaleLowerCase();
+      console.log(lowerValue);
       fMarkers = fMarkers.filter(d =>
-        d.title && d.title.includes(fValue) ||
-        d.ref_name && d.ref_name.includes(fValue));
+        d.title && d.title.toLocaleLowerCase().includes(lowerValue) ||
+        d.purpose && d.purpose.toLocaleLowerCase().includes(lowerValue) ||
+        d.ref_name && d.ref_name.toLocaleLowerCase().includes(lowerValue));
     }
 
     if (sValue && sValue.length !== 0) {
@@ -83,7 +86,6 @@ export class ProjectMapComponent implements OnInit {
         this.selectedMarker = this.markers[0];
       }
     }
-
   }
 
   public clearFilter(): void {
