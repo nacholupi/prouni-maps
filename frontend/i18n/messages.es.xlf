@@ -439,7 +439,7 @@
       </trans-unit>
       <trans-unit id="map.more.link" datatype="html">
         <source>More information</source>
-        <target state="new">Mas información del proyecto</target>
+        <target state="new">Más información</target>
 
 
         <context-group purpose="location">
