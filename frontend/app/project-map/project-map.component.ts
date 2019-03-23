@@ -2,8 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../project.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { OptionsService } from '../options.service';
-import { MapData } from './project-map.resolver';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project-map',
@@ -23,7 +23,26 @@ export class ProjectMapComponent implements OnInit {
   subjects = new Array();
   universities = new Array();
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private cdr: ChangeDetectorRef) {
+  public static subjectColor(j: number): string {
+    const colors = [
+      '#673AB7', '#FF5252', '#C2185B', '#40C4FF',
+      '#388E3C', '#F9A825', '#FFEB3B', '#9E9E9E',
+      '#795548', '#9E9E9E', '#009688', '#607D8B',
+      '#0277BD',
+    ];
+
+    const defaultColor = '#000000';
+
+    if (colors.length > j) {
+      return colors[j];
+    }
+    return defaultColor;
+  }
+
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private cdr: ChangeDetectorRef,
+    matIconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    matIconRegistry.addSvgIcon('marker', sanitizer.bypassSecurityTrustResourceUrl('assets/images/markers/place.svg'));
+
     this.form = this.fb.group({
       'filterInput': this.fb.control(''),
       'university': this.fb.control(''),
@@ -103,4 +122,14 @@ export class ProjectMapComponent implements OnInit {
     fInput.enable();
     this.filter();
   }
+
+  public subjectColor(j: number): string {
+    return ProjectMapComponent.subjectColor(j);
+  }
+}
+
+export class MapData {
+  projects: Project[];
+  subjects: string[];
+  universities: string[];
 }

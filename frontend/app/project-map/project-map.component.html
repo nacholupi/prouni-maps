@@ -121,7 +121,11 @@
                         <mat-select (selectionChange)="filter()" placeholder="Subject" formControlName="subject"
                             i18n-placeholder="@@form.placeholder.subject">
                             <mat-option>-</mat-option>
-                            <mat-option *ngFor="let sub of subjects" [value]="sub">{{sub}}</mat-option>
+                            <mat-option *ngFor="let sub of subjects; let i = index;" [value]="sub">
+                                <mat-icon matPrefix [ngStyle]="{'color': subjectColor(i)}" svgIcon="marker">
+                                </mat-icon>
+                                {{sub}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
 
