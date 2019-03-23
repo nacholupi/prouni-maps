@@ -21,10 +21,12 @@ export class ProjectMapComponent implements OnInit {
   mapLat: number;
   mapLng: number;
   subjects = new Array();
+  universities = new Array();
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private service: OptionsService, private cdr: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private cdr: ChangeDetectorRef) {
     this.form = this.fb.group({
       'filterInput': this.fb.control(''),
+      'university': this.fb.control(''),
       'subject': this.fb.control(''),
     });
   }
@@ -33,6 +35,7 @@ export class ProjectMapComponent implements OnInit {
     this.allData = this.route.snapshot.data.markers;
     this.markers = this.allData.projects;
     this.subjects = this.allData.subjects;
+    this.universities = this.allData.universities;
   }
 
   public clickedMarker(marker: Project): void {
@@ -61,12 +64,12 @@ export class ProjectMapComponent implements OnInit {
     const fInput = this.form.get('filterInput');
     const fValue = fInput.value;
     const sValue = this.form.get('subject').value;
+    const uValue = this.form.get('university').value;
     let fMarkers = this.allData.projects;
 
     if (fValue && fValue.length !== 0) {
       fInput.disable();
       const lowerValue = fValue.toLocaleLowerCase();
-      console.log(lowerValue);
       fMarkers = fMarkers.filter(d =>
         d.title && d.title.toLocaleLowerCase().includes(lowerValue) ||
         d.purpose && d.purpose.toLocaleLowerCase().includes(lowerValue) ||
@@ -78,14 +81,16 @@ export class ProjectMapComponent implements OnInit {
         d.subject && d.subject === sValue);
     }
 
+    if (uValue && uValue.length !== 0) {
+      fMarkers = fMarkers.filter(d =>
+        d.university && d.university === uValue);
+    }
+
     if (fMarkers.length === 0) {
       this.noResults = true;
-    } else {
-      this.markers = fMarkers;
-      if (this.markers.length === 1) {
-        this.selectedMarker = this.markers[0];
-      }
     }
+
+    this.markers = fMarkers;
   }
 
   public clearFilter(): void {

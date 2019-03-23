@@ -123,6 +123,15 @@
                             <mat-option>-</mat-option>
                             <mat-option *ngFor="let sub of subjects" [value]="sub">{{sub}}</mat-option>
                         </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="floating-uni">
+                        <mat-icon matPrefix>school</mat-icon>
+                        <mat-select (selectionChange)="filter()" placeholder="University" formControlName="university"
+                            i18n-placeholder="@@form.placeholder.university">
+                            <mat-option>-</mat-option>
+                            <mat-option *ngFor="let uni of universities" [value]="uni">{{uni}}</mat-option>
+                        </mat-select>
                         <mat-hint class="red-hint" *ngIf="noResults" i18n="@@form.filter.no.results">No results
                         </mat-hint>
                     </mat-form-field>

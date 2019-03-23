@@ -5,6 +5,7 @@
 
 .red-hint {
   color: red;
+  font-size: 10px;
 }
 
 .sidenav-content {
@@ -34,7 +35,18 @@
   font-weight: bold;
   margin-top: 0 !important;
   position: absolute;
-  top: 6em;
+  top: 5em;
+  min-width: 300px;
+  z-index: 100;
+}
+
+.floating-uni {
+  right: 1em;
+  font-size: 10px;
+  font-weight: bold;
+  margin-top: 0 !important;
+  position: absolute;
+  top: 9em;
   min-width: 300px;
   z-index: 100;
 }

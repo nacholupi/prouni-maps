@@ -9,6 +9,7 @@ import { OptionsService } from '../options.service';
 export class MapData {
     projects: Project[];
     subjects: string[];
+    universities: string[];
 }
 
 @Injectable()
@@ -22,6 +23,7 @@ export class ProjectMapResolver implements Resolve<any> {
             return this.opService.getAll().subscribe(
                 (value) => {
                     result.subjects = value.map['subjs'];
+                    result.universities = value.map['universities'];
                     observer.next(result);
                 },
                 (error) => { observer.error(error); },
