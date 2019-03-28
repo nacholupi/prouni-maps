@@ -1,9 +1,11 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Project } from '../project.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import * as MarkerClusterer from '@google/markerclusterer';
+import { } from 'googlemaps';
+import { Project } from '../project.service';
 
 @Component({
   selector: 'app-project-map',
@@ -12,34 +14,21 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ProjectMapComponent implements OnInit {
 
+  @ViewChild('map') mapElem: ElementRef;
+
   allData: MapData;
-  markers: Project[];
-  fitBounds = true;
-  noResults = false;
-  selectedMarker: Project;
+  projects: Array<Project>;
+  subjects: Array<string>;
+  universities: Array<string>;
+  map: google.maps.Map;
+  markerCluster: any;
+  restorePrevMarkerFunc: () => void;
+
+  selectedProject: Project;
   form: FormGroup;
-  mapLat: number;
-  mapLng: number;
-  subjects = new Array();
-  universities = new Array();
+  noResults = false;
 
-  public static subjectColor(j: number): string {
-    const colors = [
-      '#673AB7', '#FF5252', '#C2185B', '#40C4FF',
-      '#388E3C', '#F9A825', '#FFEB3B', '#9E9E9E',
-      '#795548', '#9E9E9E', '#009688', '#607D8B',
-      '#0277BD',
-    ];
-
-    const defaultColor = '#000000';
-
-    if (colors.length > j) {
-      return colors[j];
-    }
-    return defaultColor;
-  }
-
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private cdr: ChangeDetectorRef,
+  constructor(private route: ActivatedRoute, private fb: FormBuilder,
     matIconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     matIconRegistry.addSvgIcon('marker', sanitizer.bypassSecurityTrustResourceUrl('assets/images/markers/place.svg'));
 
@@ -52,34 +41,81 @@ export class ProjectMapComponent implements OnInit {
 
   ngOnInit() {
     this.allData = this.route.snapshot.data.markers;
-    this.markers = this.allData.projects;
+    this.projects = this.allData.projects;
     this.subjects = this.allData.subjects;
     this.universities = this.allData.universities;
+    this.map = this.createMap();
+    this.addMarkersToMap(this.projects);
   }
 
-  public clickedMarker(marker: Project): void {
-    this.fitBounds = false;
-    this.selectedMarker = marker;
-    this.cdr.detectChanges();
-    this.mapLat = marker.location.coordinates[0];
-    this.mapLng = marker.location.coordinates[1];
+  private createMap(): google.maps.Map {
+    const mapProp = {
+      streetViewControl: false,
+      fullscreenControl: false,
+      mapTypeControl: false,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    return new google.maps.Map(this.mapElem.nativeElement, mapProp);
+  }
+
+  private addMarkersToMap(projects: Array<Project>) {
+    const markers = Array<google.maps.Marker>();
+    const bounds = new google.maps.LatLngBounds();
+
+    projects.forEach(p => {
+      const latLng = new google.maps.LatLng(p.location.coordinates[0], p.location.coordinates[1]);
+      const marker = new google.maps.Marker({
+        position: latLng,
+        icon: {
+          path: 'M 15 2.5 C 10.164062 2.5 6.25 6.414062 6.25 11.25 C 6.25 17.8125 15 27.5 15 27.5 ' +
+            'C 15 27.5 23.75 17.8125 23.75 11.25 C 23.75 6.414062 19.835938 2.5 15 2.5 Z M 15 14.375' +
+            ' C 13.273438 14.375 11.875 12.976562 11.875 11.25 C 11.875 9.523438 13.273438 8.125 15 ' +
+            '8.125 C 16.726562 8.125 18.125 9.523438 18.125 11.25 C 18.125 12.976562 16.726562 14.375' +
+            ' 15 14.375 Z M 15 14.375 ',
+          anchor: new google.maps.Point(15, 30),
+          strokeColor: '#FFFFFF',
+          fillColor: this.subjectColor(p.subject_idx),
+          fillOpacity: 1.0,
+          scale: 1.4
+        },
+      });
+
+      marker.addListener('click', () => {
+        if (this.restorePrevMarkerFunc) {
+          this.restorePrevMarkerFunc();
+        }
+        this.map.setCenter(marker.getPosition());
+        this.selectedProject = p;
+        console.log((marker.getIcon() as google.maps.Symbol).scale);
+        (marker.getIcon() as google.maps.Symbol).scale = 1.5;
+        (marker.getIcon() as google.maps.Symbol).strokeColor = '#000000';
+        marker.setIcon(marker.getIcon());
+        this.restorePrevMarkerFunc = () => {
+          (marker.getIcon() as google.maps.Symbol).scale = 1.4;
+          (marker.getIcon() as google.maps.Symbol).strokeColor = '#FFFFFF';
+          marker.setIcon(marker.getIcon());
+        };
+      });
+      markers.push(marker);
+      bounds.extend(latLng);
+    });
+
+    this.markerCluster = new MarkerClusterer(this.map, markers, {
+      maxZoom: 20,
+      imagePath: '/assets/images/cluster/m'
+    });
+
+    this.map.fitBounds(bounds);
   }
 
   public closeSidenav(): void {
-    this.fitBounds = false;
-    const marker = this.selectedMarker;
-    this.selectedMarker = null;
-    this.cdr.detectChanges();
-    if (this.selectedMarker) {
-      this.mapLat = marker.location.coordinates[0];
-      this.mapLng = marker.location.coordinates[1];
-    }
+    this.selectedProject = null;
   }
 
   public filter(): void {
+    this.clearPreviousMarkers();
     this.noResults = false;
-    this.fitBounds = true;
-    this.selectedMarker = null;
+    this.selectedProject = null;
     const fInput = this.form.get('filterInput');
     const fValue = fInput.value;
     const sValue = this.form.get('subject').value;
@@ -109,14 +145,18 @@ export class ProjectMapComponent implements OnInit {
       this.noResults = true;
     }
 
-    this.markers = fMarkers;
+    this.projects = fMarkers;
+    this.addMarkersToMap(this.projects);
+  }
+
+  private clearPreviousMarkers() {
+    this.markerCluster.clearMarkers();
   }
 
   public clearFilter(): void {
     this.noResults = false;
-    this.fitBounds = true;
-    this.selectedMarker = null;
-    this.markers = this.allData.projects;
+    this.selectedProject = null;
+    this.projects = this.allData.projects;
     const fInput = this.form.get('filterInput');
     fInput.setValue('');
     fInput.enable();
@@ -124,7 +164,19 @@ export class ProjectMapComponent implements OnInit {
   }
 
   public subjectColor(j: number): string {
-    return ProjectMapComponent.subjectColor(j);
+    const colors = [
+      '#673AB7', '#FF5252', '#C2185B', '#40C4FF',
+      '#388E3C', '#F9A825', '#FFEB3B', '#9E9E9E',
+      '#795548', '#9E9E9E', '#009688', '#607D8B',
+      '#0277BD',
+    ];
+
+    const defaultColor = '#000000';
+
+    if (colors.length > j) {
+      return colors[j];
+    }
+    return defaultColor;
   }
 }
 

@@ -33,8 +33,9 @@
     "@angular/router": "~7.1.0",
     "@google/markerclusterer": "^1.0.3",
     "@ngx-i18nsupport/tooling": "^1.1.2",
-    "@types/googlemaps": "^3.30.16",
+    "@types/googlemaps": "^3.30.19",
     "body-parser": "^1.18.3",
+    "classlist.js": "^1.1.20150312",
     "cookie-parser": "^1.4.3",
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
@@ -54,9 +55,9 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.12.1",
+    "@angular-devkit/build-angular": "^0.13.6",
     "@angular/cli": "~7.1.1",
-    "@angular/compiler-cli": "^7.2.5",
+    "@angular/compiler-cli": "^7.2.10",
     "@angular/language-service": "~7.1.0",
     "@ngx-i18nsupport/ngx-i18nsupport": "^1.1.2",
     "@types/node": "~8.9.4",

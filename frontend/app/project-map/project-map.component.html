@@ -1,52 +1,52 @@
 <mat-drawer-container autosize>
-    <mat-drawer *ngIf="selectedMarker" [opened]="true" mode="side" class="sidenav-content">
+    <mat-drawer *ngIf="selectedProject" [opened]="true" mode="side" class="sidenav-content">
         <div class="close_row">
             <mat-icon class="close_icon" (click)="closeSidenav()">close</mat-icon>
         </div>
         <mat-card class="card">
             <mat-card-content class="content-card">
-                <h2>{{selectedMarker.title}}</h2>
+                <h2>{{selectedProject.title}}</h2>
 
                 <hr class="separator">
 
                 <h3 i18n="@@map.purpose">Purpose</h3>
                 <div class="row">
-                    {{selectedMarker.purpose}}
+                    {{selectedProject.purpose}}
                 </div>
 
                 <div class="lastrow"></div>
 
-                <div class="row" *ngIf="selectedMarker.link">
-                    <a i18n="@@map.more.link" href="{{selectedMarker.link}}" target="_blank">More information</a>
+                <div class="row" *ngIf="selectedProject.link">
+                    <a i18n="@@map.more.link" href="{{selectedProject.link}}" target="_blank">More information</a>
                 </div>
 
-                <div class="row" *ngIf="selectedMarker.subject">
+                <div class="row" *ngIf="selectedProject.subject">
                     <div class="lastrow"></div>
                     <div class="lastrow"></div>
-                    <b i18n="@@map.subject">Subject: </b>{{selectedMarker.subject}}
+                    <b i18n="@@map.subject">Subject: </b>{{selectedProject.subject}}
                 </div>
 
-                <div class="row" *ngIf="selectedMarker.place">
+                <div class="row" *ngIf="selectedProject.place">
                     <div class="lastrow"></div>
                     <div class="lastrow"></div>
-                    <b i18n="@@map.place">Place: </b>{{selectedMarker.place}}
+                    <b i18n="@@map.place">Place: </b>{{selectedProject.place}}
                 </div>
 
-                <div class="row" *ngIf="selectedMarker.subject">
+                <div class="row" *ngIf="selectedProject.subject">
                     <div class="lastrow"></div>
                     <div class="lastrow"></div>
-                    <b i18n="@@map.target.pop">Target population: </b>{{selectedMarker.target_population}}
+                    <b i18n="@@map.target.pop">Target population: </b>{{selectedProject.target_population}}
                     <div class="lastrow"></div>
                 </div>
 
-                <div class="row" *ngIf="selectedMarker.from_date">
+                <div class="row" *ngIf="selectedProject.from_date">
                     <div class="lastrow"></div>
-                    <b i18n="@@map.start">Start: </b>{{selectedMarker.from_date | date:'dd-MM-yyyy'}}
+                    <b i18n="@@map.start">Start: </b>{{selectedProject.from_date | date:'dd-MM-yyyy'}}
                 </div>
 
-                <div class="row" *ngIf="selectedMarker.to_date">
+                <div class="row" *ngIf="selectedProject.to_date">
                     <div class="lastrow"></div>
-                    <b i18n="@@map.end">End: </b>{{selectedMarker.to_date | date:'dd-MM-yyyy'}}
+                    <b i18n="@@map.end">End: </b>{{selectedProject.to_date | date:'dd-MM-yyyy'}}
                 </div>
 
                 <div class="lastrow"></div>
@@ -56,23 +56,23 @@
                 <h3 i18n="@@map.target.ref">Referent</h3>
                 <div class="row">
                     <mat-icon class="icon">school</mat-icon>
-                    {{selectedMarker.university}}
+                    {{selectedProject.university}}
                 </div>
-                <div class="row" *ngIf="selectedMarker.ref_name">
+                <div class="row" *ngIf="selectedProject.ref_name">
                     <mat-icon class="icon">person_outline</mat-icon>
-                    {{selectedMarker.ref_name}}
+                    {{selectedProject.ref_name}}
                 </div>
-                <div class="row" *ngIf="selectedMarker.ref_title">
+                <div class="row" *ngIf="selectedProject.ref_title">
                     <mat-icon class="icon">title</mat-icon>
-                    {{selectedMarker.ref_title}}
+                    {{selectedProject.ref_title}}
                 </div>
-                <div class="row" *ngIf="selectedMarker.ref_phone">
+                <div class="row" *ngIf="selectedProject.ref_phone">
                     <mat-icon class="icon">phone</mat-icon>
-                    {{selectedMarker.ref_phone}}
+                    {{selectedProject.ref_phone}}
                 </div>
-                <div class="row" *ngIf="selectedMarker.ref_mail">
+                <div class="row" *ngIf="selectedProject.ref_mail">
                     <mat-icon class="icon">email</mat-icon>
-                    {{selectedMarker.ref_mail}}
+                    {{selectedProject.ref_mail}}
                 </div>
 
             </mat-card-content>
@@ -80,26 +80,7 @@
 
     </mat-drawer>
     <mat-drawer-content>
-        <agm-map [fitBounds]="fitBounds" [streetViewControl]="false" class="map" [latitude]="mapLat"
-            [longitude]="mapLng">
-            <agm-marker-cluster imagePath="/assets/images/cluster/m" maxZoom=20>
-                <div *ngFor="let marker of markers">
-                    <div *ngIf="marker != selectedMarker">
-                        <agm-marker [agmFitBounds]="fitBounds" [iconUrl]="marker.iconUrl"
-                            [latitude]="marker.location.coordinates[0]" [longitude]="marker.location.coordinates[1]"
-                            (markerClick)="clickedMarker(marker)">
-                        </agm-marker>
-
-                    </div>
-                    <div *ngIf="marker == selectedMarker">
-                        <agm-marker [agmFitBounds]="fitBounds" iconUrl="/assets/images/markers/place.selected.svg"
-                            [latitude]="marker.location.coordinates[0]" [longitude]="marker.location.coordinates[1]"
-                            (markerClick)="clickedMarker(marker)">
-                        </agm-marker>
-                    </div>
-                </div>
-            </agm-marker-cluster>
-        </agm-map>
+        <div #map class="map"></div>
 
         <form [formGroup]="form">
             <mat-card-content>

@@ -20,7 +20,7 @@ export interface Project {
     coordinates: number[];
   };
 
-  iconUrl: string;
+  subject_idx: number;
 }
 
 @Injectable({
