@@ -1,4 +1,3 @@
-/// <reference types="@types/googlemaps" />
 import { Component, OnInit, Input, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
@@ -7,6 +6,7 @@ import { MatDialog, MatButton } from '@angular/material';
 import { SelectableDialogComponent } from './selectable-dialog.component';
 import { OptionsService } from '../options.service';
 import { environment } from 'frontend/environments/environment';
+import { } from 'googlemaps';
 
 export interface DialogData {
   dialaogTitle: string;

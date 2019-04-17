@@ -6,7 +6,6 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
-import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
@@ -49,7 +48,6 @@ export function set_user(authService: AuthService) {
       apiKey: environment.GOOGLE_MAP_API_KEY,
       libraries: ['places']
     }),
-    AgmJsMarkerClustererModule,
     routing
   ],
   providers: [
@@ -59,7 +57,7 @@ export function set_user(authService: AuthService) {
     ProjectDetailsResolver,
     ProjectMapResolver,
     { provide: APP_INITIALIZER, useFactory: set_user, deps: [AuthService], multi: true },
-    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'}
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ],
   entryComponents: [
     SelectableDialogComponent
