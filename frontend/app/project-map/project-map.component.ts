@@ -165,9 +165,9 @@ export class ProjectMapComponent implements OnInit {
 
   public subjectColor(j: number): string {
     const colors = [
-      '#673AB7', '#FF5252', '#C2185B', '#40C4FF',
-      '#388E3C', '#F9A825', '#FFEB3B', '#9E9E9E',
-      '#795548', '#9E9E9E', '#009688', '#607D8B',
+      '#E60026', '#673AB7', '#C2185B', '#2F4273',
+      '#F9A825', '#FF0080', '#FFEB3B', '#9E9E9E',
+      '#795548', '#B695C0', '#FF7F50', '#607D8B',
       '#0277BD',
     ];
 
