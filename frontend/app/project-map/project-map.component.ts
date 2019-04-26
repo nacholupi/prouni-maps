@@ -56,6 +56,8 @@ export class ProjectMapComponent implements OnInit {
       streetViewControl: false,
       fullscreenControl: false,
       mapTypeControl: false,
+      center: new google.maps.LatLng(-39, -64.63),
+      zoom: 4,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     return new google.maps.Map(this.mapElem.nativeElement, mapProp);
@@ -89,7 +91,6 @@ export class ProjectMapComponent implements OnInit {
         }
         this.map.setCenter(marker.getPosition());
         this.selectedProject = p;
-        console.log((marker.getIcon() as google.maps.Symbol).scale);
         (marker.getIcon() as google.maps.Symbol).scale = 1.5;
         (marker.getIcon() as google.maps.Symbol).strokeColor = '#000000';
         marker.setIcon(marker.getIcon());
@@ -108,7 +109,9 @@ export class ProjectMapComponent implements OnInit {
       imagePath: '/assets/images/cluster/m'
     });
 
-    this.map.fitBounds(bounds);
+    if (!bounds.isEmpty()) {
+      this.map.fitBounds(bounds);
+    }
   }
 
   public closeSidenav(): void {
