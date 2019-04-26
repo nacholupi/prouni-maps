@@ -27,6 +27,7 @@ var projectSchema = new mongoose.Schema({
     ref_phone: String,
     ref_mail: String,
     place: String,
+    state: String,
     location: {
         type: pointSchema,
         required: true

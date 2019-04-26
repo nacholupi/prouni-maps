@@ -7,6 +7,7 @@ import { SelectableDialogComponent } from './selectable-dialog.component';
 import { OptionsService } from '../options.service';
 import { environment } from 'frontend/environments/environment';
 import { } from 'googlemaps';
+import { StateService } from '../state.service';
 
 export interface DialogData {
   dialaogTitle: string;
@@ -29,6 +30,7 @@ export class ProjectFormComponent implements OnInit {
   @Input() adminMode: boolean;
   _editMode: boolean;
   form: FormGroup;
+  states: Array<String>;
 
   latMap = -39;
   lngMap = -64.63;
@@ -36,7 +38,7 @@ export class ProjectFormComponent implements OnInit {
   googleMapApiKey = environment.GOOGLE_MAP_API_KEY;
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder,
-    private dialog: MatDialog, private service: OptionsService) {
+    private dialog: MatDialog, private service: OptionsService, private stateService: StateService) {
 
     this.form = this.fb.group({
       'title': this.fb.control('', [Validators.required]),
@@ -52,6 +54,7 @@ export class ProjectFormComponent implements OnInit {
       'ref_phone': this.fb.control(''),
       'ref_mail': this.fb.control('', [Validators.email]),
       'place': this.fb.control(''),
+      'state': this.fb.control(''),
       'location': this.fb.group({
         'type': this.fb.control('Point'),
         'coordinates': this.fb.array([null, null], Validators.required)
@@ -75,6 +78,7 @@ export class ProjectFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.states = this.stateService.getArgStates();
     this.initSelectables();
     if (!this.initData) {
       this.initData = {} as Project;
@@ -109,6 +113,7 @@ export class ProjectFormComponent implements OnInit {
             if (place.geometry === undefined || place.geometry === null) {
               return;
             }
+            this.selectState(place);
             this.markPlace(place);
             this.centerMap(place.geometry.location.lat(), place.geometry.location.lng());
           });
@@ -134,6 +139,11 @@ export class ProjectFormComponent implements OnInit {
     this.latMap = lat;
     this.lngMap = lng;
     this.zoomMap = 14;
+  }
+
+  private selectState(place: google.maps.places.PlaceResult): void {
+    const addrComp = place.address_components.find(ac => ac.types.includes('administrative_area_level_1'));
+    this.getFormData().state = addrComp.short_name;
   }
 
   private updateFormData(updatedProject: Project): void {

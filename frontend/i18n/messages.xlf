@@ -141,15 +141,19 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">106</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">121</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">137</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/project-form/project-form.component.html</context>
+          <context context-type="linenumber">145</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.placeholder.subject" datatype="html">
@@ -160,7 +164,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.mattooltip.edit.subjects" datatype="html">
@@ -221,74 +225,88 @@
           <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="form.placeholder.place" datatype="html">
-        <source>Place</source>
+      <trans-unit id="form.location" datatype="html">
+        <source>Location</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.map.search" datatype="html">
         <source>Search</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.placeholder.state" datatype="html">
+        <source>State</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/project-form/project-form.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.placeholder.place" datatype="html">
+        <source>Place</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/project-form/project-form.component.html</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.placeholder.lat" datatype="html">
         <source>Latitude</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.placeholder.lng" datatype="html">
         <source>Longitude</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">117</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.referent" datatype="html">
         <source>Referent</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">136</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.placeholder.ref.uni" datatype="html">
         <source>University</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">140</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.matTooltip.edit.uni" datatype="html">
         <source>Edit universities</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">142</context>
+          <context context-type="linenumber">150</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.placeholder.ref.fullname" datatype="html">
         <source>Full name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">150</context>
+          <context context-type="linenumber">158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.placeholder.ref.title" datatype="html">
         <source>Title</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">154</context>
+          <context context-type="linenumber">162</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.placeholder.ref.mail" datatype="html">
         <source>Email</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">160</context>
+          <context context-type="linenumber">168</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.valid.email" datatype="html">
@@ -297,14 +315,14 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">161</context>
+          <context context-type="linenumber">169</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.placeholder.ref.phone" datatype="html">
         <source>Phone</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-form/project-form.component.html</context>
-          <context context-type="linenumber">166</context>
+          <context context-type="linenumber">174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="create.title" datatype="html">
@@ -409,21 +427,21 @@
         <source>Filter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="map.placeholder.filter" datatype="html">
         <source>Project, referent...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.placeholder.university" datatype="html">
         <source>University</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">130</context>
+          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.filter.no.results" datatype="html">
@@ -431,7 +449,7 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/project-map/project-map.component.html</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
     </body>

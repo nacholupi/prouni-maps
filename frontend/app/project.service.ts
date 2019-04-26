@@ -19,6 +19,7 @@ export interface Project {
     type: string;
     coordinates: number[];
   };
+  state: string;
 
   subject_idx: number;
 }

@@ -22,6 +22,7 @@ import { OptionsService } from './options.service';
 import { AuthService } from './auth.service';
 import { environment } from 'frontend/environments/environment';
 import { MAT_DATE_LOCALE } from '@angular/material';
+import { StateService } from './state.service';
 
 export function set_user(authService: AuthService) {
   return () => authService.setUser();
@@ -53,6 +54,7 @@ export function set_user(authService: AuthService) {
   providers: [
     OptionsService,
     ProjectService,
+    StateService,
     AuthService,
     ProjectDetailsResolver,
     ProjectMapResolver,
