@@ -20,6 +20,7 @@ export class ProjectMapComponent implements OnInit {
   projects: Array<Project>;
   subjects: Array<string>;
   universities: Array<string>;
+  states: Array<string>;
   map: google.maps.Map;
   markerCluster: any;
   restorePrevMarkerFunc: () => void;
@@ -36,6 +37,7 @@ export class ProjectMapComponent implements OnInit {
       'filterInput': this.fb.control(''),
       'university': this.fb.control(''),
       'subject': this.fb.control(''),
+      'state': this.fb.control(''),
     });
   }
 
@@ -44,6 +46,7 @@ export class ProjectMapComponent implements OnInit {
     this.projects = this.allData.projects;
     this.subjects = this.allData.subjects;
     this.universities = this.allData.universities;
+    this.states = this.allData.states;
     this.map = this.createMap();
     this.addMarkersToMap(this.projects);
   }
@@ -120,6 +123,7 @@ export class ProjectMapComponent implements OnInit {
     const fValue = fInput.value;
     const sValue = this.form.get('subject').value;
     const uValue = this.form.get('university').value;
+    const stValue = this.form.get('state').value;
     let fMarkers = this.allData.projects;
 
     if (fValue && fValue.length !== 0) {
@@ -139,6 +143,11 @@ export class ProjectMapComponent implements OnInit {
     if (uValue && uValue.length !== 0) {
       fMarkers = fMarkers.filter(d =>
         d.university && d.university === uValue);
+    }
+
+    if (stValue && stValue.length !== 0) {
+      fMarkers = fMarkers.filter(d =>
+        d.state && d.state === stValue);
     }
 
     if (fMarkers.length === 0) {
@@ -184,4 +193,5 @@ export class MapData {
   projects: Project[];
   subjects: string[];
   universities: string[];
+  states: string[];
 }

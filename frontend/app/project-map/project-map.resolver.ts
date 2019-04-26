@@ -5,16 +5,18 @@ import { ProjectService, Project } from '../project.service';
 import { Observable } from 'rxjs';
 import { OptionsService } from '../options.service';
 import { MapData } from './project-map.component';
+import { StateService } from '../state.service';
 
 
 @Injectable()
 export class ProjectMapResolver implements Resolve<any> {
 
-    constructor(private service: ProjectService, private opService: OptionsService) { }
+    constructor(private service: ProjectService, private opService: OptionsService, private stService: StateService) { }
 
     public resolve(): Observable<MapData> {
         return Observable.create((observer) => {
             const result = new MapData;
+            result.states = this.stService.getArgStates();
             return this.opService.getAll().subscribe(
                 (value) => {
                     result.subjects = value.map['subjs'];

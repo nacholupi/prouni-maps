@@ -30,7 +30,7 @@ export class ProjectFormComponent implements OnInit {
   @Input() adminMode: boolean;
   _editMode: boolean;
   form: FormGroup;
-  states: Array<String>;
+  states: Array<string>;
 
   latMap = -39;
   lngMap = -64.63;

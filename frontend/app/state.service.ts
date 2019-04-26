@@ -11,7 +11,7 @@ const argStates = [
 })
 export class StateService {
 
-  public getArgStates(): Array<String> {
+  public getArgStates(): Array<string> {
     return argStates;
   }
 }
