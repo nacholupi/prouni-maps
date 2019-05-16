@@ -34,4 +34,8 @@ router.get('/users/:id/writer', hand.isAdmin, (req, res) => {
   controller.changeRole(req, res, 'WRITER');
 });
 
+router.get('/users/:id/viewer', hand.isAdmin, (req, res) => {
+  controller.changeRole(req, res, 'VIEWER');
+});
+
 module.exports = router;
