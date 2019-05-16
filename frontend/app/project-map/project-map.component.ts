@@ -106,6 +106,7 @@ export class ProjectMapComponent implements OnInit {
 
     this.markerCluster = new MarkerClusterer(this.map, markers, {
       maxZoom: 20,
+      gridSize: 30,
       imagePath: '/assets/images/cluster/m'
     });
 
