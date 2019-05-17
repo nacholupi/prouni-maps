@@ -36,6 +36,7 @@ export class ProjectFormComponent implements OnInit {
   lngMap = -64.63;
   zoomMap = 3;
   googleMapApiKey = environment.GOOGLE_MAP_API_KEY;
+  minDate: Date = new Date(new Date().getFullYear() - 1, 0, 1);
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder,
     private dialog: MatDialog, private service: OptionsService, private stateService: StateService) {

@@ -37,14 +37,14 @@
 
     <div fxLayout="row" fxLayoutGap="25px">
       <mat-form-field>
-        <input matInput [matDatepicker]="picker_init" placeholder="Init date" formControlName="from_date"
-          i18n-placeholder="@@form.placeholder.init.date">
+        <input matInput [min]="minDate" [matDatepicker]="picker_init" placeholder="Init date"
+          formControlName="from_date" i18n-placeholder="@@form.placeholder.init.date">
         <mat-datepicker-toggle matSuffix [for]="picker_init"></mat-datepicker-toggle>
         <mat-datepicker #picker_init></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [matDatepicker]="picker_end" placeholder="End date" formControlName="to_date"
+        <input matInput [min]="minDate" [matDatepicker]="picker_end" placeholder="End date" formControlName="to_date"
           i18n-placeholder="@@form.placeholder.end.date">
         <mat-datepicker-toggle matSuffix [for]="picker_end"></mat-datepicker-toggle>
         <mat-datepicker #picker_end></mat-datepicker>
