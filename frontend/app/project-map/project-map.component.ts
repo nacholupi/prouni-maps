@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import * as MarkerClusterer from '@google/markerclusterer';
 import { } from 'googlemaps';
 import { Project } from '../project.service';
@@ -29,9 +29,15 @@ export class ProjectMapComponent implements OnInit {
   form: FormGroup;
   noResults = false;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder,
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router,
     matIconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     matIconRegistry.addSvgIcon('marker', sanitizer.bypassSecurityTrustResourceUrl('assets/images/markers/place.svg'));
+
+    this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        this.ngOnInit();
+      }
+    });
 
     this.form = this.fb.group({
       'filterInput': this.fb.control(''),

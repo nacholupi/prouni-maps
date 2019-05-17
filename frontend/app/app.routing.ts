@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: 'project-map',
     component: ProjectMapComponent,
+    runGuardsAndResolvers: 'always',
     resolve: { markers: ProjectMapResolver }
   },
   {
@@ -32,4 +33,4 @@ const routes: Routes = [
   }
 ];
 
-export const routing = RouterModule.forRoot(routes, { enableTracing: true });
+export const routing = RouterModule.forRoot(routes, { enableTracing: true, onSameUrlNavigation: 'reload' });
