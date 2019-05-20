@@ -48,6 +48,11 @@ export class ProjectMapComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.form.get('filterInput').reset();
+    this.form.get('subject').reset();
+    this.form.get('university').reset();
+    this.form.get('state').reset();
+
     this.allData = this.route.snapshot.data.markers;
     this.projects = this.allData.projects;
     this.subjects = this.allData.subjects;
