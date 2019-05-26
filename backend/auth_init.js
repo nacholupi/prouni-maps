@@ -8,7 +8,7 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.OAUTH_CALLBACK,
     userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
 },
-    function (request, accessToken, refreshToken, profile, done) {
+    function (accessToken, refreshToken, profile, done) {
         User.findOne({ oauthID: profile.id }, { _id: 0, }, function (err, user) {
             if (!err && user !== null) {
                 done(null, user);
