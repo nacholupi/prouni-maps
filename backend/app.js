@@ -4,6 +4,7 @@ require('./auth_init.js');
 
 var createError = require('http-errors');
 var express = require('express');
+var pretty = require('express-prettify');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -19,6 +20,7 @@ var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(pretty({ query: 'pretty' }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
