@@ -24,7 +24,7 @@ app.use(pretty({ query: 'pretty' }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: 'Shh, secret!!',
   resave: true,
   saveUninitialized: false
 }));

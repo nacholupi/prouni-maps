@@ -5,7 +5,7 @@ var User = require('./models/user.js');
 passport.use(new GoogleStrategy({
     clientID: process.env.OAUTH_CLIENTID,
     clientSecret: process.env.OAUTH_CLI_SECRET,
-    callbackURL: process.env.OAUTH_CALLBACK,
+    callbackURL: process.env.OAUTH_CALLBACK_HOST + '/auth/login/callback' ,
     userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
 },
     function (accessToken, refreshToken, profile, done) {
@@ -22,7 +22,7 @@ passport.use(new GoogleStrategy({
                     email: theEmail
                 });
 
-                if (user.oauthID == process.env.SUPER_USER_PROFILE_ID) {
+                if (user.email == process.env.SUPER_USER_MAIL) {
                     user.role = 'ADMIN'
                 }
                 user.save(function (err) {
