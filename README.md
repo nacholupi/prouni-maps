@@ -18,9 +18,9 @@ The application will have the possibility of logging in to access additional fun
 ## Most interesting topics within the repository
 - Integration with Google's OAuth2 using PassportJs library
 - Integration with Google Maps: 
-- - Places API
-- - Maps Static API
-- - Maps JavaScript API
+    - Places API
+    - Maps Static API
+    - Maps JavaScript API
 
 ## Development server
 
