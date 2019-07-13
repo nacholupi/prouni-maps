@@ -15,13 +15,16 @@ The application will have the possibility of logging in to access additional fun
 - Administrator: can add, delete, modify all projects and give permission to other users.
 - Writer: with this permission can only add new projects.
 
+## Most interesting topics within the repository
+- Integration with Google's OAuth2using PassportJs library
+- Integration with Google Maps: 
+-- Places API
+-- Maps Static API
+-- Maps JavaScript API
+
 ## Development server
 
-Run `npm start` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm run build&start` for a dev server. Navigate to `http://localhost:3000/`. 
 
 ## FAQ
 
