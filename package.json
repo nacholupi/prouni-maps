@@ -4,12 +4,13 @@
   "scripts": {
     "start": "node backend/bin/www",
     "config": "ts-node ./frontend/set-env.ts",
-    "local": "ng build && node backend/bin/www",
-    "local-front": "ng serve --proxy-config proxy.conf.json --disable-host-check",
-    "local-back": "nodemon backend/bin/www",
-    "build:prod": "ng build --configuration=production",
-    "start:prod": "node backend/bin/www",
-    "gdeploy": "ng build --configuration=production && gcloud app deploy",
+    "build": "npm run config && ng build",
+    "build-prod": "npm run config && ng build --configuration=production",
+    "build&start": "npm run build && npm run start",
+    "build-prod&start": "npm run build-prod && npm run start",
+    "gdeploy": "npm run build-prod && gcloud app deploy",
+    "dev-front": "npm run config && ng serve --proxy-config proxy.conf.json --disable-host-check",
+    "dev-back": "nodemon backend/bin/www",
     "extract-i18n": "ng xi18n --i18n-format xlf --output-path i18n --i18n-locale en && ng run crud:xliffmerge"
   },
   "repository": {
