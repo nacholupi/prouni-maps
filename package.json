@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node backend/bin/www",
+    "config": "ts-node ./frontend/set-env.ts",
     "local": "ng build && node backend/bin/www",
     "local-front": "ng serve --proxy-config proxy.conf.json --disable-host-check",
     "local-back": "nodemon backend/bin/www",

@@ -15,7 +15,8 @@
       "node_modules/@types"
     ],
     "types": [
-      "googlemaps"
+      "googlemaps",
+      "node"
     ],
     "lib": [
       "es2018",
