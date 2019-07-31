@@ -1,7 +1,3 @@
-require('dotenv').config();
-require('./db_init.js');
-require('./auth_init.js');
-
 var createError = require('http-errors');
 var express = require('express');
 var pretty = require('express-prettify');

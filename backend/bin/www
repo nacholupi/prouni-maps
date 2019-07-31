@@ -8,6 +8,10 @@ var app = require('../app');
 var debug = require('debug')('prouni-maps:server');
 var http = require('http');
 
+require('dotenv').config();
+require('../db_init.js');
+require('../auth_init.js');
+
 /**
  * Get port from environment and store in Express.
  */
